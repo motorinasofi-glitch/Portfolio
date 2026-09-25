@@ -1,0 +1,74 @@
+/* Токены дизайна. Все значения взяты из Figma (файл 391K09vokCEzV65Sznaj7B).
+   В макете нет переменных Figma, поэтому токены собираются по секциям
+   из get_design_context. Рядом указан узел-источник. */
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("assets/fonts/BebasNeue-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* --- Цвета --- */
+  --color-bg-hero: #200f35;        /* фон Hero, 2644:2984 */
+  --color-accent: #bb559b;         /* кнопка, подложка фото, 2644:3020 / 2644:2994 */
+  --color-text-soft: #fcecf1;      /* пункты меню, подпись под фото */
+  --color-text-muted: #e3bcd7;     /* @monatory */
+  --color-heading-light: #f7f7f7;  /* заголовок Hero */
+  --color-btn-text: #f9f9f9;       /* текст кнопки */
+
+  /* --- Шрифты --- */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-text: "IBM Plex Sans", sans-serif;
+
+  --fs-h1: 56px;
+  --lh-h1: 1.05;
+  --ls-h1: -1.12px;
+
+  --fs-nav: 14px;
+  --lh-nav: 14px;
+
+  --fs-caption: 12px;
+  --lh-caption: 14px;
+
+  --fs-btn: 18px;
+  --lh-btn: 12px;
+
+  --ls-text: -0.3px;               /* меню, подпись под фото */
+
+  /* --- Сетка и отступы --- */
+  --container: 1200px;
+  --gutter: 30px;                  /* боковой отступ меню, 2644:3350 */
+
+  --space-10: 10px;
+  --space-14: 14px;
+  --space-15: 15px;
+  --space-30: 30px;
+  --space-40: 40px;
+  --space-70: 70px;
+  --space-100: 100px;
+
+  /* --- Радиусы --- */
+  --radius-photo: 12px;
+  --radius-btn: 30px;
+
+  /* --- Hero: геометрия из макета --- */
+  --hero-height: 700px;
+  --hero-main-top: 119px;
+  --hero-main-left: 130px;
+  --hero-main-width: 949px;
+  --hero-ph-width: 113px;
+  --hero-photo-back-w: 101px;
+  --hero-photo-back-h: 129px;
+  --hero-photo-back-offset: 6.66px;
+  --hero-photo-w: 100.62px;
+  --hero-photo-h: 120.016px;
+  --hero-photo-offset: 4.8px;
+  --btn-width: 255px;
+  --icon-arrow-w: 18px;
+  --icon-arrow-h: 26px;
+  --icon-chat-w: 41.042px;
+  --icon-chat-h: 39.635px;
+}
