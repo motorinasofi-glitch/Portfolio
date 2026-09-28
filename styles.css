@@ -166,7 +166,7 @@ a {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
-  color: var(--color-heading-light);
+  color: var(--color-light);
   text-align: center;
 }
 
@@ -189,4 +189,100 @@ a {
 .btn__arrow {
   width: var(--icon-arrow-w);
   height: var(--icon-arrow-h);
+}
+
+/* ============ Общие элементы секций ============ */
+/* Рубрика слева + заголовок секции (Figma 2645:3351 и аналоги) */
+.section-head {
+  display: grid;
+  grid-template-columns: var(--heading-offset) auto;
+  align-items: start;
+  letter-spacing: var(--ls-text);
+  color: var(--color-text-primary);
+}
+
+.section-head__label {
+  margin: 0;
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+.section-head__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+/* ============ Принципы (Figma 2644:3182) ============ */
+.principles {
+  background: var(--color-light);
+}
+
+.principles__inner {
+  height: var(--principles-height);
+  padding: var(--principles-top) var(--gutter) 0;
+}
+
+.principles .section-head__title {
+  width: 804px;
+}
+
+.principles__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.principle {
+  position: absolute;
+  width: var(--col-width);
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+}
+
+/* Колонки: x = 320 / 610 / 900 */
+.principle--col-2 { left: calc(var(--gutter) + var(--heading-offset)); }
+.principle--col-3 { left: calc(var(--gutter) + var(--heading-offset) * 2); }
+.principle--col-4 { left: calc(var(--gutter) + var(--heading-offset) * 3); }
+
+.principle--row-1 { top: var(--principles-row-1); }
+.principle--row-2 { top: var(--principles-row-2); }
+.principle--row-3 { top: var(--principles-row-3); }
+.principle--row-3-alt { top: var(--principles-row-3-alt); }
+
+.principle__num,
+.principle__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+.principle__num {
+  font-weight: 400;
+  margin-bottom: var(--space-10);
+}
+
+/* В макете у заголовков блок на 2 строки (h 40), однострочный — по центру */
+.principle__title {
+  font-weight: 700;
+  margin-bottom: var(--space-20);
+  min-height: calc(var(--lh-h3) * 2);
+  display: flex;
+  align-items: center;
+}
+
+/* (02): в макете отступ заголовок → текст 12px вместо 20px */
+.principle--tight .principle__title {
+  margin-bottom: var(--space-12);
+}
+
+.principle__text {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
 }

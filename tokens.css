@@ -10,14 +10,23 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("assets/fonts/BebasNeue-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* --- Цвета --- */
   --color-bg-hero: #200f35;        /* фон Hero, 2644:2984 */
   --color-accent: #bb559b;         /* кнопка, подложка фото, 2644:3020 / 2644:2994 */
   --color-text-soft: #fcecf1;      /* пункты меню, подпись под фото */
   --color-text-muted: #e3bcd7;     /* @monatory */
-  --color-heading-light: #f7f7f7;  /* заголовок Hero */
+  --color-light: #f7f7f7;          /* заголовок Hero, фон Принципов 2644:3182 */
   --color-btn-text: #f9f9f9;       /* текст кнопки */
+  --color-text-primary: #852b68;   /* тексты на светлом фоне, 2644:3187 */
 
   /* --- Шрифты --- */
   --font-display: "Bebas Neue", sans-serif;
@@ -36,15 +45,34 @@
   --fs-btn: 18px;
   --lh-btn: 12px;
 
-  --ls-text: -0.3px;               /* меню, подпись под фото */
+  --fs-label: 10px;                /* рубрика слева: «мой подход» */
+  --lh-label: 20px;
+
+  --fs-h2: 35px;                   /* заголовок секции */
+  --lh-h2: 34px;
+
+  --fs-h3: 20px;                   /* заголовок пункта и номер (01) */
+  --lh-h3: 20px;
+
+  --fs-body: 14px;                 /* основной текст */
+  --lh-body: 1.4;
+
+  --ls-text: -0.3px;               /* меню, подпись, рубрика, заголовок секции, текст */
 
   /* --- Сетка и отступы --- */
   --container: 1200px;
   --gutter: 30px;                  /* боковой отступ меню, 2644:3350 */
 
+  /* Сетка секций: колонки по 270 с шагом 290 (x = 30 / 320 / 610 / 900) */
+  --col-width: 270px;
+  --col-gap: 20px;
+  --heading-offset: 290px;         /* от рубрики до заголовка секции */
+
   --space-10: 10px;
+  --space-12: 12px;
   --space-14: 14px;
   --space-15: 15px;
+  --space-20: 20px;
   --space-30: 30px;
   --space-40: 40px;
   --space-70: 70px;
@@ -71,4 +99,12 @@
   --icon-arrow-h: 26px;
   --icon-chat-w: 41.042px;
   --icon-chat-h: 39.635px;
+
+  /* --- Принципы: геометрия из макета (2644:3182) --- */
+  --principles-height: 930px;
+  --principles-top: 97px;
+  --principles-row-1: 212px;       /* (01), (03) */
+  --principles-row-2: 444px;       /* (02) */
+  --principles-row-3: 646px;       /* (04) */
+  --principles-row-3-alt: 641px;   /* (05): в макете на 5px выше (04) */
 }
