@@ -199,6 +199,56 @@
     </div>
   </section>
 
+  <!-- 4. Услуги и стоимость (Figma «Услуги»; свёрстано по скриншоту, сверить с макетом) -->
+  <section class="services" id="pricing">
+    <div class="container services__inner">
+      <div class="section-head services__head">
+        <p class="section-head__label">услуги и стоимость</p>
+        <h2 class="section-head__title">Каждый проект начинаю с брифа:<br><span class="services__soft">разбираюсь, что уже есть,<br>и подбираю стратегию<br>под конкретные цели для каждого клиента</span></h2>
+      </div>
+
+      <div class="services__table" role="table" aria-label="Услуги, сроки и стоимость">
+        <div class="services__cols" role="row">
+          <span role="columnheader">Услуга</span>
+          <span role="columnheader">Что входит</span>
+          <span role="columnheader">Сроки</span>
+          <span role="columnheader">Стоимость</span>
+        </div>
+
+        <div class="service service--1" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(01)</p>
+            <h3 class="service__title">Лендинг под запуск<br>продукта</h3>
+          </div>
+          <p class="service__text" role="cell">Разработка одностраничного сайта, призывающего к действию. Помогает быстро объяснить идею и привести первых клиентов.</p>
+          <p class="service__time" role="cell">7–21 день</p>
+          <p class="service__price" role="cell">от 45 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+        </div>
+
+        <div class="service service--2" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(02)</p>
+            <h3 class="service__title">Многостраничный сайт<br>для бизнеса</h3>
+          </div>
+          <p class="service__text" role="cell">Разработка сайта с более сложной структурой, разбитой на несколько страниц, где нужно рассказать о продукте, услугах и команде.</p>
+          <p class="service__time" role="cell">14–30 дней</p>
+          <p class="service__price" role="cell">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+        </div>
+
+        <div class="service service--3" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(03)</p>
+            <h3 class="service__title">Интернет-магазин<br>с каталогом</h3>
+          </div>
+          <p class="service__text" role="cell">Разработка сайта с функциональным каталогом товаров, корзиной и онлайн-кассой</p>
+          <p class="service__time" role="cell">20–40 дней</p>
+          <!-- В макете тоже 65 000, как у (02). Уточнить у Софьи -->
+          <p class="service__price" role="cell">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script src="script.js"></script>
 </body>

@@ -69,7 +69,8 @@
     '.hero__photo-group', '.hero__caption', '.hero .btn',
     '.section-head__label',
     '.principle',
-    '.case'
+    '.case',
+    '.services__cols', '.service'
   ].join(', ');
 
   // Разбиваем текст заголовка на слова, сохраняя <br> и вложенные <span>.

@@ -431,6 +431,117 @@ a {
   letter-spacing: var(--ls-case-text);
 }
 
+/* ============ Услуги и стоимость (Figma «Услуги», по скриншоту) ============ */
+.services {
+  background: var(--color-light);
+}
+
+.services__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.services__head .section-head__title {
+  width: var(--services-head-title-width);
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.services__soft {
+  color: var(--color-heading-soft);
+}
+
+/* Колонки таблицы совпадают с сеткой секций: x = 30 / 320 / 610 / 900 */
+.services__cols,
+.service {
+  display: grid;
+  grid-template-columns: repeat(4, var(--col-width));
+  column-gap: var(--col-gap);
+  align-items: center;
+}
+
+.services__cols {
+  margin-top: var(--services-head-gap);
+  margin-bottom: var(--space-20);
+  color: var(--color-label-dark);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--ls-text);
+}
+
+.service {
+  height: var(--service-height);
+  color: var(--color-text-primary);
+}
+
+/* Номер и название отступают от края карточки, остальные колонки — по шапке */
+.service__name {
+  padding-left: var(--space-20);
+}
+
+.service + .service {
+  margin-top: var(--service-gap);
+}
+
+.service--1 {
+  background:
+    radial-gradient(60% 90% at 15% 80%, color-mix(in srgb, var(--color-light) 60%, transparent), transparent),
+    var(--color-service-mauve);
+}
+
+.service--2 {
+  background: var(--color-card-pink);
+}
+
+.service--3 {
+  background:
+    radial-gradient(70% 120% at 10% 100%, var(--color-card-white), transparent),
+    linear-gradient(to right, var(--color-card-pink), var(--color-service-pink));
+}
+
+.service p,
+.service h3 {
+  margin: 0;
+}
+
+.service .service__num {
+  font-family: var(--font-display);
+  font-size: var(--fs-service-num);
+  line-height: var(--lh-h3);
+  margin-bottom: var(--space-10);
+}
+
+.service__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-service-title);
+  line-height: var(--lh-service-title);
+  letter-spacing: var(--ls-text);
+}
+
+.service__text {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+.service__time {
+  font-size: var(--fs-case-text);
+  letter-spacing: var(--ls-text);
+}
+
+.service__price {
+  font-family: var(--font-display);
+  font-size: var(--fs-service-num);
+  line-height: var(--lh-h3);
+  text-transform: uppercase;
+}
+
+.service__note {
+  display: block;
+  font-size: var(--fs-service-price-note);
+}
+
 /* ===== Анимации появления при скролле (script.js) =====
    Скрытое состояние включается только классом .js-anim на <html>:
    без JS или при «уменьшить движение» всё видно сразу. */

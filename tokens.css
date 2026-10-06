@@ -145,6 +145,20 @@
   --icon-arrow-sm-w: 12px;
   --icon-arrow-sm-h: 20px;
 
+  /* --- Услуги и стоимость. Figma была недоступна (лимит MCP), значения сняты
+     со скриншота макета (масштаб ≈ 1:2.19) — сверить с Figma, когда будет доступ --- */
+  --color-heading-soft: color-mix(in srgb, var(--color-text-primary) 45%, var(--color-light)); /* строки 2–4 заголовка */
+  --color-service-mauve: color-mix(in srgb, var(--color-accent) 45%, var(--color-light));     /* фон карточки (01) */
+  --color-service-pink: color-mix(in srgb, var(--color-accent) 10%, var(--color-card-pink));  /* правый край карточки (03) */
+  --services-head-title-width: 700px;
+  --services-head-gap: 60px;       /* заголовок → шапка таблицы */
+  --service-height: 300px;
+  --service-gap: 60px;             /* между карточками */
+  --fs-service-num: 16px;          /* (01) */
+  --fs-service-title: 28px;        /* «Лендинг под запуск продукта» */
+  --lh-service-title: 42px;
+  --fs-service-price-note: 12px;   /* «*зависит от выбора функционала сайта» */
+
   /* --- Анимации появления при скролле (по образцу lessestudio.com, не из Figma) --- */
   --reveal-duration: 1s;
   --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
