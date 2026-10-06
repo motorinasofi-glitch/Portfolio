@@ -35,8 +35,13 @@ a {
   overflow: clip;
 }
 
+/* Первый экран на всю высоту окна (по решению Софьи), но не ниже 700px из макета.
+   Композиция 700px из макета (фото, заголовок, свечение) — по центру высоты,
+   шапка остаётся сверху. */
 .hero__inner {
-  height: var(--hero-height);
+  --hero-full: max(var(--hero-height), 100vh);
+  --hero-shift: calc((var(--hero-full) - var(--hero-height)) / 2);
+  height: var(--hero-full);
 }
 
 /* Эллипс-свечение: SVG уже содержат blur из Figma и поля под него */
@@ -49,14 +54,14 @@ a {
 
 .hero__glow--bottom {              /* Vector 5, 2644:2985 */
   left: -338.5px;
-  top: 283.5px;
+  top: calc(283.5px + var(--hero-shift));
   width: 1876px;
   height: 722px;
 }
 
 .hero__glow--top {                 /* Vector 4, 2644:2986 */
   left: -333px;
-  top: 127px;
+  top: calc(127px + var(--hero-shift));
   width: 1866px;
   height: 804px;
 }
@@ -100,7 +105,7 @@ a {
 /* Центральный блок */
 .hero__main {
   position: absolute;
-  top: var(--hero-main-top);
+  top: calc(var(--hero-main-top) + var(--hero-shift));
   left: var(--hero-main-left);
   width: var(--hero-main-width);
   display: flex;
@@ -222,7 +227,7 @@ a {
 
 .principles__inner {
   height: var(--principles-height);
-  padding: var(--principles-top) var(--gutter) 0;
+  padding: var(--section-gap) var(--gutter) 0;
 }
 
 .principles .section-head__title {
@@ -285,4 +290,277 @@ a {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   letter-spacing: var(--ls-text);
+}
+
+/* ============ Кейсы / Портфолио (Figma 2644:3031) ============ */
+/* По решению Софьи все кейсы одного размера (как кейс 1 в макете, 560×394)
+   и стоят в сетке 2 колонки, кейс 3 — на обе колонки. Между рядами и секциями — --section-gap. */
+.cases {
+  background: var(--color-light);
+}
+
+.cases__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.cases__head .section-head__label {
+  color: var(--color-label-dark);
+  text-transform: uppercase;
+}
+
+.cases__head .section-head__title {
+  width: var(--cases-head-title-width);
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+  color: var(--color-heading-dark);
+}
+
+.cases__accent {
+  color: var(--color-heading-accent);
+}
+
+.cases__grid {
+  display: grid;
+  grid-template-columns: repeat(2, var(--case-width));
+  column-gap: var(--col-gap);
+  row-gap: var(--section-gap);
+  margin-top: var(--space-40);     /* заголовок → карточки, 2644:3039 → 2644:3032 */
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-30);            /* картинка → подпись, как у кейса 1 */
+}
+
+/* Визуал кейса: одна картинка на весь мокап */
+.case__media {
+  position: relative;
+}
+
+.case__img {
+  width: var(--case-width);
+  height: var(--case-height);
+  aspect-ratio: 560 / 394;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
+/* Подложки из макета: видны, пока нет картинки */
+.case--1 .case__img { background: var(--color-card-cream); }
+.case--2 .case__img { background: var(--color-card-pink); }
+.case--3 .case__img { background: var(--color-card-white); }
+.case--5 .case__img { background: var(--color-card-grey); }
+
+/* Кейс 3 — широкий, на обе колонки (по решению Софьи) */
+.case--3 {
+  grid-column: 1 / -1;
+}
+
+.case--3 .case__img {
+  width: var(--case-wide-width);
+  aspect-ratio: 1140 / 394;
+}
+
+/* Кнопка «Подробнее» (Figma btn 2631:152) */
+.btn--sm {
+  width: var(--btn-sm-width);
+  height: var(--btn-sm-height);
+  padding: 0 var(--space-40);
+  background: var(--color-light);
+  color: var(--color-text-primary);
+  font-size: var(--fs-tag);
+  line-height: var(--lh-tag);
+}
+
+.btn--sm .btn__arrow {
+  flex-shrink: 0;
+  width: var(--icon-arrow-sm-w);
+  height: var(--icon-arrow-sm-h);
+}
+
+.case__btn {                       /* отступ от угла картинки, как у кейса 2 */
+  position: absolute;
+  right: var(--space-20);
+  bottom: var(--space-20);
+}
+
+/* Подпись кейса: теги, название, задача */
+.case__txt {
+  width: var(--case-txt-width);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+  color: var(--color-text-primary);
+}
+
+.case__tags {
+  display: flex;
+  gap: var(--space-11);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-4) var(--space-10) var(--space-5);
+  border: var(--border) solid var(--color-text-primary);
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-tag);
+  line-height: var(--lh-tag);
+  letter-spacing: var(--ls-tag);
+  white-space: nowrap;
+}
+
+.case__title {
+  width: var(--case-width);
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-case-title);
+  line-height: var(--lh-case-title);
+  letter-spacing: var(--ls-text);
+}
+
+.case__text {
+  margin: 0;
+  font-size: var(--fs-case-text);
+  line-height: var(--lh-case-text);
+  letter-spacing: var(--ls-case-text);
+}
+
+/* ===== Анимации появления при скролле (script.js) =====
+   Скрытое состояние включается только классом .js-anim на <html>:
+   без JS или при «уменьшить движение» всё видно сразу. */
+
+.js-anim [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.js-anim [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Заголовки: каждое слово выезжает снизу из-под маски */
+.word {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.12em;   /* чтобы маска не срезала хвосты букв */
+  margin-bottom: -0.12em;
+}
+
+.word__in {
+  display: inline-block;
+}
+
+.js-anim [data-split] .word__in {
+  transform: translateY(110%);
+  transition: transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--i, 0) * var(--word-stagger));
+}
+
+.js-anim [data-split].is-visible .word__in {
+  transform: none;
+}
+
+/* ===== Шапка при скролле: три отдельные плашки (script.js ставит .is-stuck) =====
+   Вверху страницы шапка как в Figma; после --header-stick-after px скролла
+   закрепляется сверху и съезжает вниз плашками, как на lessestudio.com. */
+
+.header.is-stuck {
+  position: fixed;
+  z-index: 100;
+  top: var(--space-15);
+  left: 0;
+  right: 0;
+  width: calc(var(--container) - 2 * var(--gutter));
+  margin-inline: auto;
+  align-items: center;
+  pointer-events: none;            /* кликабельны только сами плашки */
+  animation: header-drop 0.6s var(--reveal-ease) both;
+}
+
+@keyframes header-drop {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: none; }
+}
+
+.header.is-stuck .header__handle,
+.header.is-stuck .nav,
+.header.is-stuck .header__chat {
+  display: flex;
+  align-items: center;
+  height: var(--plate-height);
+  border-radius: var(--plate-radius);
+  background: var(--plate-bg);
+  -webkit-backdrop-filter: blur(var(--plate-blur));
+  backdrop-filter: blur(var(--plate-blur));
+  pointer-events: auto;
+}
+
+.header.is-stuck .header__handle {
+  padding-inline: var(--plate-pad-x);
+}
+
+.header.is-stuck .header__chat {
+  justify-content: center;
+  width: var(--plate-height);
+}
+
+.header.is-stuck .header__chat img {
+  width: calc(var(--icon-chat-w) * 0.7);
+  height: calc(var(--icon-chat-h) * 0.7);
+}
+
+.header.is-stuck .nav {
+  padding-inline: var(--plate-inset);
+}
+
+.header.is-stuck .nav__list {
+  position: relative;
+  gap: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.header.is-stuck .nav__list a {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: calc((var(--plate-height) - 2 * var(--plate-inset) - var(--lh-nav)) / 2) var(--pill-pad-x);
+}
+
+/* Подложка, которая переезжает за пунктом под курсором */
+.nav__pill {
+  display: none;
+}
+
+.header.is-stuck .nav__pill {
+  display: block;
+  position: absolute;
+  top: var(--plate-inset);
+  bottom: var(--plate-inset);
+  left: 0;
+  width: 0;
+  border-radius: var(--pill-radius);
+  background: var(--plate-pill-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.header.is-stuck .nav__pill.is-moving {
+  transition:
+    left 0.2s var(--pill-ease),
+    width 0.2s var(--pill-ease),
+    opacity 0.15s ease;
 }
