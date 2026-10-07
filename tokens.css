@@ -159,9 +159,25 @@
   --lh-service-title: 42px;
   --fs-service-price-note: 12px;   /* «*зависит от выбора функционала сайта» */
 
+  /* --- Почему не шаблон (блок из прототипа, не из Figma): цвета смешаны из палитры --- */
+  --color-line: color-mix(in srgb, var(--color-text-primary) 15%, var(--color-light));       /* линии таблицы */
+  --color-text-dim: color-mix(in srgb, var(--color-label-dark) 75%, var(--color-light));     /* колонка «Шаблон» */
+  --fw-semibold: 600;              /* названия строк и шапка таблицы */
+
   /* --- Обо мне (новый блок, не из Figma): размеры собраны из сетки секций --- */
   --about-photo-w: var(--col-width);   /* 270, первая колонка сетки */
   --about-photo-h: var(--case-height); /* 394, как высота карточки кейса */
+
+  /* --- Вопросы и подвал с формой (из прототипа, не из Figma) --- */
+  --radius-panel: 24px;            /* белая карточка формы */
+  --field-height: 52px;            /* поле ввода */
+  --form-width: 490px;
+  --contact-title-width: 420px;
+  --color-error: var(--color-accent);
+  --contact-glow: color-mix(in srgb, var(--color-accent) 40%, transparent); /* свечение сверху подвала */
+
+  /* --- Отзывы (новый блок, не из Figma) --- */
+  --review-photo: var(--space-70);     /* аватар 70×70 */
 
   /* --- Анимации появления при скролле (по образцу lessestudio.com, не из Figma) --- */
   --reveal-duration: 1s;

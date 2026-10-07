@@ -46,6 +46,47 @@
   });
 })();
 
+// Форма заявки в подвале: только проверка полей, отправка пока не подключена.
+(function () {
+  var form = document.querySelector('.form');
+  if (!form) return;
+
+  var status = form.querySelector('.form__status');
+  // @username (5–32 символа) или телефон: от 7 цифр, можно +, пробелы, скобки, дефисы
+  var contactOk = /^(@[A-Za-z0-9_]{5,32}|\+?[\d\s()-]{7,20})$/;
+  var checks = [
+    { el: form.elements.name, test: function (v) { return v.length >= 2; }, msg: 'Напишите, как к вам обращаться' },
+    { el: form.elements.contact, test: function (v) { return contactOk.test(v); }, msg: 'Укажите @username в Telegram или номер телефона' }
+  ];
+
+  function check(item) {
+    var ok = item.test(item.el.value.trim());
+    var error = document.getElementById(item.el.id + '-error');
+    item.el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    item.el.setAttribute('aria-describedby', error.id);
+    error.textContent = ok ? '' : item.msg;
+    return ok;
+  }
+
+  checks.forEach(function (item) {
+    item.el.addEventListener('blur', function () { if (item.el.value) check(item); });
+    item.el.addEventListener('input', function () {
+      if (item.el.getAttribute('aria-invalid') === 'true') check(item);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstBad = null;
+    checks.forEach(function (item) {
+      if (!check(item) && !firstBad) firstBad = item.el;
+    });
+    if (firstBad) { firstBad.focus(); return; }
+    // [отправку подключим позже: Telegram-бот, почта или CRM]
+    status.textContent = 'Отправка заявок пока не подключена. Напишите мне в Telegram.';
+  });
+})();
+
 // Анимации по образцу lessestudio.com.
 // Если у пользователя в системе включено «уменьшить движение» — ничего не анимируем.
 (function () {
@@ -68,10 +109,14 @@
     '.header',
     '.hero__photo-group', '.hero__caption', '.hero .btn',
     '.section-head__label',
+    '.compare__table',
     '.principle',
     '.case',
     '.services__cols', '.service',
-    '.about__ph', '.about__item'
+    '.about__ph', '.about__item',
+    '.review',
+    '.faq__row',
+    '.contact__txt', '.form'
   ].join(', ');
 
   // Разбиваем текст заголовка на слова, сохраняя <br> и вложенные <span>.

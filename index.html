@@ -6,7 +6,7 @@
   <title>Софья — веб и граф дизайнер</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap&subset=cyrillic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap&subset=cyrillic" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <!-- Включает анимации появления (script.js). Без JS или при «уменьшить движение» контент виден сразу. -->
   <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-anim");</script>
@@ -59,7 +59,50 @@
     </div>
   </section>
 
-  <!-- 2. Почему не шаблон / Мой подход (Figma 2644:3182) -->
+  <!-- 2. Почему не шаблон: сравнение с шаблоном (из прототипа на claude.ai, в токенах сайта) -->
+  <section class="compare" id="why">
+    <div class="container compare__inner">
+      <div class="section-head compare__head">
+        <p class="section-head__label">почему не шаблон</p>
+        <h2 class="section-head__title"><span class="compare__accent">Шаблон за 15 000 ₽</span> или сайт, собранный<br>под ваших клиентов</h2>
+      </div>
+
+      <div class="compare__table" role="table" aria-label="Шаблон на Тильде и сайт под ключ">
+        <div class="compare__row compare__row--head" role="row">
+          <span role="columnheader"></span>
+          <span class="compare__tpl" role="columnheader">Шаблон на Тильде</span>
+          <span class="compare__key" role="columnheader">Сайт под ключ</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Структура</span>
+          <span class="compare__tpl" role="cell">Чужая, под «среднюю» компанию</span>
+          <span class="compare__key" role="cell">По анализу вашей аудитории и конкурентов</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Тексты</span>
+          <span class="compare__tpl" role="cell">Пишете сами поверх заглушек</span>
+          <span class="compare__key" role="cell">Пишу продающие тексты под вашу нишу</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Поиск</span>
+          <span class="compare__tpl" role="cell">SEO не настроено</span>
+          <span class="compare__key" role="cell">Базовое SEO уже настроено</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Заявки</span>
+          <span class="compare__tpl" role="cell">Форму и CRM подключаете сами</span>
+          <span class="compare__key" role="cell">Формы и CRM работают в день сдачи</span>
+        </div>
+        <div class="compare__row compare__row--last" role="row">
+          <span class="compare__name" role="rowheader">После запуска</span>
+          <span class="compare__tpl" role="cell">Разбираетесь сами</span>
+          <span class="compare__key" role="cell">Видео-инструкция, как управлять сайтом</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Мой подход (Figma 2644:3182) -->
   <section class="principles" id="approach">
     <div class="container principles__inner">
       <div class="section-head">
@@ -97,7 +140,7 @@
     </div>
   </section>
 
-  <!-- 3. Кейсы / Портфолио (Figma 2644:3031) -->
+  <!-- 4. Кейсы / Портфолио (Figma 2644:3031) -->
   <section class="cases" id="cases">
     <div class="container cases__inner">
       <div class="section-head cases__head">
@@ -200,7 +243,7 @@
     </div>
   </section>
 
-  <!-- 4. Услуги и стоимость (Figma «Услуги»; свёрстано по скриншоту, сверить с макетом) -->
+  <!-- 5. Услуги и стоимость (Figma «Услуги»; свёрстано по скриншоту, сверить с макетом) -->
   <section class="services" id="pricing">
     <div class="container services__inner">
       <div class="section-head services__head">
@@ -250,7 +293,7 @@
     </div>
   </section>
 
-  <!-- 5. Обо мне (новый блок, в системе секций из Figma).
+  <!-- 6. Обо мне (новый блок, в системе секций из Figma).
        Факты — из промт.md и скрытой группы «Подробнее обо мне» в Figma (2644:3214) -->
   <section class="about" id="about">
     <div class="container about__inner">
@@ -300,6 +343,141 @@
       </div>
     </div>
   </section>
+
+  <!-- 7. Вопросы (из прототипа на claude.ai, в токенах сайта). Ответы в [скобках] впишет Софья -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="section-head faq__head">
+        <p class="section-head__label">вопросы</p>
+        <h2 class="section-head__title">Отвечаю заранее</h2>
+      </div>
+
+      <dl class="faq__list">
+        <div class="faq__row">
+          <dt class="faq__q">Сколько правок входит в стоимость?</dt>
+          <dd class="faq__a">Шесть кругов: по два после прототипа, дизайна и вёрстки.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">Что если результат не понравится?</dt>
+          <dd class="faq__a">Структуру и тексты согласуем на прототипе ещё до дизайна, поэтому к финалу сюрпризов не бывает.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">Смогу ли я сам менять сайт?</dt>
+          <dd class="faq__a">Да. После сдачи записываю видео-инструкцию, как управлять сайтом на Тильде.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">Что нужно от меня?</dt>
+          <dd class="faq__a">[Например: заполнить бриф, прислать логотип и фото, отвечать на вопросы на этапах]</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">Сколько длится работа?</dt>
+          <dd class="faq__a">[Типичные сроки по видам сайтов]. Если что-то сдвигается, предупреждаю заранее.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 8. Отзывы (новый блок). СКРЫТ, пока нет 3+ настоящих отзывов с именем и фото или компанией.
+       Как включить: убрать hidden у этой секции и у пункта «Отзывы» в меню (в шапке).
+       Стоит прямо перед подвалом, чтобы после включения быть рядом с формой заявки. -->
+  <section class="reviews" id="reviews" hidden>
+    <div class="container reviews__inner">
+      <div class="section-head reviews__head">
+        <p class="section-head__label">отзывы</p>
+        <h2 class="section-head__title">Что говорят клиенты</h2>
+      </div>
+
+      <div class="reviews__list">
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="assets/img/review-1.webp" alt="[Имя клиента 1]" width="70" height="70">
+              <div>
+                <p class="review__name">[Имя клиента 1]</p>
+                <p class="review__company">[Компания или ниша]</p>
+              </div>
+            </div>
+            <p class="review__text">[Текст отзыва 1: настоящий отзыв клиента, без правок по смыслу]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[сайт клиента]</a>
+          </article>
+
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="assets/img/review-2.webp" alt="[Имя клиента 2]" width="70" height="70">
+              <div>
+                <p class="review__name">[Имя клиента 2]</p>
+                <p class="review__company">[Компания или ниша]</p>
+              </div>
+            </div>
+            <p class="review__text">[Текст отзыва 2: настоящий отзыв клиента, без правок по смыслу]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[сайт клиента]</a>
+          </article>
+
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="assets/img/review-3.webp" alt="[Имя клиента 3]" width="70" height="70">
+              <div>
+                <p class="review__name">[Имя клиента 3]</p>
+                <p class="review__company">[Компания или ниша]</p>
+              </div>
+            </div>
+            <p class="review__text">[Текст отзыва 3: настоящий отзыв клиента, без правок по смыслу]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[сайт клиента]</a>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Финальный призыв + подвал (из прототипа на claude.ai, в токенах сайта).
+       Форма: только разметка и проверка полей, отправка не подключена (script.js) -->
+  <footer class="contact" id="contact">
+    <div class="container contact__inner">
+      <div class="contact__main">
+        <div class="contact__txt">
+          <h2 class="contact__title">Обсудим ваш сайт?</h2>
+          <p class="contact__lead">Расскажите в двух словах о задаче. Отвечу [в течение N часов] и предложу следующий шаг.</p>
+          <p class="contact__hint">Удобнее сразу написать?</p>
+          <a class="btn btn--outline" href="https://t.me/monatory" target="_blank" rel="noopener">
+            Написать в Telegram
+            <img class="btn__arrow" src="assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </a>
+        </div>
+
+        <form class="form" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="f-name">Имя</label>
+            <input class="form__input" id="f-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+            <p class="form__error" id="f-name-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-contact">Telegram или телефон</label>
+            <input class="form__input" id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="@username или +7…" required>
+            <p class="form__error" id="f-contact-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-task">Пара слов о задаче</label>
+            <textarea class="form__input form__input--area" id="f-task" name="task" rows="3" placeholder="Например: нужен лендинг для стоматологии"></textarea>
+          </div>
+          <button class="btn form__submit" type="submit">Отправить заявку</button>
+          <p class="form__after">После заявки: [что происходит дальше, например «напишу вам в Telegram и пришлю короткий бриф»]</p>
+          <p class="form__status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="contact__bottom">
+        <span class="contact__handle">@monatory</span>
+        <ul class="contact__links">
+          <li><a href="https://t.me/monatory" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://www.behance.net/sofi_motorina" target="_blank" rel="noopener">Behance</a></li>
+          <!-- [почта — впишет Софья: href="mailto:..."] -->
+          <li><a href="#">[почта]</a></li>
+        </ul>
+        <span>Белград · © 2026</span>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script src="script.js"></script>
