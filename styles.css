@@ -471,6 +471,7 @@ a {
 
 .service {
   height: var(--service-height);
+  border-radius: var(--radius-card);
   color: var(--color-text-primary);
 }
 
@@ -540,6 +541,67 @@ a {
 .service__note {
   display: block;
   font-size: var(--fs-service-price-note);
+}
+
+/* ============ Обо мне (новый блок, в системе секций из Figma) ============ */
+/* Фото в первой колонке сетки (x = 30), пункты — в колонках 320 / 610 / 900 */
+.about {
+  background: var(--color-light);
+}
+
+.about__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.about__head .section-head__title {
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.about__body {
+  display: grid;
+  grid-template-columns: var(--col-width) 1fr;
+  column-gap: var(--col-gap);
+  margin-top: var(--services-head-gap);
+  color: var(--color-text-primary);
+}
+
+.about__ph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.about__photo {
+  width: var(--about-photo-w);
+  height: var(--about-photo-h);
+  aspect-ratio: 270 / 394;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  background: var(--color-card-pink);
+}
+
+.about__personal {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--ls-text);
+}
+
+.about__list {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col-width));
+  column-gap: var(--col-gap);
+  row-gap: var(--space-70);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__item {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== Анимации появления при скролле (script.js) =====

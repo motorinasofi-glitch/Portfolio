@@ -153,11 +153,15 @@
   --services-head-title-width: 700px;
   --services-head-gap: 60px;       /* заголовок → шапка таблицы */
   --service-height: 300px;
-  --service-gap: 60px;             /* между карточками */
+  --service-gap: 20px;             /* между карточками, по решению Софьи */
   --fs-service-num: 16px;          /* (01) */
   --fs-service-title: 28px;        /* «Лендинг под запуск продукта» */
   --lh-service-title: 42px;
   --fs-service-price-note: 12px;   /* «*зависит от выбора функционала сайта» */
+
+  /* --- Обо мне (новый блок, не из Figma): размеры собраны из сетки секций --- */
+  --about-photo-w: var(--col-width);   /* 270, первая колонка сетки */
+  --about-photo-h: var(--case-height); /* 394, как высота карточки кейса */
 
   /* --- Анимации появления при скролле (по образцу lessestudio.com, не из Figma) --- */
   --reveal-duration: 1s;

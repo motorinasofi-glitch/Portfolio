@@ -70,7 +70,8 @@
     '.section-head__label',
     '.principle',
     '.case',
-    '.services__cols', '.service'
+    '.services__cols', '.service',
+    '.about__ph', '.about__item'
   ].join(', ');
 
   // Разбиваем текст заголовка на слова, сохраняя <br> и вложенные <span>.
