@@ -1,0 +1,1311 @@
+/* Базовые стили */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-hero);
+  font-family: var(--font-text);
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  width: var(--container);
+  margin: 0 auto;
+}
+
+/* ============ Hero (Figma 2644:2984) ============ */
+.hero {
+  position: relative;
+  background: var(--color-bg-hero);
+  overflow: clip;
+}
+
+/* Первый экран на всю высоту окна (по решению Софьи), но не ниже 700px из макета.
+   Композиция 700px из макета (фото, заголовок, свечение) — по центру высоты,
+   шапка остаётся сверху. */
+.hero__inner {
+  --hero-full: max(var(--hero-height), 100vh);
+  --hero-shift: calc((var(--hero-full) - var(--hero-height)) / 2);
+  height: var(--hero-full);
+}
+
+/* Эллипс-свечение: SVG уже содержат blur из Figma и поля под него */
+.hero__glow {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: screen;          /* фолбэк */
+  mix-blend-mode: plus-lighter;
+}
+
+.hero__glow--bottom {              /* Vector 5, 2644:2985 */
+  left: -338.5px;
+  top: calc(283.5px + var(--hero-shift));
+  width: 1876px;
+  height: 722px;
+}
+
+.hero__glow--top {                 /* Vector 4, 2644:2986 */
+  left: -333px;
+  top: calc(127px + var(--hero-shift));
+  width: 1866px;
+  height: 804px;
+}
+
+/* Шапка */
+.header {
+  position: absolute;
+  top: var(--space-15);
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: var(--fs-nav);
+  line-height: var(--lh-nav);
+  letter-spacing: var(--ls-text);
+}
+
+.header__handle {
+  color: var(--color-text-muted);
+}
+
+.nav__list {
+  display: flex;
+  gap: var(--space-100);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-soft);
+}
+
+.nav__list [hidden] {
+  display: none;
+}
+
+.header__chat img {
+  width: var(--icon-chat-w);
+  height: var(--icon-chat-h);
+}
+
+/* Переключатель языка RUS | ENG: текущий язык подсвечен, второй — ссылка */
+.header__end {
+  display: flex;
+  align-items: center;
+  gap: var(--lang-gap);
+}
+
+.lang {
+  display: flex;
+  padding: var(--lang-inset);
+  border-radius: var(--pill-radius);
+  background: var(--plate-pill-bg);
+}
+
+.lang__opt {
+  display: flex;
+  align-items: center;
+  padding: var(--lang-pad-y) var(--lang-pad-x);
+  border-radius: calc(var(--pill-radius) - var(--lang-inset));
+  color: var(--color-text-soft);
+  transition: background 0.15s ease;
+}
+
+a.lang__opt:hover {
+  background: var(--plate-pill-bg);
+}
+
+.lang__opt.is-active {
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+}
+
+/* Центральный блок */
+.hero__main {
+  position: absolute;
+  top: calc(var(--hero-main-top) + var(--hero-shift));
+  left: var(--hero-main-left);
+  width: var(--hero-main-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-70);
+}
+
+.hero__ph {
+  width: var(--hero-ph-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.hero__photo-group {
+  display: grid;
+}
+
+.hero__photo-back,
+.hero__photo {
+  grid-area: 1 / 1;
+  border-radius: var(--radius-photo);
+}
+
+.hero__photo-back {
+  width: var(--hero-photo-back-w);
+  height: var(--hero-photo-back-h);
+  margin-left: var(--hero-photo-back-offset);
+  background: var(--color-accent);
+}
+
+.hero__photo {
+  width: var(--hero-photo-w);
+  height: var(--hero-photo-h);
+  margin-top: var(--hero-photo-offset);
+  aspect-ratio: 100.62 / 120.016;
+  object-fit: cover;
+}
+
+.hero__caption {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--ls-text);
+}
+
+.hero__txt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-30);
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  color: var(--color-light);
+  text-align: center;
+}
+
+/* Кнопка (Figma btn 2644:3020) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-10);
+  width: var(--btn-width);
+  padding: var(--space-14) var(--space-40);
+  border-radius: var(--radius-btn);
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+  font-size: var(--fs-btn);
+  line-height: var(--lh-btn);
+  white-space: nowrap;
+}
+
+.btn__arrow {
+  width: var(--icon-arrow-w);
+  height: var(--icon-arrow-h);
+}
+
+/* ============ Общие элементы секций ============ */
+/* Рубрика слева + заголовок секции (Figma 2645:3351 и аналоги) */
+.section-head {
+  display: grid;
+  grid-template-columns: var(--heading-offset) auto;
+  align-items: start;
+  letter-spacing: var(--ls-text);
+  color: var(--color-text-primary);
+}
+
+.section-head__label {
+  margin: 0;
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+.section-head__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+/* ============ Почему не шаблон (из прототипа, в токенах сайта) ============ */
+/* Колонки таблицы стоят по сетке секций: x = 320 / 610 / 900 */
+.compare {
+  background: var(--color-light);
+}
+
+.compare__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+/* Шрифты и цвета — как в «Услугах» и «Обо мне»: рубрика и заголовок сливовые,
+   «шаблон» приглушён, названия строк — Bebas, как заголовки пунктов */
+.compare__head .section-head__title {
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.compare__accent {
+  color: var(--color-heading-soft);
+}
+
+.compare__table {
+  margin-top: var(--services-head-gap);
+  margin-left: var(--heading-offset);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+  color: var(--color-text-primary);
+}
+
+.compare__row {
+  display: grid;
+  grid-template-columns: var(--heading-offset) var(--heading-offset) var(--col-width);
+  align-items: stretch;
+}
+
+.compare__row > * {
+  display: flex;
+  align-items: center;
+  padding: var(--space-20);
+  border-bottom: var(--border) solid var(--color-line);
+}
+
+.compare__row > :first-child {
+  padding-left: 0;
+}
+
+.compare__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+/* Шапка — как подписи колонок в «Услугах» */
+.compare__row--head > * {
+  align-items: flex-end;
+  padding-block: 0 var(--space-10);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  color: var(--color-label-dark);
+}
+
+.compare__tpl {
+  color: var(--color-text-soft-plum);
+}
+
+/* Колонка «Сайт под ключ»: белая карточка, как карточки «Мой подход» */
+.compare__key {
+  background: var(--color-card-white);
+  border-bottom-color: var(--color-light);
+}
+
+.compare__row--head .compare__key {
+  padding-top: var(--space-20);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  color: var(--color-accent);
+}
+
+.compare__row--last > * {
+  border-bottom: 0;
+}
+
+.compare__row--last .compare__key {
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+/* ============ Принципы: карточки в ленте (по образцу irinakhachatryan.ru, не из Figma) ============
+   Без JS лента листается вбок сама. script.js ставит .is-pinned: секция
+   закрепляется на экране, и вертикальный скролл двигает ленту влево. */
+.principles {
+  background: var(--color-light);
+  overflow-x: clip;
+}
+
+.principles__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.principles.is-pinned .principles__inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
+}
+
+.principles .section-head__title {
+  width: 804px;
+}
+
+/* Лента начинается от заголовка секции и уходит за правый край окна */
+.principles__rail {
+  margin-top: var(--principles-head-gap);
+  margin-left: var(--heading-offset);
+  margin-right: calc(var(--gutter) * -1 - (100vw - var(--container)) / 2);
+  overflow-x: auto;
+}
+
+.principles.is-pinned .principles__rail {
+  overflow: visible;
+}
+
+.principles__list {
+  display: flex;
+  gap: var(--principle-card-gap);
+  width: max-content;
+  margin: 0;
+  padding: 0 var(--gutter) 0 0;
+  list-style: none;
+  will-change: transform;
+}
+
+.principle {
+  box-sizing: border-box;
+  width: var(--principle-card-w);
+  height: var(--principle-card-h);
+  padding: var(--principle-card-pad);
+  display: flex;
+  flex-direction: column;
+  /* Градиент как на первом экране: тёмный фон Hero и свечение снизу */
+  background: var(--principle-card-bg);
+  border-radius: var(--radius-card);
+  color: var(--color-text-soft);
+}
+
+.principle .principle__num {
+  color: var(--color-text-muted);
+}
+
+/* Номер сверху, заголовок и текст прижаты к низу карточки */
+.principle .principle__num {
+  margin-bottom: auto;
+}
+
+.principle .principle__title {
+  font-size: var(--fs-principle-card-title);
+  line-height: var(--lh-principle-card-title);
+  min-height: 0;
+  margin-bottom: var(--space-12);
+}
+
+
+.principle__num,
+.principle__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+.principle__num {
+  font-weight: 400;
+  margin-bottom: var(--space-10);
+}
+
+/* В макете у заголовков блок на 2 строки (h 40), однострочный — по центру */
+.principle__title {
+  font-weight: 700;
+  margin-bottom: var(--space-20);
+  min-height: calc(var(--lh-h3) * 2);
+  display: flex;
+  align-items: center;
+}
+
+.principle__text {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+/* ============ Кейсы / Портфолио (Figma 2644:3031) ============ */
+/* По решению Софьи все кейсы одного размера (как кейс 1 в макете, 560×394)
+   и стоят в сетке 2 колонки, кейс 3 — на обе колонки. Между рядами и секциями — --section-gap. */
+.cases {
+  background: var(--color-light);
+}
+
+.cases__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.cases__head .section-head__label {
+  color: var(--color-label-dark);
+  text-transform: uppercase;
+}
+
+.cases__head .section-head__title {
+  width: var(--cases-head-title-width);
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+  color: var(--color-heading-dark);
+}
+
+.cases__accent {
+  color: var(--color-heading-accent);
+}
+
+.cases__grid {
+  display: grid;
+  grid-template-columns: repeat(2, var(--case-width));
+  column-gap: var(--col-gap);
+  row-gap: var(--cases-row-gap);
+  margin-top: var(--space-40);     /* заголовок → карточки, 2644:3039 → 2644:3032 */
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-30);            /* картинка → подпись, как у кейса 1 */
+}
+
+/* Визуал кейса: одна картинка на весь мокап */
+.case__media {
+  position: relative;
+}
+
+.case__img {
+  width: var(--case-width);
+  height: var(--case-height);
+  aspect-ratio: 560 / 394;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
+/* Подложки из макета: видны, пока нет картинки */
+.case--1 .case__img { background: var(--color-card-cream); }
+.case--2 .case__img { background: var(--color-card-pink); }
+.case--3 .case__img { background: var(--color-card-white); }
+.case--5 .case__img { background: var(--color-card-grey); }
+
+/* Кейс 3 — широкий, на обе колонки (по решению Софьи) */
+.case--3 {
+  grid-column: 1 / -1;
+}
+
+.case--3 .case__img {
+  width: var(--case-wide-width);
+  height: var(--case-wide-height);
+  aspect-ratio: auto;
+}
+
+/* Кнопка «Подробнее» (Figma btn 2631:152) */
+.btn--sm {
+  width: var(--btn-sm-width);
+  height: var(--btn-sm-height);
+  padding: 0 var(--space-40);
+  background: var(--color-light);
+  color: var(--color-text-primary);
+  font-size: var(--fs-tag);
+  line-height: var(--lh-tag);
+}
+
+.btn--sm .btn__arrow {
+  flex-shrink: 0;
+  width: var(--icon-arrow-sm-w);
+  height: var(--icon-arrow-sm-h);
+}
+
+.case__btn {                       /* отступ от угла картинки, как у кейса 2 */
+  position: absolute;
+  right: var(--space-20);
+  bottom: var(--space-20);
+}
+
+/* Подпись кейса: теги, название, задача */
+.case__txt {
+  width: var(--case-txt-width);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+  color: var(--color-text-primary);
+}
+
+.case__tags {
+  display: flex;
+  gap: var(--space-11);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-4) var(--space-10) var(--space-5);
+  border: var(--border) solid var(--color-text-primary);
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-tag);
+  line-height: var(--lh-tag);
+  letter-spacing: var(--ls-tag);
+  white-space: nowrap;
+}
+
+.case__title {
+  width: var(--case-width);
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-case-title);
+  line-height: var(--lh-case-title);
+  letter-spacing: var(--ls-text);
+}
+
+.case__text {
+  margin: 0;
+  font-size: var(--fs-case-text);
+  line-height: var(--lh-case-text);
+  letter-spacing: var(--ls-case-text);
+}
+
+/* ============ Услуги и стоимость (Figma «Услуги», по скриншоту) ============ */
+.services {
+  background: var(--color-light);
+}
+
+.services__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.services__head .section-head__title {
+  width: var(--services-head-title-width);
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.services__soft {
+  color: var(--color-heading-soft);
+}
+
+/* Колонки таблицы совпадают с сеткой секций: x = 30 / 320 / 610 / 900 */
+.services__cols,
+.service {
+  display: grid;
+  grid-template-columns: repeat(4, var(--col-width));
+  column-gap: var(--col-gap);
+  align-items: center;
+}
+
+.services__cols {
+  margin-top: var(--services-head-gap);
+  margin-bottom: var(--space-20);
+  color: var(--color-label-dark);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--ls-text);
+}
+
+.service {
+  height: var(--service-height);
+  border-radius: var(--radius-card);
+  color: var(--color-text-primary);
+}
+
+/* Номер и название отступают от края карточки, остальные колонки — по шапке */
+.service__name {
+  padding-left: var(--space-20);
+}
+
+.service + .service {
+  margin-top: var(--service-gap);
+}
+
+.service--1 {
+  background:
+    radial-gradient(60% 90% at 15% 80%, color-mix(in srgb, var(--color-light) 60%, transparent), transparent),
+    var(--color-service-mauve);
+}
+
+.service--2 {
+  background: var(--color-card-pink);
+}
+
+.service--3 {
+  background:
+    radial-gradient(70% 120% at 10% 100%, var(--color-card-white), transparent),
+    linear-gradient(to right, var(--color-card-pink), var(--color-service-pink));
+}
+
+.service p,
+.service h3 {
+  margin: 0;
+}
+
+.service .service__num {
+  font-family: var(--font-display);
+  font-size: var(--fs-service-num);
+  line-height: var(--lh-h3);
+  margin-bottom: var(--space-10);
+}
+
+.service__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-service-title);
+  line-height: var(--lh-service-title);
+  letter-spacing: var(--ls-text);
+}
+
+.service__text {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+.service__time {
+  font-size: var(--fs-case-text);
+  letter-spacing: var(--ls-text);
+}
+
+.service__price {
+  font-family: var(--font-display);
+  font-size: var(--fs-service-num);
+  line-height: var(--lh-h3);
+  text-transform: uppercase;
+}
+
+.service__note {
+  display: block;
+  font-size: var(--fs-service-price-note);
+}
+
+/* ============ Обо мне (новый блок, в системе секций из Figma) ============ */
+/* Фото в первой колонке сетки (x = 30), пункты — в колонках 320 / 610 / 900 */
+.about {
+  background: var(--color-light);
+}
+
+.about__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.about__head .section-head__title {
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.about__body {
+  display: grid;
+  grid-template-columns: var(--col-width) 1fr;
+  column-gap: var(--col-gap);
+  margin-top: var(--services-head-gap);
+  color: var(--color-text-primary);
+}
+
+.about__ph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.about__photo {
+  width: var(--about-photo-w);
+  height: var(--about-photo-h);
+  aspect-ratio: 270 / 394;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  background: var(--color-card-pink);
+}
+
+.about__personal {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--ls-text);
+}
+
+.about__list {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col-width));
+  column-gap: var(--col-gap);
+  row-gap: var(--space-70);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============ Вопросы (аккордеон по образцу viennesechair.ru, в токенах сайта) ============ */
+/* Слева заголовок и призыв, справа карточки вопросов — с x = 610, как сетка секций */
+.faq {
+  background: var(--color-light);
+}
+
+.faq__inner {
+  display: grid;
+  grid-template-columns: var(--faq-side-width) 1fr;
+  padding: var(--section-gap) var(--gutter) 0;
+  letter-spacing: var(--ls-text);
+  color: var(--color-heading-dark);
+}
+
+.faq__side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-40);
+  padding-right: var(--space-40);
+}
+
+/* Рубрика-плашка: белая, с точками, как «Вопрос-ответ» у образца */
+.faq__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-12);
+  border-radius: var(--pill-radius);
+  background: var(--color-card-white);
+  color: var(--color-label-dark);
+  text-transform: uppercase;
+}
+
+.faq__label::before {
+  content: "";
+  width: var(--space-5);
+  height: var(--space-5);
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.faq__head .section-head__title {
+  margin-top: var(--space-20);
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+  color: var(--color-heading-dark);
+}
+
+.faq__cta-text {
+  margin: 0 0 var(--space-20);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--faq-item-gap);
+}
+
+.faq__item {
+  border-radius: var(--radius-card);
+  background: var(--color-card-white);
+}
+
+.faq__q {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-body);
+  font-weight: 400;
+}
+
+.faq__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-20);
+  width: 100%;
+  padding: var(--faq-item-pad);
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Квадратная кнопка: «+», в открытом вопросе поворачивается в «×» */
+.faq__icon {
+  position: relative;
+  flex: none;
+  width: var(--faq-toggle);
+  height: var(--faq-toggle);
+  border-radius: var(--pill-radius);
+  background: var(--color-light);
+  transition: background 0.2s ease;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--faq-icon-line);
+  height: var(--border);
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+  transition: transform 0.4s var(--pill-ease);
+}
+
+.faq__icon::after {
+  --r: 90deg;
+}
+
+.faq__toggle:hover .faq__icon {
+  background: var(--color-card-pink);
+}
+
+.faq__item.is-open .faq__icon::before { --r: 45deg; }
+.faq__item.is-open .faq__icon::after { --r: 135deg; }
+
+/* Плавное раскрытие ответа: строка сетки 0fr → 1fr */
+.faq__a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--pill-ease);
+}
+
+.faq__item.is-open .faq__a {
+  grid-template-rows: 1fr;
+}
+
+.faq__a-in {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq__a p {
+  margin: 0;
+  padding: 0 var(--faq-item-pad) var(--faq-item-pad);
+  padding-right: calc(var(--faq-item-pad) + var(--faq-toggle));
+  font-size: var(--fs-case-text);
+  line-height: var(--lh-body);
+  color: var(--color-text-dim);
+}
+
+/* ============ Финальный призыв + подвал (из прототипа, в токенах сайта) ============ */
+.contact {
+  /* Отступ от последнего светлого блока: светлая полоса, свечение начинается под ней */
+  border-top: var(--section-gap) solid var(--color-light);
+  background:
+    radial-gradient(50% 300px at 50% 0, var(--contact-glow), transparent),
+    var(--color-bg-hero);
+  color: var(--color-text-soft);
+}
+
+.contact__inner {
+  padding: var(--space-100) var(--gutter) var(--space-30);
+}
+
+.contact__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.contact__txt {
+  width: var(--contact-title-width);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact__title {
+  margin: 0 0 var(--space-30);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  color: var(--color-light);
+}
+
+.contact__lead {
+  margin: 0 0 var(--space-40);
+  font-size: var(--fs-case-text);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+.contact__hint {
+  margin: 0 0 var(--space-10);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+}
+
+/* Кнопка-обводка «Написать в Telegram» */
+.btn--outline {
+  background: transparent;
+  border: var(--border) solid var(--color-accent);
+}
+
+/* Форма */
+.form {
+  width: var(--form-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  padding: var(--space-40);
+  border-radius: var(--radius-panel);
+  background: var(--color-card-white);
+  color: var(--color-heading-dark);
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.form__label {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  font-weight: var(--fw-semibold);
+}
+
+.form__input {
+  height: var(--field-height);
+  padding: 0 var(--space-15);
+  border: var(--border) solid var(--color-line);
+  border-radius: var(--radius-card);
+  font: inherit;
+  font-size: var(--fs-body);
+  color: inherit;
+  background: var(--color-card-white);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-text-primary);
+}
+
+.form__input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.form__input--area {
+  height: auto;
+  padding-block: var(--space-14);
+  resize: none;
+}
+
+.form__error:empty {
+  display: none;
+}
+
+.form__error {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-error);
+}
+
+.form__submit {
+  width: 100%;
+  height: var(--field-height);
+  background: var(--color-text-primary);
+  cursor: pointer;
+  border: 0;
+  font-family: inherit;
+}
+
+.form__after,
+.form__status {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+}
+
+.form__status:empty {
+  display: none;
+}
+
+/* Нижняя строка подвала */
+.contact__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-100);
+  padding-top: var(--space-30);
+  border-top: var(--border) solid color-mix(in srgb, var(--color-text-soft) 15%, transparent);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+}
+
+.contact__handle {
+  font-weight: var(--fw-semibold);
+}
+
+.contact__links {
+  display: flex;
+  gap: var(--space-30);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact__links a {
+  text-decoration: underline;
+}
+
+/* ============ Отзывы (новый блок, скрыт атрибутом hidden) ============ */
+.reviews[hidden] {
+  display: none;
+}
+
+.reviews {
+  background: var(--color-light);
+}
+
+.reviews__inner {
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.reviews__head .section-head__title {
+  font-size: var(--fs-h2-lg);
+  line-height: var(--lh-h2-lg);
+  letter-spacing: normal;
+}
+
+.reviews__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--col-gap);
+  margin-top: var(--services-head-gap);
+}
+
+/* Карточка — как карточка услуги (02): розовая подложка, радиус карточек */
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+  padding: var(--space-30);
+  border-radius: var(--radius-card);
+  background: var(--color-card-pink);
+  color: var(--color-text-primary);
+}
+
+.review__person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+}
+
+.review__photo {
+  width: var(--review-photo);
+  height: var(--review-photo);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-photo);
+  background: var(--color-card-white);
+}
+
+.review__name {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 700;
+}
+
+.review__company {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--ls-text);
+}
+
+.review__text {
+  flex-grow: 1;
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+/* Ссылка на сайт клиента — в стиле тега кейса */
+.review__link {
+  padding: var(--space-4) var(--space-10) var(--space-5);
+  border: var(--border) solid var(--color-text-primary);
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-tag);
+  line-height: var(--lh-tag);
+  letter-spacing: var(--ls-tag);
+}
+
+/* ===== Анимации появления при скролле (script.js) =====
+   Скрытое состояние включается только классом .js-anim на <html>:
+   без JS или при «уменьшить движение» всё видно сразу. */
+
+.js-anim [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.js-anim [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Заголовки: каждое слово выезжает снизу из-под маски */
+.word {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.12em;   /* чтобы маска не срезала хвосты букв */
+  margin-bottom: -0.12em;
+}
+
+.word__in {
+  display: inline-block;
+}
+
+.js-anim [data-split] .word__in {
+  transform: translateY(110%);
+  transition: transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--i, 0) * var(--word-stagger));
+}
+
+.js-anim [data-split].is-visible .word__in {
+  transform: none;
+}
+
+/* ===== Шапка при скролле: три отдельные плашки (script.js ставит .is-stuck) =====
+   Вверху страницы шапка как в Figma; после --header-stick-after px скролла
+   закрепляется сверху и съезжает вниз плашками, как на lessestudio.com. */
+
+.header.is-stuck {
+  position: fixed;
+  z-index: 100;
+  top: var(--space-15);
+  left: 0;
+  right: 0;
+  width: calc(var(--container) - 2 * var(--gutter));
+  margin-inline: auto;
+  align-items: center;
+  pointer-events: none;            /* кликабельны только сами плашки */
+  animation: header-drop 0.6s var(--reveal-ease) both;
+}
+
+@keyframes header-drop {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: none; }
+}
+
+.header.is-stuck .header__handle,
+.header.is-stuck .nav,
+.header.is-stuck .lang,
+.header.is-stuck .header__chat {
+  display: flex;
+  align-items: center;
+  height: var(--plate-height);
+  border-radius: var(--plate-radius);
+  background: var(--plate-bg);
+  -webkit-backdrop-filter: blur(var(--plate-blur));
+  backdrop-filter: blur(var(--plate-blur));
+  pointer-events: auto;
+}
+
+.header.is-stuck .header__handle {
+  padding-inline: var(--plate-pad-x);
+}
+
+.header.is-stuck .header__chat {
+  justify-content: center;
+  width: var(--plate-height);
+}
+
+.header.is-stuck .header__chat img {
+  width: calc(var(--icon-chat-w) * 0.7);
+  height: calc(var(--icon-chat-h) * 0.7);
+}
+
+.header.is-stuck .nav {
+  padding-inline: var(--plate-inset);
+}
+
+/* Переключатель языка — своя плашка, подсветка как у пунктов меню */
+.header.is-stuck .lang {
+  align-items: stretch;
+  padding: var(--plate-inset);
+}
+
+.header.is-stuck .lang__opt {
+  padding-block: 0;
+  border-radius: var(--pill-radius);
+}
+
+.header.is-stuck .header__end {
+  gap: var(--space-10);
+}
+
+.header.is-stuck .nav__list {
+  position: relative;
+  gap: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.header.is-stuck .nav__list a {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: calc((var(--plate-height) - 2 * var(--plate-inset) - var(--lh-nav)) / 2) var(--pill-pad-x);
+}
+
+/* Подложка, которая переезжает за пунктом под курсором */
+.nav__pill {
+  display: none;
+}
+
+.header.is-stuck .nav__pill {
+  display: block;
+  position: absolute;
+  top: var(--plate-inset);
+  bottom: var(--plate-inset);
+  left: 0;
+  width: 0;
+  border-radius: var(--pill-radius);
+  background: var(--plate-pill-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.header.is-stuck .nav__pill.is-moving {
+  transition:
+    left 0.2s var(--pill-ease),
+    width 0.2s var(--pill-ease),
+    opacity 0.15s ease;
+}

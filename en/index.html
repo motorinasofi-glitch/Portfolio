@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sofia — web and graphic designer</title>
+  <link rel="alternate" hreflang="ru" href="../index.html">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens.css">
+  <!-- Английская версия: та же вёрстка, что ../index.html, стили и скрипт общие. Меняете блок в русской — повторите здесь. -->
+  <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-anim");</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- 1. Шапка + первый экран (Figma 2644:2984) -->
+  <section class="hero" id="top">
+    <div class="container hero__inner">
+      <img class="hero__glow hero__glow--bottom" src="../assets/img/hero-glow-bottom.svg" alt="" aria-hidden="true">
+      <img class="hero__glow hero__glow--top" src="../assets/img/hero-glow-top.svg" alt="" aria-hidden="true">
+
+      <header class="header">
+        <span class="header__handle">@monatory</span>
+        <nav class="nav" aria-label="Main menu">
+          <ul class="nav__list">
+            <li><a href="#approach">My approach</a></li>
+            <li><a href="#cases">Work</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#about">About</a></li>
+            <!-- «Reviews» скрыт, пока скрыт блок #reviews. Включать вместе: убрать hidden у обоих. -->
+            <li hidden><a href="#reviews">Reviews</a></li>
+          </ul>
+        </nav>
+        <div class="header__end">
+          <div class="lang" role="group" aria-label="Site language">
+            <a class="lang__opt" href="../index.html" hreflang="ru" lang="ru" aria-label="Русская версия">RUS</a>
+            <span class="lang__opt is-active" aria-current="page">ENG</span>
+          </div>
+          <a class="header__chat" href="https://t.me/monatory" target="_blank" rel="noopener" aria-label="Message me on Telegram">
+            <img src="../assets/img/icon-chat.svg" alt="" width="41.0421" height="39.6347">
+          </a>
+        </div>
+      </header>
+
+      <div class="hero__main">
+        <div class="hero__ph">
+          <div class="hero__photo-group">
+            <div class="hero__photo-back"></div>
+            <img class="hero__photo" src="../assets/img/hero-photo.webp" alt="Sofia" width="101" height="120">
+          </div>
+          <p class="hero__caption">Hi there! I'm Sofia,<br>web and graphic designer</p>
+        </div>
+
+        <div class="hero__txt">
+          <h1 class="hero__title">I design and build business websites:<br>from one-page sites to multi-page platforms<br>for your company</h1>
+          <a class="btn" href="#contact">
+            Discuss a project
+            <img class="btn__arrow" src="../assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Почему не шаблон -->
+  <section class="compare" id="why">
+    <div class="container compare__inner">
+      <div class="section-head compare__head">
+        <p class="section-head__label">why not a template</p>
+        <!-- Цены в евро: рубли по рыночному курсу (как в Google) ~93,6–94,1 на 13–14.10.2026, округлено до десятков -->
+        <h2 class="section-head__title"><span class="compare__accent">A €160 template</span> or a website built<br>around your clients</h2>
+      </div>
+
+      <div class="compare__table" role="table" aria-label="Wix template vs. turnkey website">
+        <div class="compare__row compare__row--head" role="row">
+          <span role="columnheader"></span>
+          <span class="compare__tpl" role="columnheader">Wix template</span>
+          <span class="compare__key" role="columnheader">Turnkey website</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Structure</span>
+          <span class="compare__tpl" role="cell">Someone else's, made for an “average” company</span>
+          <span class="compare__key" role="cell">Based on research into your audience and competitors</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Copy</span>
+          <span class="compare__tpl" role="cell">You write it yourself over the placeholders</span>
+          <span class="compare__key" role="cell">I write sales copy for your niche</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Search</span>
+          <span class="compare__tpl" role="cell">No SEO setup</span>
+          <span class="compare__key" role="cell">Basic SEO already set up</span>
+        </div>
+        <div class="compare__row" role="row">
+          <span class="compare__name" role="rowheader">Leads</span>
+          <span class="compare__tpl" role="cell">You connect forms and CRM yourself</span>
+          <span class="compare__key" role="cell">Forms and CRM work on launch day</span>
+        </div>
+        <div class="compare__row compare__row--last" role="row">
+          <span class="compare__name" role="rowheader">After launch</span>
+          <span class="compare__tpl" role="cell">You figure it out on your own</span>
+          <span class="compare__key" role="cell">A video guide on how to manage your site</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Мой подход (Figma 2644:3182) -->
+  <section class="principles" id="approach">
+    <div class="container principles__inner">
+      <div class="section-head">
+        <p class="section-head__label">my approach</p>
+        <h2 class="section-head__title">My main principle: I work so that your website<br>makes it easier to tell people about you and your business</h2>
+      </div>
+
+      <div class="principles__rail">
+        <ol class="principles__list">
+          <li class="principle">
+            <p class="principle__num">(01)</p>
+            <h3 class="principle__title">Design and marketing in one person</h3>
+            <p class="principle__text">I look at a website through the eyes of both the client and the business. Every decision is based on an analysis of your business and your niche</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(02)</p>
+            <h3 class="principle__title">Turnkey websites<br>without a dozen contractors</h3>
+            <p class="principle__text">Structure, copy, design and build — I take care of it all. No need to hire a copywriter, a designer and “someone to put it all together” separately.</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(03)</p>
+            <h3 class="principle__title">Transparent process<br>and realistic deadlines</h3>
+            <p class="principle__text">I outline the stages, deadlines and way of working from the start. You always know what's happening with your project and when to expect results</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(04)</p>
+            <h3 class="principle__title">Human communication, no pretension or tedium</h3>
+            <p class="principle__text">You can explain your tasks in plain language, no jargon needed. I ask questions, suggest options and give advice when something can be done simpler and cheaper.</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(05)</p>
+            <h3 class="principle__title">Clean, modern design<br>without visual noise</h3>
+            <p class="principle__text">I love minimalism and a focus on meaning and usability. No cluttered blocks unless they're useful to your visitors and to you.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Кейсы / Портфолио (Figma 2644:3031) -->
+  <section class="cases" id="cases">
+    <div class="container cases__inner">
+      <div class="section-head cases__head">
+        <p class="section-head__label">portfolio</p>
+        <h2 class="section-head__title"><span class="cases__accent">My favourite projects</span> that work<br>for my clients</h2>
+      </div>
+
+      <div class="cases__grid">
+        <article class="case case--1">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-rusvoyage.webp" alt="RUs.voyages travel agency website" width="560" height="394">
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">“RUs.voyages” travel agency website</h3>
+            <p class="case__text">A landing page with a booking form to collect leads</p>
+          </div>
+        </article>
+
+        <article class="case case--2">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-card4pay.webp" alt="Card4pay company website" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn btn--sm case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow-small.svg" alt="" width="12" height="20">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">“Card4pay” company website</h3>
+            <p class="case__text">A landing page with a booking form to collect leads</p>
+          </div>
+        </article>
+
+        <!-- Кейс 3: тексты — плейсхолдеры, впишет Софья -->
+        <article class="case case--3">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-3.webp" alt="[Case 3 title]" width="1140" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn btn--sm case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow-small.svg" alt="" width="12" height="20">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">[Case 3 title]</h3>
+            <p class="case__text">[Case 3 task in one line]</p>
+          </div>
+        </article>
+
+        <article class="case case--4">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-showroom.webp" alt="RUs.voyages showroom concept" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn btn--sm case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow-small.svg" alt="" width="12" height="20">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">“RUs.voyages” showroom concept</h3>
+            <p class="case__text">A landing page made with AI image generation</p>
+          </div>
+        </article>
+
+        <article class="case case--5">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-spassarch.webp" alt="Architecture studio website" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn btn--sm case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow-small.svg" alt="" width="12" height="20">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">Multi-page website for an architecture studio</h3>
+            <p class="case__text">An interactive landing page with 31 pop-ups working as separate pages</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Услуги и стоимость. Цены в евро: рубли по рыночному курсу (как в Google) ~93,6–94,1 на 13–14.10.2026, округлено до десятков -->
+  <section class="services" id="pricing">
+    <div class="container services__inner">
+      <div class="section-head services__head">
+        <p class="section-head__label">services and pricing</p>
+        <h2 class="section-head__title">Every project starts with a brief:<br><span class="services__soft">I look at what you already have<br>and choose a strategy<br>for each client's specific goals</span></h2>
+      </div>
+
+      <div class="services__table" role="table" aria-label="Services, timelines and pricing">
+        <div class="services__cols" role="row">
+          <span role="columnheader">Service</span>
+          <span role="columnheader">What's included</span>
+          <span role="columnheader">Timeline</span>
+          <span role="columnheader">Price</span>
+        </div>
+
+        <div class="service service--1" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(01)</p>
+            <h3 class="service__title">Landing page<br>for a product launch</h3>
+          </div>
+          <p class="service__text" role="cell">A one-page website with a clear call to action. Helps you explain your idea quickly and bring in your first clients.</p>
+          <p class="service__time" role="cell">7–21 days</p>
+          <p class="service__price" role="cell">from €480*<span class="service__note">*depends on the features you choose</span></p>
+        </div>
+
+        <div class="service service--2" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(02)</p>
+            <h3 class="service__title">Multi-page website<br>for business</h3>
+          </div>
+          <p class="service__text" role="cell">A website with a more complex structure split into several pages, for when you need to present your product, services and team.</p>
+          <p class="service__time" role="cell">14–30 days</p>
+          <p class="service__price" role="cell">from €690*<span class="service__note">*depends on the features you choose</span></p>
+        </div>
+
+        <div class="service service--3" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">(03)</p>
+            <h3 class="service__title">Online store<br>with a catalogue</h3>
+          </div>
+          <p class="service__text" role="cell">A website with a functional product catalogue, shopping cart and online checkout</p>
+          <p class="service__time" role="cell">20–40 days</p>
+          <!-- В макете тоже 65 000, как у (02). Уточнить у Софьи -->
+          <p class="service__price" role="cell">from €690*<span class="service__note">*depends on the features you choose</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Обо мне -->
+  <section class="about" id="about">
+    <div class="container about__inner">
+      <div class="section-head about__head">
+        <p class="section-head__label">about me</p>
+        <h2 class="section-head__title">In web design since 2023:<br>a studio, freelance and 30+ projects</h2>
+      </div>
+
+      <div class="about__body">
+        <div class="about__ph">
+          <img class="about__photo" src="../assets/img/about-photo.webp" alt="Sofia" width="270" height="394">
+          <p class="about__personal">[Personal line — Sofia will add]</p>
+        </div>
+
+        <ol class="about__list">
+          <li class="about__item">
+            <p class="principle__num">(01)</p>
+            <h3 class="principle__title">I run projects without chaos</h3>
+            <p class="principle__text">2019–2022 — project manager at Yandex: up to 10 projects a month, contracts, deadlines, calls. This experience helps me keep your project in clear stages and on schedule.</p>
+          </li>
+          <li class="about__item">
+            <p class="principle__num">(02)</p>
+            <h3 class="principle__title">I match the style to the niche</h3>
+            <p class="principle__text">Minimalism for businesses, doctors and lawyers. Brighter for psychologists, travel and creative projects.</p>
+          </li>
+          <li class="about__item">
+            <p class="principle__num">(03)</p>
+            <h3 class="principle__title">How I like to communicate</h3>
+            <p class="principle__text">My main channel is Telegram. To explain page logic, I record Loom screen walkthroughs. Calls on Zoom or Google Meet when we need to discuss strategy and plans for the site.</p>
+          </li>
+          <li class="about__item">
+            <p class="principle__num">(04)</p>
+            <h3 class="principle__title">What clients value in me</h3>
+            <p class="principle__text">I'm calm, with no drama and no deadline panic. I keep things structured and explain step by step what we're doing and why.</p>
+          </li>
+          <li class="about__item">
+            <p class="principle__num">(05)</p>
+            <h3 class="principle__title">I live in Belgrade with my husband and our dog Kika</h3>
+            <p class="principle__text">I love watching how old buildings, graffiti and new spaces mix here — it often inspires my design decisions.</p>
+          </li>
+          <li class="about__item">
+            <p class="principle__num">(06)</p>
+            <h3 class="principle__title">I draw by hand, embroider and knit</h3>
+            <p class="principle__text">I love drawing by hand, knitting and looking for creative solutions in everything: from a layout to how I present an idea to a client.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Вопросы. Ответы в [скобках] впишет Софья -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="section-head faq__head">
+        <p class="section-head__label">faq</p>
+        <h2 class="section-head__title">Answers up front</h2>
+      </div>
+
+      <dl class="faq__list">
+        <div class="faq__row">
+          <dt class="faq__q">How many revisions are included?</dt>
+          <dd class="faq__a">Six rounds: two each after the prototype, the design and the build.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">What if I don't like the result?</dt>
+          <dd class="faq__a">We agree on the structure and copy at the prototype stage, before any design, so there are no surprises at the end.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">Can I edit the site myself?</dt>
+          <dd class="faq__a">Yes. After handover I record a video guide on how to manage your site on Tilda.</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">What do you need from me?</dt>
+          <dd class="faq__a">[For example: fill in a brief, send your logo and photos, answer questions along the way]</dd>
+        </div>
+        <div class="faq__row">
+          <dt class="faq__q">How long does it take?</dt>
+          <dd class="faq__a">[Typical timelines by site type]. If anything shifts, I let you know in advance.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 8. Отзывы. СКРЫТ, как и в русской версии. Включать вместе с пунктом «Reviews» в меню -->
+  <section class="reviews" id="reviews" hidden>
+    <div class="container reviews__inner">
+      <div class="section-head reviews__head">
+        <p class="section-head__label">reviews</p>
+        <h2 class="section-head__title">What clients say</h2>
+      </div>
+
+      <div class="reviews__list">
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="../assets/img/review-1.webp" alt="[Client name 1]" width="70" height="70">
+              <div>
+                <p class="review__name">[Client name 1]</p>
+                <p class="review__company">[Company or niche]</p>
+              </div>
+            </div>
+            <p class="review__text">[Review 1: a real client review, meaning unchanged]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[client website]</a>
+          </article>
+
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="../assets/img/review-2.webp" alt="[Client name 2]" width="70" height="70">
+              <div>
+                <p class="review__name">[Client name 2]</p>
+                <p class="review__company">[Company or niche]</p>
+              </div>
+            </div>
+            <p class="review__text">[Review 2: a real client review, meaning unchanged]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[client website]</a>
+          </article>
+
+          <article class="review">
+            <div class="review__person">
+              <img class="review__photo" src="../assets/img/review-3.webp" alt="[Client name 3]" width="70" height="70">
+              <div>
+                <p class="review__name">[Client name 3]</p>
+                <p class="review__company">[Company or niche]</p>
+              </div>
+            </div>
+            <p class="review__text">[Review 3: a real client review, meaning unchanged]</p>
+            <!-- [ссылка на сайт клиента — впишет Софья] -->
+            <a class="review__link" href="#" target="_blank" rel="noopener">[client website]</a>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Финальный призыв + подвал. Отправка формы не подключена (script.js) -->
+  <footer class="contact" id="contact">
+    <div class="container contact__inner">
+      <div class="contact__main">
+        <div class="contact__txt">
+          <h2 class="contact__title">Shall we talk about your website?</h2>
+          <p class="contact__lead">Tell me about your task in a few words. I'll reply [within N hours] and suggest the next step.</p>
+          <p class="contact__hint">Prefer to message me directly?</p>
+          <a class="btn btn--outline" href="https://t.me/monatory" target="_blank" rel="noopener">
+            Message me on Telegram
+            <img class="btn__arrow" src="../assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </a>
+        </div>
+
+        <form class="form" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="f-name">Name</label>
+            <input class="form__input" id="f-name" name="name" type="text" autocomplete="name" placeholder="What should I call you?" required>
+            <p class="form__error" id="f-name-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-contact">Telegram or phone</label>
+            <input class="form__input" id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="@username or +1…" required>
+            <p class="form__error" id="f-contact-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-task">A few words about your task</label>
+            <textarea class="form__input form__input--area" id="f-task" name="task" rows="3" placeholder="For example: I need a landing page for a dental clinic"></textarea>
+          </div>
+          <button class="btn form__submit" type="submit">Send request</button>
+          <p class="form__after">After you send it: [what happens next, e.g. “I'll message you on Telegram and send a short brief”]</p>
+          <p class="form__status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="contact__bottom">
+        <span class="contact__handle">@monatory</span>
+        <ul class="contact__links">
+          <li><a href="https://t.me/monatory" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://www.behance.net/sofi_motorina" target="_blank" rel="noopener">Behance</a></li>
+          <!-- [почта — впишет Софья: href="mailto:..."] -->
+          <li><a href="#">[email]</a></li>
+        </ul>
+        <span>Belgrade · © 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+/* Токены дизайна. Все значения взяты из Figma (файл 391K09vokCEzV65Sznaj7B).
+   В макете нет переменных Figma, поэтому токены собираются по секциям
+   из get_design_context. Рядом указан узел-источник. */
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("assets/fonts/BebasNeue-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("assets/fonts/BebasNeue-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* --- Цвета --- */
+  --color-bg-hero: #200f35;        /* фон Hero, 2644:2984 */
+  --color-accent: #bb559b;         /* кнопка, подложка фото, 2644:3020 / 2644:2994 */
+  --color-text-soft: #fcecf1;      /* пункты меню, подпись под фото */
+  --color-text-muted: #e3bcd7;     /* @monatory */
+  --color-light: #f7f7f7;          /* заголовок Hero, фон Принципов 2644:3182 */
+  --color-btn-text: #f9f9f9;       /* текст кнопки */
+  --color-text-primary: #852b68;   /* тексты на светлом фоне, 2644:3187 */
+  --color-label-dark: #43214c;     /* рубрика «портфолио», 2644:3041 */
+  --color-heading-dark: #1a4452;   /* заголовок Портфолио, 2644:3040 */
+  --color-heading-accent: #bb758e; /* «Мои любимые проекты», 2644:3040 */
+  --color-card-cream: #fffef3;     /* подложка кейса 1, 2644:3032 */
+  --color-card-pink: #fcecf1;      /* подложка кейса 2, 2644:3169 */
+  --color-card-white: #ffffff;     /* подложка кейса 3, 2644:3120 */
+  --color-card-grey: #f0f0f0;      /* подложка кейса 5, 2644:3152 */
+
+  /* --- Шрифты --- */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-text: "IBM Plex Sans", sans-serif;
+
+  --fs-h1: 56px;
+  --lh-h1: 1.05;
+  --ls-h1: -1.12px;
+
+  --fs-nav: 14px;
+  --lh-nav: 14px;
+
+  --fs-caption: 12px;
+  --lh-caption: 14px;
+
+  --fs-btn: 18px;
+  --lh-btn: 12px;
+
+  --fs-label: 10px;                /* рубрика слева: «мой подход» */
+  --lh-label: 20px;
+
+  --fs-h2: 35px;                   /* заголовок секции */
+  --lh-h2: 34px;
+
+  --fs-h3: 20px;                   /* заголовок пункта и номер (01) */
+  --lh-h3: 20px;
+
+  --fs-body: 14px;                 /* основной текст */
+  --lh-body: 1.4;
+
+  --fs-h2-lg: 45px;                /* заголовок Портфолио, 2644:3040 */
+  --lh-h2-lg: 47px;
+
+  --fs-case-title: 35px;           /* название кейса, 2644:3116 */
+  --lh-case-title: 30px;
+  --fs-case-text: 16px;            /* задача кейса, 2644:3117 */
+  --lh-case-text: normal;
+  --ls-case-text: -1px;
+
+  --fs-tag: 12px;                  /* теги «лендинг», кнопка «Подробнее» */
+  --lh-tag: 12px;
+  --ls-tag: -0.5px;
+
+  --ls-text: -0.3px;               /* меню, подпись, рубрика, заголовок секции, текст */
+
+  /* --- Сетка и отступы --- */
+  --container: 1200px;
+  --section-gap: 150px;            /* между секциями и рядами кейсов, по решению Софьи */
+  --gutter: 30px;                  /* боковой отступ меню, 2644:3350 */
+
+  /* Сетка секций: колонки по 270 с шагом 290 (x = 30 / 320 / 610 / 900) */
+  --col-width: 270px;
+  --col-gap: 20px;
+  --heading-offset: 290px;         /* от рубрики до заголовка секции */
+
+  --space-4: 4px;
+  --space-5: 5px;
+  --space-10: 10px;
+  --space-11: 11px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-15: 15px;
+  --space-20: 20px;
+  --space-30: 30px;
+  --space-40: 40px;
+  --space-70: 70px;
+  --space-100: 100px;
+
+  /* --- Радиусы --- */
+  --radius-photo: 12px;
+  --radius-btn: 30px;
+  --radius-card: 12px;             /* карточки кейсов */
+  --border: 1px;                   /* обводка тегов */
+
+  /* --- Hero: геометрия из макета --- */
+  --hero-height: 700px;
+  --hero-main-top: 119px;
+  --hero-main-left: 130px;
+  --hero-main-width: 949px;
+  --hero-ph-width: 113px;
+  --hero-photo-back-w: 101px;
+  --hero-photo-back-h: 129px;
+  --hero-photo-back-offset: 6.66px;
+  --hero-photo-w: 100.62px;
+  --hero-photo-h: 120.016px;
+  --hero-photo-offset: 4.8px;
+  --btn-width: 255px;
+  --icon-arrow-w: 18px;
+  --icon-arrow-h: 26px;
+  --icon-chat-w: 41.042px;
+  --icon-chat-h: 39.635px;
+
+  /* --- Принципы: карточки в ленте (по образцу irinakhachatryan.ru, не из Figma) --- */
+  --principle-card-w: 370px;
+  --principle-card-h: 320px;
+  --principle-card-gap: var(--space-5);
+  --principle-card-pad: var(--space-20);
+  --principles-head-gap: var(--space-70);   /* заголовок секции → лента */
+  --fs-principle-card-title: var(--fs-service-title); /* 28px, как в карточках услуг */
+  --lh-principle-card-title: 1;
+  /* Фон карточки — цвета первого экрана: фон Hero, фиолетовое свечение и розовый акцент */
+  --color-glow-violet: #7932ce;    /* свечение Hero, hero-glow-top.svg / hero-glow-bottom.svg */
+  --principle-card-bg:
+    radial-gradient(110% 75% at 15% 105%, color-mix(in srgb, var(--color-accent) 75%, transparent), transparent 75%),
+    radial-gradient(150% 100% at 85% 110%, var(--color-glow-violet), transparent 75%),
+    var(--color-bg-hero);
+
+  /* --- Кейсы (2644:3031). По решению Софьи все карточки 560×394, сетка 2 колонки --- */
+  --case-width: 560px;
+  --cases-row-gap: 60px;           /* между рядами кейсов, по решению Софьи */
+  --case-height: 394px;
+  --case-wide-width: calc(var(--case-width) * 2 + var(--col-gap)); /* 1140, кейс 3 */
+  /* Кейс 3 по решению Софьи: в пропорциях макета 4:3 (1140 × 855), но не выше экрана
+     за вычетом закреплённой шапки и полей */
+  --case-wide-height: min(calc(var(--case-wide-width) * 3 / 4), calc(100vh - var(--space-100)));
+  --cases-head-title-width: 678px;
+  --case-txt-width: 415px;
+  --btn-sm-height: 34px;           /* «Подробнее», 2631:152 */
+  --btn-sm-width: 146px;
+  --icon-arrow-sm-w: 12px;
+  --icon-arrow-sm-h: 20px;
+
+  /* --- Услуги и стоимость. Figma была недоступна (лимит MCP), значения сняты
+     со скриншота макета (масштаб ≈ 1:2.19) — сверить с Figma, когда будет доступ --- */
+  --color-heading-soft: color-mix(in srgb, var(--color-text-primary) 45%, var(--color-light)); /* строки 2–4 заголовка */
+  --color-service-mauve: color-mix(in srgb, var(--color-accent) 45%, var(--color-light));     /* фон карточки (01) */
+  --color-service-pink: color-mix(in srgb, var(--color-accent) 10%, var(--color-card-pink));  /* правый край карточки (03) */
+  --services-head-title-width: 700px;
+  --services-head-gap: 60px;       /* заголовок → шапка таблицы */
+  --service-height: 300px;
+  --service-gap: 20px;             /* между карточками, по решению Софьи */
+  --fs-service-num: 16px;          /* (01) */
+  --fs-service-title: 28px;        /* «Лендинг под запуск продукта» */
+  --lh-service-title: 42px;
+  --fs-service-price-note: 12px;   /* «*зависит от выбора функционала сайта» */
+
+  /* --- Почему не шаблон (блок из прототипа, не из Figma): цвета смешаны из палитры --- */
+  --color-line: color-mix(in srgb, var(--color-text-primary) 15%, var(--color-light));       /* линии таблицы */
+  --color-text-dim: color-mix(in srgb, var(--color-label-dark) 75%, var(--color-light));     /* колонка «Шаблон» */
+  --fw-semibold: 600;              /* названия строк и шапка таблицы */
+  --color-text-soft-plum: color-mix(in srgb, var(--color-text-primary) 65%, var(--color-light)); /* колонка «Шаблон» */
+
+  /* --- Обо мне (новый блок, не из Figma): размеры собраны из сетки секций --- */
+  --about-photo-w: var(--col-width);   /* 270, первая колонка сетки */
+  --about-photo-h: var(--case-height); /* 394, как высота карточки кейса */
+
+  /* --- Вопросы и подвал с формой (из прототипа, не из Figma) --- */
+  --radius-panel: 24px;            /* белая карточка формы */
+  --field-height: 52px;            /* поле ввода */
+  --form-width: 490px;
+  --contact-title-width: 420px;
+  --color-error: var(--color-accent);
+  /* Аккордеон вопросов (по образцу viennesechair.ru, не из Figma) */
+  --faq-side-width: calc(var(--heading-offset) * 2); /* 580: карточки начинаются с x = 610 */
+  --faq-item-gap: var(--space-10);
+  --faq-item-pad: var(--space-30);
+  --faq-toggle: var(--space-40);       /* квадратная кнопка +/× */
+  --faq-icon-line: var(--space-15);    /* длина штриха плюса */
+  --contact-glow: color-mix(in srgb, var(--color-accent) 40%, transparent); /* свечение сверху подвала */
+
+  /* --- Отзывы (новый блок, не из Figma) --- */
+  --review-photo: var(--space-70);     /* аватар 70×70 */
+
+  /* --- Анимации появления при скролле (по образцу lessestudio.com, не из Figma) --- */
+  --reveal-duration: 1s;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-shift: 40px;            /* на сколько блок поднимается при появлении */
+  --reveal-stagger: 100ms;         /* задержка между соседними блоками */
+  --word-stagger: 40ms;            /* задержка между словами заголовка */
+
+  /* --- Закреплённая шапка-плашки при скролле (по образцу lessestudio.com, не из Figma) --- */
+  --plate-bg: color-mix(in srgb, var(--color-bg-hero) 65%, transparent);  /* фон плашки: цвет Hero, 65% */
+  --plate-pill-bg: color-mix(in srgb, var(--color-light) 14%, transparent); /* подложка пункта при наведении */
+  --plate-blur: 24px;
+  --plate-height: 52px;
+  --plate-radius: 16px;
+  --plate-pad-x: 20px;
+  --plate-inset: 6px;              /* отступ подложки пункта от края плашки */
+  --pill-radius: 10px;
+  --pill-pad-x: 22px;
+  --pill-ease: cubic-bezier(0.4, 0, 0.2, 1);  /* как у меню Lesse */
+
+  /* Переключатель языка RUS | ENG (в Figma нет, собран из токенов шапки) */
+  --lang-inset: 3px;               /* отступ активной подложки от края переключателя */
+  --lang-pad-y: var(--space-5);
+  --lang-pad-x: var(--space-10);
+  --lang-gap: var(--space-20);     /* от переключателя до иконки Telegram */
+  --header-stick-after: 80px;      /* через сколько px скролла шапка становится плашками */
+}
