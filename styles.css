@@ -102,6 +102,38 @@ a {
   height: var(--icon-chat-h);
 }
 
+/* Переключатель языка RUS | ENG: текущий язык подсвечен, второй — ссылка */
+.header__end {
+  display: flex;
+  align-items: center;
+  gap: var(--lang-gap);
+}
+
+.lang {
+  display: flex;
+  padding: var(--lang-inset);
+  border-radius: var(--pill-radius);
+  background: var(--plate-pill-bg);
+}
+
+.lang__opt {
+  display: flex;
+  align-items: center;
+  padding: var(--lang-pad-y) var(--lang-pad-x);
+  border-radius: calc(var(--pill-radius) - var(--lang-inset));
+  color: var(--color-text-soft);
+  transition: background 0.15s ease;
+}
+
+a.lang__opt:hover {
+  background: var(--plate-pill-bg);
+}
+
+.lang__opt.is-active {
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+}
+
 /* Центральный блок */
 .hero__main {
   position: absolute;
@@ -230,38 +262,36 @@ a {
   padding: var(--section-gap) var(--gutter) 0;
 }
 
-.compare__head .section-head__label {
-  color: var(--color-label-dark);
-  text-transform: uppercase;
-}
-
+/* Шрифты и цвета — как в «Услугах» и «Обо мне»: рубрика и заголовок сливовые,
+   «шаблон» приглушён, названия строк — Bebas, как заголовки пунктов */
 .compare__head .section-head__title {
   font-size: var(--fs-h2-lg);
   line-height: var(--lh-h2-lg);
   letter-spacing: normal;
-  color: var(--color-heading-dark);
 }
 
 .compare__accent {
-  color: var(--color-text-primary);
+  color: var(--color-heading-soft);
 }
 
 .compare__table {
   margin-top: var(--services-head-gap);
   margin-left: var(--heading-offset);
-  border-top: var(--border) solid var(--color-line);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   letter-spacing: var(--ls-text);
-  color: var(--color-heading-dark);
+  color: var(--color-text-primary);
 }
 
 .compare__row {
   display: grid;
   grid-template-columns: var(--heading-offset) var(--heading-offset) var(--col-width);
+  align-items: stretch;
 }
 
 .compare__row > * {
+  display: flex;
+  align-items: center;
   padding: var(--space-20);
   border-bottom: var(--border) solid var(--color-line);
 }
@@ -270,30 +300,35 @@ a {
   padding-left: 0;
 }
 
-.compare__name,
-.compare__row--head > * {
-  font-weight: var(--fw-semibold);
+.compare__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
 }
 
+/* Шапка — как подписи колонок в «Услугах» */
 .compare__row--head > * {
-  font-size: var(--fs-caption);
+  align-items: flex-end;
+  padding-block: 0 var(--space-10);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  color: var(--color-label-dark);
 }
 
 .compare__tpl {
-  color: var(--color-text-dim);
+  color: var(--color-text-soft-plum);
 }
 
-/* Колонка «Сайт под ключ»: белая карточка с тёмной шапкой цвета Hero */
+/* Колонка «Сайт под ключ»: белая карточка, как карточки «Мой подход» */
 .compare__key {
   background: var(--color-card-white);
-  border-inline: var(--border) solid var(--color-line);
+  border-bottom-color: var(--color-light);
 }
 
 .compare__row--head .compare__key {
-  background: var(--color-bg-hero);
-  border-color: var(--color-bg-hero);
+  padding-top: var(--space-20);
   border-radius: var(--radius-card) var(--radius-card) 0 0;
-  color: var(--color-btn-text);
+  color: var(--color-accent);
 }
 
 .compare__row--last > * {
@@ -301,47 +336,86 @@ a {
 }
 
 .compare__row--last .compare__key {
-  border-bottom: var(--border) solid var(--color-line);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
 }
 
-/* ============ Принципы (Figma 2644:3182) ============ */
+/* ============ Принципы: карточки в ленте (по образцу irinakhachatryan.ru, не из Figma) ============
+   Без JS лента листается вбок сама. script.js ставит .is-pinned: секция
+   закрепляется на экране, и вертикальный скролл двигает ленту влево. */
 .principles {
   background: var(--color-light);
+  overflow-x: clip;
 }
 
 .principles__inner {
-  height: var(--principles-height);
   padding: var(--section-gap) var(--gutter) 0;
+}
+
+.principles.is-pinned .principles__inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
 }
 
 .principles .section-head__title {
   width: 804px;
 }
 
+/* Лента начинается от заголовка секции и уходит за правый край окна */
+.principles__rail {
+  margin-top: var(--principles-head-gap);
+  margin-left: var(--heading-offset);
+  margin-right: calc(var(--gutter) * -1 - (100vw - var(--container)) / 2);
+  overflow-x: auto;
+}
+
+.principles.is-pinned .principles__rail {
+  overflow: visible;
+}
+
 .principles__list {
+  display: flex;
+  gap: var(--principle-card-gap);
+  width: max-content;
   margin: 0;
-  padding: 0;
+  padding: 0 var(--gutter) 0 0;
   list-style: none;
+  will-change: transform;
 }
 
 .principle {
-  position: absolute;
-  width: var(--col-width);
+  box-sizing: border-box;
+  width: var(--principle-card-w);
+  height: var(--principle-card-h);
+  padding: var(--principle-card-pad);
   display: flex;
   flex-direction: column;
-  color: var(--color-text-primary);
+  /* Градиент как на первом экране: тёмный фон Hero и свечение снизу */
+  background: var(--principle-card-bg);
+  border-radius: var(--radius-card);
+  color: var(--color-text-soft);
 }
 
-/* Колонки: x = 320 / 610 / 900 */
-.principle--col-2 { left: calc(var(--gutter) + var(--heading-offset)); }
-.principle--col-3 { left: calc(var(--gutter) + var(--heading-offset) * 2); }
-.principle--col-4 { left: calc(var(--gutter) + var(--heading-offset) * 3); }
+.principle .principle__num {
+  color: var(--color-text-muted);
+}
 
-.principle--row-1 { top: var(--principles-row-1); }
-.principle--row-2 { top: var(--principles-row-2); }
-.principle--row-3 { top: var(--principles-row-3); }
-.principle--row-3-alt { top: var(--principles-row-3-alt); }
+/* Номер сверху, заголовок и текст прижаты к низу карточки */
+.principle .principle__num {
+  margin-bottom: auto;
+}
+
+.principle .principle__title {
+  font-size: var(--fs-principle-card-title);
+  line-height: var(--lh-principle-card-title);
+  min-height: 0;
+  margin-bottom: var(--space-12);
+}
+
 
 .principle__num,
 .principle__title {
@@ -363,11 +437,6 @@ a {
   min-height: calc(var(--lh-h3) * 2);
   display: flex;
   align-items: center;
-}
-
-/* (02): в макете отступ заголовок → текст 12px вместо 20px */
-.principle--tight .principle__title {
-  margin-bottom: var(--space-12);
 }
 
 .principle__text {
@@ -409,7 +478,7 @@ a {
   display: grid;
   grid-template-columns: repeat(2, var(--case-width));
   column-gap: var(--col-gap);
-  row-gap: var(--section-gap);
+  row-gap: var(--cases-row-gap);
   margin-top: var(--space-40);     /* заголовок → карточки, 2644:3039 → 2644:3032 */
 }
 
@@ -445,7 +514,8 @@ a {
 
 .case--3 .case__img {
   width: var(--case-wide-width);
-  aspect-ratio: 1140 / 394;
+  height: var(--case-wide-height);
+  aspect-ratio: auto;
 }
 
 /* Кнопка «Подробнее» (Figma btn 2631:152) */
@@ -689,51 +759,154 @@ a {
   flex-direction: column;
 }
 
-/* ============ Вопросы (из прототипа, в токенах сайта) ============ */
-/* Вопрос — колонки 320–590, ответ — с 610 до края, как сетка секций */
+/* ============ Вопросы (аккордеон по образцу viennesechair.ru, в токенах сайта) ============ */
+/* Слева заголовок и призыв, справа карточки вопросов — с x = 610, как сетка секций */
 .faq {
   background: var(--color-light);
 }
 
 .faq__inner {
+  display: grid;
+  grid-template-columns: var(--faq-side-width) 1fr;
   padding: var(--section-gap) var(--gutter) 0;
+  letter-spacing: var(--ls-text);
+  color: var(--color-heading-dark);
 }
 
-.faq__head .section-head__label {
+.faq__side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-40);
+  padding-right: var(--space-40);
+}
+
+/* Рубрика-плашка: белая, с точками, как «Вопрос-ответ» у образца */
+.faq__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-12);
+  border-radius: var(--pill-radius);
+  background: var(--color-card-white);
   color: var(--color-label-dark);
   text-transform: uppercase;
 }
 
+.faq__label::before {
+  content: "";
+  width: var(--space-5);
+  height: var(--space-5);
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
 .faq__head .section-head__title {
+  margin-top: var(--space-20);
   font-size: var(--fs-h2-lg);
   line-height: var(--lh-h2-lg);
   letter-spacing: normal;
   color: var(--color-heading-dark);
 }
 
-.faq__list {
-  margin: var(--services-head-gap) 0 0 var(--heading-offset);
-  border-top: var(--border) solid var(--color-line);
-  color: var(--color-heading-dark);
+.faq__cta-text {
+  margin: 0 0 var(--space-20);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  letter-spacing: var(--ls-text);
 }
 
-.faq__row {
-  display: grid;
-  grid-template-columns: var(--heading-offset) 1fr;
-  padding: var(--space-20) 0;
-  border-bottom: var(--border) solid var(--color-line);
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--faq-item-gap);
+}
+
+.faq__item {
+  border-radius: var(--radius-card);
+  background: var(--color-card-white);
 }
 
 .faq__q {
-  padding-right: var(--space-20);
-  font-weight: var(--fw-semibold);
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-body);
+  font-weight: 400;
 }
 
+.faq__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-20);
+  width: 100%;
+  padding: var(--faq-item-pad);
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Квадратная кнопка: «+», в открытом вопросе поворачивается в «×» */
+.faq__icon {
+  position: relative;
+  flex: none;
+  width: var(--faq-toggle);
+  height: var(--faq-toggle);
+  border-radius: var(--pill-radius);
+  background: var(--color-light);
+  transition: background 0.2s ease;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--faq-icon-line);
+  height: var(--border);
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+  transition: transform 0.4s var(--pill-ease);
+}
+
+.faq__icon::after {
+  --r: 90deg;
+}
+
+.faq__toggle:hover .faq__icon {
+  background: var(--color-card-pink);
+}
+
+.faq__item.is-open .faq__icon::before { --r: 45deg; }
+.faq__item.is-open .faq__icon::after { --r: 135deg; }
+
+/* Плавное раскрытие ответа: строка сетки 0fr → 1fr */
 .faq__a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--pill-ease);
+}
+
+.faq__item.is-open .faq__a {
+  grid-template-rows: 1fr;
+}
+
+.faq__a-in {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq__a p {
   margin: 0;
+  padding: 0 var(--faq-item-pad) var(--faq-item-pad);
+  padding-right: calc(var(--faq-item-pad) + var(--faq-toggle));
+  font-size: var(--fs-case-text);
+  line-height: var(--lh-body);
+  color: var(--color-text-dim);
 }
 
 /* ============ Финальный призыв + подвал (из прототипа, в токенах сайта) ============ */
@@ -1052,6 +1225,7 @@ a {
 
 .header.is-stuck .header__handle,
 .header.is-stuck .nav,
+.header.is-stuck .lang,
 .header.is-stuck .header__chat {
   display: flex;
   align-items: center;
@@ -1079,6 +1253,21 @@ a {
 
 .header.is-stuck .nav {
   padding-inline: var(--plate-inset);
+}
+
+/* Переключатель языка — своя плашка, подсветка как у пунктов меню */
+.header.is-stuck .lang {
+  align-items: stretch;
+  padding: var(--plate-inset);
+}
+
+.header.is-stuck .lang__opt {
+  padding-block: 0;
+  border-radius: var(--pill-radius);
+}
+
+.header.is-stuck .header__end {
+  gap: var(--space-10);
 }
 
 .header.is-stuck .nav__list {

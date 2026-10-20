@@ -52,11 +52,21 @@
   if (!form) return;
 
   var status = form.querySelector('.form__status');
+  // Тексты сообщений по языку страницы (<html lang="ru"> или "en")
+  var t = document.documentElement.lang === 'en' ? {
+    name: 'Please tell me what to call you',
+    contact: 'Enter your Telegram @username or phone number',
+    sent: 'Sending requests isn’t set up yet. Please message me on Telegram.'
+  } : {
+    name: 'Напишите, как к вам обращаться',
+    contact: 'Укажите @username в Telegram или номер телефона',
+    sent: 'Отправка заявок пока не подключена. Напишите мне в Telegram.'
+  };
   // @username (5–32 символа) или телефон: от 7 цифр, можно +, пробелы, скобки, дефисы
   var contactOk = /^(@[A-Za-z0-9_]{5,32}|\+?[\d\s()-]{7,20})$/;
   var checks = [
-    { el: form.elements.name, test: function (v) { return v.length >= 2; }, msg: 'Напишите, как к вам обращаться' },
-    { el: form.elements.contact, test: function (v) { return contactOk.test(v); }, msg: 'Укажите @username в Telegram или номер телефона' }
+    { el: form.elements.name, test: function (v) { return v.length >= 2; }, msg: t.name },
+    { el: form.elements.contact, test: function (v) { return contactOk.test(v); }, msg: t.contact }
   ];
 
   function check(item) {
@@ -83,7 +93,7 @@
     });
     if (firstBad) { firstBad.focus(); return; }
     // [отправку подключим позже: Telegram-бот, почта или CRM]
-    status.textContent = 'Отправка заявок пока не подключена. Напишите мне в Telegram.';
+    status.textContent = t.sent;
   });
 })();
 
@@ -115,7 +125,7 @@
     '.services__cols', '.service',
     '.about__ph', '.about__item',
     '.review',
-    '.faq__row',
+    '.faq__item', '.faq__cta',
     '.contact__txt', '.form'
   ].join(', ');
 
@@ -171,5 +181,54 @@
 
   document.querySelectorAll('[data-split], [data-reveal]').forEach(function (el) {
     observer.observe(el);
+  });
+})();
+
+// «Мой подход»: секция закрепляется, и вертикальный скролл двигает ленту карточек влево,
+// как на irinakhachatryan.ru. При «уменьшить движение» лента просто листается вбок.
+(function () {
+  var section = document.querySelector('.principles');
+  var rail = section && section.querySelector('.principles__rail');
+  var list = rail && rail.querySelector('.principles__list');
+  if (!list) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  section.classList.add('is-pinned');
+  var distance = 0;
+
+  // Сколько ленте ехать влево = на столько секция выше экрана
+  function measure() {
+    distance = Math.max(0, list.scrollWidth - rail.clientWidth);
+    section.style.height = window.innerHeight + distance + 'px';
+    update();
+  }
+
+  function update() {
+    var passed = -section.getBoundingClientRect().top;
+    var shift = Math.min(Math.max(passed, 0), distance);
+    list.style.transform = 'translate3d(' + -shift + 'px, 0, 0)';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  measure();
+})();
+
+// «Вопросы»: клик по вопросу открывает ответ, остальные закрываются (как на viennesechair.ru).
+(function () {
+  var items = document.querySelectorAll('.faq__item');
+
+  function setOpen(item, open) {
+    item.classList.toggle('is-open', open);
+    item.querySelector('.faq__toggle').setAttribute('aria-expanded', open);
+  }
+
+  items.forEach(function (item) {
+    item.querySelector('.faq__toggle').addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      items.forEach(function (other) { setOpen(other, false); });
+      setOpen(item, open);
+    });
   });
 })();

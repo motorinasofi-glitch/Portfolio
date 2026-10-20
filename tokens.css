@@ -126,18 +126,29 @@
   --icon-chat-w: 41.042px;
   --icon-chat-h: 39.635px;
 
-  /* --- Принципы: геометрия из макета (2644:3182) --- */
-  /* Сдвинуто на +53px: верхний отступ 150 (--section-gap) вместо 97 из макета */
-  --principles-height: 887px;      /* низ пункта (04), без нижнего отступа */
-  --principles-row-1: 265px;       /* (01), (03) */
-  --principles-row-2: 497px;       /* (02) */
-  --principles-row-3: 699px;       /* (04) */
-  --principles-row-3-alt: 694px;   /* (05): в макете на 5px выше (04) */
+  /* --- Принципы: карточки в ленте (по образцу irinakhachatryan.ru, не из Figma) --- */
+  --principle-card-w: 370px;
+  --principle-card-h: 320px;
+  --principle-card-gap: var(--space-5);
+  --principle-card-pad: var(--space-20);
+  --principles-head-gap: var(--space-70);   /* заголовок секции → лента */
+  --fs-principle-card-title: var(--fs-service-title); /* 28px, как в карточках услуг */
+  --lh-principle-card-title: 1;
+  /* Фон карточки — цвета первого экрана: фон Hero, фиолетовое свечение и розовый акцент */
+  --color-glow-violet: #7932ce;    /* свечение Hero, hero-glow-top.svg / hero-glow-bottom.svg */
+  --principle-card-bg:
+    radial-gradient(110% 75% at 15% 105%, color-mix(in srgb, var(--color-accent) 75%, transparent), transparent 75%),
+    radial-gradient(150% 100% at 85% 110%, var(--color-glow-violet), transparent 75%),
+    var(--color-bg-hero);
 
   /* --- Кейсы (2644:3031). По решению Софьи все карточки 560×394, сетка 2 колонки --- */
   --case-width: 560px;
+  --cases-row-gap: 60px;           /* между рядами кейсов, по решению Софьи */
   --case-height: 394px;
   --case-wide-width: calc(var(--case-width) * 2 + var(--col-gap)); /* 1140, кейс 3 */
+  /* Кейс 3 по решению Софьи: в пропорциях макета 4:3 (1140 × 855), но не выше экрана
+     за вычетом закреплённой шапки и полей */
+  --case-wide-height: min(calc(var(--case-wide-width) * 3 / 4), calc(100vh - var(--space-100)));
   --cases-head-title-width: 678px;
   --case-txt-width: 415px;
   --btn-sm-height: 34px;           /* «Подробнее», 2631:152 */
@@ -163,6 +174,7 @@
   --color-line: color-mix(in srgb, var(--color-text-primary) 15%, var(--color-light));       /* линии таблицы */
   --color-text-dim: color-mix(in srgb, var(--color-label-dark) 75%, var(--color-light));     /* колонка «Шаблон» */
   --fw-semibold: 600;              /* названия строк и шапка таблицы */
+  --color-text-soft-plum: color-mix(in srgb, var(--color-text-primary) 65%, var(--color-light)); /* колонка «Шаблон» */
 
   /* --- Обо мне (новый блок, не из Figma): размеры собраны из сетки секций --- */
   --about-photo-w: var(--col-width);   /* 270, первая колонка сетки */
@@ -174,6 +186,12 @@
   --form-width: 490px;
   --contact-title-width: 420px;
   --color-error: var(--color-accent);
+  /* Аккордеон вопросов (по образцу viennesechair.ru, не из Figma) */
+  --faq-side-width: calc(var(--heading-offset) * 2); /* 580: карточки начинаются с x = 610 */
+  --faq-item-gap: var(--space-10);
+  --faq-item-pad: var(--space-30);
+  --faq-toggle: var(--space-40);       /* квадратная кнопка +/× */
+  --faq-icon-line: var(--space-15);    /* длина штриха плюса */
   --contact-glow: color-mix(in srgb, var(--color-accent) 40%, transparent); /* свечение сверху подвала */
 
   /* --- Отзывы (новый блок, не из Figma) --- */
@@ -197,5 +215,11 @@
   --pill-radius: 10px;
   --pill-pad-x: 22px;
   --pill-ease: cubic-bezier(0.4, 0, 0.2, 1);  /* как у меню Lesse */
+
+  /* Переключатель языка RUS | ENG (в Figma нет, собран из токенов шапки) */
+  --lang-inset: 3px;               /* отступ активной подложки от края переключателя */
+  --lang-pad-y: var(--space-5);
+  --lang-pad-x: var(--space-10);
+  --lang-gap: var(--space-20);     /* от переключателя до иконки Telegram */
   --header-stick-after: 80px;      /* через сколько px скролла шапка становится плашками */
 }

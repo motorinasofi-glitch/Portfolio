@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Софья — веб и граф дизайнер</title>
+  <link rel="alternate" hreflang="ru" href="index.html">
+  <link rel="alternate" hreflang="en" href="en/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap&subset=cyrillic" rel="stylesheet">
@@ -33,9 +35,15 @@
             <li hidden><a href="#reviews">Отзывы</a></li>
           </ul>
         </nav>
-        <a class="header__chat" href="https://t.me/monatory" target="_blank" rel="noopener" aria-label="Написать в Telegram">
-          <img src="assets/img/icon-chat.svg" alt="" width="41.0421" height="39.6347">
-        </a>
+        <div class="header__end">
+          <div class="lang" role="group" aria-label="Язык сайта">
+            <span class="lang__opt is-active" aria-current="page">RUS</span>
+            <a class="lang__opt" href="en/index.html" hreflang="en" lang="en" aria-label="English version">ENG</a>
+          </div>
+          <a class="header__chat" href="https://t.me/monatory" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+            <img src="assets/img/icon-chat.svg" alt="" width="41.0421" height="39.6347">
+          </a>
+        </div>
       </header>
 
       <div class="hero__main">
@@ -110,33 +118,35 @@
         <h2 class="section-head__title">Мой главный принцип - Работаю так,<br>чтобы ваш сайт облегчал вам рассказ о вас и вашем деле</h2>
       </div>
 
-      <ol class="principles__list">
-        <li class="principle principle--col-2 principle--row-1">
-          <p class="principle__num">(01)</p>
-          <h3 class="principle__title">Дизайн + маркетинг в одном человеке</h3>
-          <p class="principle__text">Смотрю на сайт глазами клиента и бизнеса. В итоге решения строятся на проведенном анализе вашего бизнеса и ниши</p>
-        </li>
-        <li class="principle principle--col-3 principle--row-2 principle--tight">
-          <p class="principle__num">(02)</p>
-          <h3 class="principle__title">Сайты под ключ<br>без тысячи подрядчиков</h3>
-          <p class="principle__text">Структура, тексты, дизайн и сборка — всё беру на себя. Вам не нужно искать отдельно копирайтера, дизайнера и «кого-то, кто всё это соберёт».</p>
-        </li>
-        <li class="principle principle--col-4 principle--row-1">
-          <p class="principle__num">(03)</p>
-          <h3 class="principle__title">Прозрачный процесс<br>и адекватные сроки</h3>
-          <p class="principle__text">Сразу озвучиваю этапы, дедлайны и формат работы. Вы понимаете, что сейчас происходит с проектом и когда будет результат</p>
-        </li>
-        <li class="principle principle--col-2 principle--row-3">
-          <p class="principle__num">(04)</p>
-          <h3 class="principle__title">Коммуникация по-человечески, без пафоса и занудства</h3>
-          <p class="principle__text">Можно объяснять задачи простым языком, без сложных терминов. Я задаю вопросы, предлагаю варианты и даю рекомендации, если что-то можно сделать проще и выгоднее.</p>
-        </li>
-        <li class="principle principle--col-4 principle--row-3-alt">
-          <p class="principle__num">(05)</p>
-          <h3 class="principle__title">Чистый, современный дизайн<br>без визуального шума</h3>
-          <p class="principle__text">Люблю минимализм, акцент на смыслах и удобстве. Никаких перегруженных блоков, если это не несёт пользы пользователю и вам.</p>
-        </li>
-      </ol>
+      <div class="principles__rail">
+        <ol class="principles__list">
+          <li class="principle">
+            <p class="principle__num">(01)</p>
+            <h3 class="principle__title">Дизайн + маркетинг в одном человеке</h3>
+            <p class="principle__text">Смотрю на сайт глазами клиента и бизнеса. В итоге решения строятся на проведенном анализе вашего бизнеса и ниши</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(02)</p>
+            <h3 class="principle__title">Сайты под ключ<br>без тысячи подрядчиков</h3>
+            <p class="principle__text">Структура, тексты, дизайн и сборка — всё беру на себя. Вам не нужно искать отдельно копирайтера, дизайнера и «кого-то, кто всё это соберёт».</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(03)</p>
+            <h3 class="principle__title">Прозрачный процесс<br>и адекватные сроки</h3>
+            <p class="principle__text">Сразу озвучиваю этапы, дедлайны и формат работы. Вы понимаете, что сейчас происходит с проектом и когда будет результат</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(04)</p>
+            <h3 class="principle__title">Коммуникация по-человечески, без пафоса и занудства</h3>
+            <p class="principle__text">Можно объяснять задачи простым языком, без сложных терминов. Я задаю вопросы, предлагаю варианты и даю рекомендации, если что-то можно сделать проще и выгоднее.</p>
+          </li>
+          <li class="principle">
+            <p class="principle__num">(05)</p>
+            <h3 class="principle__title">Чистый, современный дизайн<br>без визуального шума</h3>
+            <p class="principle__text">Люблю минимализм, акцент на смыслах и удобстве. Никаких перегруженных блоков, если это не несёт пользы пользователю и вам.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -185,7 +195,7 @@
         <!-- Кейс 3: широкий, на обе колонки. В макете без подписи, подпись как у кейса 4. Тексты — плейсхолдеры, впишет Софья -->
         <article class="case case--3">
           <div class="case__media">
-            <img class="case__img" src="assets/img/case-3.webp" alt="[Название кейса 3]" width="1140" height="394">
+            <img class="case__img" src="assets/img/case-3.webp" alt="[Название кейса 3]" width="1140" height="855">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
             <a class="btn btn--sm case__btn" href="#">
               Подробнее
@@ -344,36 +354,77 @@
     </div>
   </section>
 
-  <!-- 7. Вопросы (из прототипа на claude.ai, в токенах сайта). Ответы в [скобках] впишет Софья -->
+  <!-- 7. Вопросы: аккордеон по образцу viennesechair.ru, в токенах сайта. Ответы в [скобках] впишет Софья -->
   <section class="faq" id="faq">
     <div class="container faq__inner">
-      <div class="section-head faq__head">
-        <p class="section-head__label">вопросы</p>
-        <h2 class="section-head__title">Отвечаю заранее</h2>
+      <div class="faq__side">
+        <div class="faq__head">
+          <p class="section-head__label faq__label">вопросы</p>
+          <h2 class="section-head__title">Отвечаю заранее</h2>
+        </div>
+        <div class="faq__cta">
+          <p class="faq__cta-text">Остались вопросы и не нашли ответа?<br>Напишите мне — отвечу и подскажу, с чего начать.</p>
+          <a class="btn" href="#contact">Задать вопрос</a>
+        </div>
       </div>
 
-      <dl class="faq__list">
-        <div class="faq__row">
-          <dt class="faq__q">Сколько правок входит в стоимость?</dt>
-          <dd class="faq__a">Шесть кругов: по два после прототипа, дизайна и вёрстки.</dd>
+      <div class="faq__list">
+        <div class="faq__item is-open">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="true" aria-controls="faq-a1">
+              <span>Сколько правок входит в стоимость?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a1"><div class="faq__a-in">
+            <p>Шесть кругов: по два после прототипа, дизайна и вёрстки.</p>
+          </div></div>
         </div>
-        <div class="faq__row">
-          <dt class="faq__q">Что если результат не понравится?</dt>
-          <dd class="faq__a">Структуру и тексты согласуем на прототипе ещё до дизайна, поэтому к финалу сюрпризов не бывает.</dd>
+        <div class="faq__item">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-a2">
+              <span>Что если результат не понравится?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a2"><div class="faq__a-in">
+            <p>Структуру и тексты согласуем на прототипе ещё до дизайна, поэтому к финалу сюрпризов не бывает.</p>
+          </div></div>
         </div>
-        <div class="faq__row">
-          <dt class="faq__q">Смогу ли я сам менять сайт?</dt>
-          <dd class="faq__a">Да. После сдачи записываю видео-инструкцию, как управлять сайтом на Тильде.</dd>
+        <div class="faq__item">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-a3">
+              <span>Смогу ли я сам менять сайт?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a3"><div class="faq__a-in">
+            <p>Да. После сдачи записываю видео-инструкцию, как управлять сайтом на Тильде.</p>
+          </div></div>
         </div>
-        <div class="faq__row">
-          <dt class="faq__q">Что нужно от меня?</dt>
-          <dd class="faq__a">[Например: заполнить бриф, прислать логотип и фото, отвечать на вопросы на этапах]</dd>
+        <div class="faq__item">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-a4">
+              <span>Что нужно от меня?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a4"><div class="faq__a-in">
+            <p>[Например: заполнить бриф, прислать логотип и фото, отвечать на вопросы на этапах]</p>
+          </div></div>
         </div>
-        <div class="faq__row">
-          <dt class="faq__q">Сколько длится работа?</dt>
-          <dd class="faq__a">[Типичные сроки по видам сайтов]. Если что-то сдвигается, предупреждаю заранее.</dd>
+        <div class="faq__item">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-a5">
+              <span>Сколько длится работа?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a5"><div class="faq__a-in">
+            <p>[Типичные сроки по видам сайтов]. Если что-то сдвигается, предупреждаю заранее.</p>
+          </div></div>
         </div>
-      </dl>
+      </div>
     </div>
   </section>
 
