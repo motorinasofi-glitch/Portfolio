@@ -24,7 +24,7 @@ a {
 
 .container {
   position: relative;
-  width: min(var(--container), 100%);
+  width: var(--container);
   margin: 0 auto;
 }
 
@@ -53,14 +53,14 @@ a {
 }
 
 .hero__glow--bottom {              /* Vector 5, 2644:2985 */
-  left: calc(50% - var(--container) / 2 - 338.5px);  /* на ширине 1200 это −338.5 из макета */
+  left: -338.5px;
   top: calc(283.5px + var(--hero-shift));
   width: 1876px;
   height: 722px;
 }
 
 .hero__glow--top {                 /* Vector 4, 2644:2986 */
-  left: calc(50% - var(--container) / 2 - 333px);
+  left: -333px;
   top: calc(127px + var(--hero-shift));
   width: 1866px;
   height: 804px;
@@ -1183,7 +1183,7 @@ a.lang__opt:hover {
   top: var(--space-16);
   left: 0;
   right: 0;
-  width: calc(min(var(--container), 100%) - 2 * var(--gutter));
+  width: calc(var(--container) - 2 * var(--gutter));
   margin-inline: auto;
   align-items: center;
   pointer-events: none;            /* кликабельны только сами плашки */
@@ -1286,8 +1286,56 @@ a.lang__opt:hover {
    Мобильного макета в Figma нет, значения собраны из шкалы токенов (по решению Софьи).
    Точки: 1199px — уже контейнера, 768px — телефон (числа повторяются в tokens.css). */
 
+/* Общее: контейнер не шире экрана, рубрика и заголовок секции */
+@media (max-width: 1199px) {
+  .container {
+    width: min(var(--container), 100%);
+  }
+
+  /* Элементы шире экрана (свечение, лента карточек) не дают прокрутки вбок */
+  .hero,
+  .cases,
+  .compare,
+  .principles,
+  .services,
+  .about,
+  .faq,
+  .reviews,
+  .contact {
+    overflow-x: clip;
+  }
+
+  .section-head {
+    grid-template-columns: var(--heading-offset) minmax(0, 1fr);
+  }
+
+  .section-head__title {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-head {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-16);
+  }
+}
+
 /* Hero и шапка */
 @media (max-width: 1199px) {
+  /* Свечение остаётся по центру: на ширине 1200 это −338.5 и −333 из макета */
+  .hero__glow--bottom {
+    left: calc(50% - var(--container) / 2 - 338.5px);
+  }
+
+  .hero__glow--top {
+    left: calc(50% - var(--container) / 2 - 333px);
+  }
+
+  .header.is-stuck {
+    width: calc(100% - 2 * var(--gutter));
+  }
+
   .hero__main {
     left: var(--gutter);
     right: var(--gutter);

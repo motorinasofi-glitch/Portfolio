@@ -233,11 +233,29 @@
 }
 
 /* --- Адаптив: в Figma мобильного макета нет, значения взяты из шкалы токенов
-   (по решению Софьи). Точка 768px повторяется в styles.css: в @media переменные не работают --- */
+   (по решению Софьи). Точки 1199 и 768px повторяются в styles.css: в @media переменные не работают --- */
+@media (max-width: 1199px) {
+  :root {
+    /* Плавно от минимума на 375px до значения из макета на 1200px:
+       min + (max − min) × (100vw − 375px) / 825 */
+    --section-gap:      clamp(64px, calc(64px + 86 * (100vw - 375px) / 825), 150px); /* --space-64 → 150 */
+    --fs-h1:            clamp(35px, calc(35px + 21 * (100vw - 375px) / 825), 56px);  /* как --fs-h2 → 56 */
+    --fs-h2:            clamp(28px, calc(28px + 7 * (100vw - 375px) / 825), 35px);   /* как --fs-service-title → 35 */
+    --fs-h2-lg:         clamp(35px, calc(35px + 10 * (100vw - 375px) / 825), 45px);  /* как --fs-h2 → 45 */
+    --fs-case-title:    clamp(28px, calc(28px + 7 * (100vw - 375px) / 825), 35px);   /* как --fs-service-title → 35 */
+    --fs-service-title: clamp(20px, calc(20px + 8 * (100vw - 375px) / 825), 28px);   /* как --fs-h3 → 28 */
+
+    /* Межстрочные — отношением из макета, чтобы уменьшались вместе со шрифтом */
+    --lh-h2:            calc(34 / 35);
+    --lh-h2-lg:         calc(47 / 45);
+    --lh-case-title:    calc(30 / 35);
+    --lh-service-title: calc(42 / 28);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --gutter: var(--space-16);
-    --fs-h1: var(--fs-h2);           /* 35px, как заголовок секции */
     --ls-h1: var(--ls-text);
     --hero-main-gap: var(--space-48);
   }
