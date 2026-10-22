@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  background: var(--color-bg-hero);
+  background: var(--c-night);
   font-family: var(--font-text);
   overflow-x: clip;
 }
@@ -31,7 +31,7 @@ a {
 /* ============ Hero (Figma 2644:2984) ============ */
 .hero {
   position: relative;
-  background: var(--color-bg-hero);
+  background: var(--c-night);
   overflow: clip;
 }
 
@@ -69,7 +69,7 @@ a {
 /* Шапка */
 .header {
   position: absolute;
-  top: var(--space-15);
+  top: var(--space-16);
   left: var(--gutter);
   right: var(--gutter);
   display: flex;
@@ -81,16 +81,16 @@ a {
 }
 
 .header__handle {
-  color: var(--color-text-muted);
+  color: var(--c-rose-200);
 }
 
 .nav__list {
   display: flex;
-  gap: var(--space-100);
+  gap: var(--space-96);
   margin: 0;
   padding: 0;
   list-style: none;
-  color: var(--color-text-soft);
+  color: var(--c-rose-50);
 }
 
 .nav__list [hidden] {
@@ -121,7 +121,7 @@ a {
   align-items: center;
   padding: var(--lang-pad-y) var(--lang-pad-x);
   border-radius: calc(var(--pill-radius) - var(--lang-inset));
-  color: var(--color-text-soft);
+  color: var(--c-rose-50);
   transition: background 0.15s ease;
 }
 
@@ -130,8 +130,8 @@ a.lang__opt:hover {
 }
 
 .lang__opt.is-active {
-  background: var(--color-accent);
-  color: var(--color-btn-text);
+  background: var(--c-accent);
+  color: var(--c-light);
 }
 
 /* Центральный блок */
@@ -143,7 +143,7 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-70);
+  gap: var(--space-64);
 }
 
 .hero__ph {
@@ -151,7 +151,7 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-10);
+  gap: var(--space-8);
 }
 
 .hero__photo-group {
@@ -168,7 +168,7 @@ a.lang__opt:hover {
   width: var(--hero-photo-back-w);
   height: var(--hero-photo-back-h);
   margin-left: var(--hero-photo-back-offset);
-  background: var(--color-accent);
+  background: var(--c-accent);
 }
 
 .hero__photo {
@@ -182,7 +182,7 @@ a.lang__opt:hover {
 .hero__caption {
   width: 100%;
   margin: 0;
-  color: var(--color-text-soft);
+  color: var(--c-rose-50);
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
   letter-spacing: var(--ls-text);
@@ -193,7 +193,7 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-30);
+  gap: var(--space-32);
 }
 
 .hero__title {
@@ -203,7 +203,7 @@ a.lang__opt:hover {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
-  color: var(--color-light);
+  color: var(--c-light);
   text-align: center;
 }
 
@@ -212,15 +212,23 @@ a.lang__opt:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-10);
+  gap: var(--space-8);
   width: var(--btn-width);
-  padding: var(--space-14) var(--space-40);
+  padding: var(--space-12) var(--space-32);
   border-radius: var(--radius-btn);
-  background: var(--color-accent);
-  color: var(--color-btn-text);
+  background: var(--c-accent);
+  color: var(--c-light);
   font-size: var(--fs-btn);
   line-height: var(--lh-btn);
   white-space: nowrap;
+}
+
+/* Светлая кнопка: белая с розовой обводкой; высота как у кнопок со стрелкой */
+.btn--outline {
+  min-height: calc(var(--space-12) * 2 + var(--icon-arrow-h));
+  border: var(--border) solid var(--c-accent);
+  background: var(--c-white);
+  color: var(--c-accent);
 }
 
 .btn__arrow {
@@ -235,13 +243,31 @@ a.lang__opt:hover {
   grid-template-columns: var(--heading-offset) auto;
   align-items: start;
   letter-spacing: var(--ls-text);
-  color: var(--color-text-primary);
+  color: var(--c-wine);
 }
 
+/* Рубрика-плашка: белая, с точкой, как «Вопрос-ответ» у образца viennesechair.ru — во всех секциях */
 .section-head__label {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;             /* в сетке .section-head не растягиваться на всю колонку */
+  gap: var(--space-4);
   margin: 0;
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--pill-radius);
+  background: var(--c-white);
+  color: var(--c-plum);
   font-size: var(--fs-label);
   line-height: var(--lh-label);
+  text-transform: uppercase;
+}
+
+.section-head__label::before {
+  content: "";
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--c-accent);
 }
 
 .section-head__title {
@@ -255,7 +281,7 @@ a.lang__opt:hover {
 /* ============ Почему не шаблон (из прототипа, в токенах сайта) ============ */
 /* Колонки таблицы стоят по сетке секций: x = 320 / 610 / 900 */
 .compare {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .compare__inner {
@@ -271,7 +297,7 @@ a.lang__opt:hover {
 }
 
 .compare__accent {
-  color: var(--color-heading-soft);
+  color: var(--c-rose-400);
 }
 
 .compare__table {
@@ -280,7 +306,7 @@ a.lang__opt:hover {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   letter-spacing: var(--ls-text);
-  color: var(--color-text-primary);
+  color: var(--c-wine);
 }
 
 .compare__row {
@@ -292,8 +318,8 @@ a.lang__opt:hover {
 .compare__row > * {
   display: flex;
   align-items: center;
-  padding: var(--space-20);
-  border-bottom: var(--border) solid var(--color-line);
+  padding: var(--space-16);
+  border-bottom: var(--border) solid var(--c-line);
 }
 
 .compare__row > :first-child {
@@ -309,26 +335,26 @@ a.lang__opt:hover {
 /* Шапка — как подписи колонок в «Услугах» */
 .compare__row--head > * {
   align-items: flex-end;
-  padding-block: 0 var(--space-10);
+  padding-block: 0 var(--space-8);
   font-size: var(--fs-label);
   line-height: var(--lh-label);
-  color: var(--color-label-dark);
+  color: var(--c-plum);
 }
 
 .compare__tpl {
-  color: var(--color-text-soft-plum);
+  color: var(--c-rose-600);
 }
 
 /* Колонка «Сайт под ключ»: белая карточка, как карточки «Мой подход» */
 .compare__key {
-  background: var(--color-card-white);
-  border-bottom-color: var(--color-light);
+  background: var(--c-white);
+  border-bottom-color: var(--c-light);
 }
 
 .compare__row--head .compare__key {
-  padding-top: var(--space-20);
+  padding-top: var(--space-16);
   border-radius: var(--radius-card) var(--radius-card) 0 0;
-  color: var(--color-accent);
+  color: var(--c-accent);
 }
 
 .compare__row--last > * {
@@ -343,7 +369,7 @@ a.lang__opt:hover {
    Без JS лента листается вбок сама. script.js ставит .is-pinned: секция
    закрепляется на экране, и вертикальный скролл двигает ленту влево. */
 .principles {
-  background: var(--color-light);
+  background: var(--c-light);
   overflow-x: clip;
 }
 
@@ -395,13 +421,13 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   /* Градиент как на первом экране: тёмный фон Hero и свечение снизу */
-  background: var(--principle-card-bg);
+  background: var(--g-principle-card);
   border-radius: var(--radius-card);
-  color: var(--color-text-soft);
+  color: var(--c-rose-50);
 }
 
 .principle .principle__num {
-  color: var(--color-text-muted);
+  color: var(--c-rose-200);
 }
 
 /* Номер сверху, заголовок и текст прижаты к низу карточки */
@@ -427,13 +453,13 @@ a.lang__opt:hover {
 
 .principle__num {
   font-weight: 400;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
 }
 
 /* В макете у заголовков блок на 2 строки (h 40), однострочный — по центру */
 .principle__title {
   font-weight: 700;
-  margin-bottom: var(--space-20);
+  margin-bottom: var(--space-16);
   min-height: calc(var(--lh-h3) * 2);
   display: flex;
   align-items: center;
@@ -450,16 +476,11 @@ a.lang__opt:hover {
 /* По решению Софьи все кейсы одного размера (как кейс 1 в макете, 560×394)
    и стоят в сетке 2 колонки, кейс 3 — на обе колонки. Между рядами и секциями — --section-gap. */
 .cases {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .cases__inner {
   padding: var(--section-gap) var(--gutter) 0;
-}
-
-.cases__head .section-head__label {
-  color: var(--color-label-dark);
-  text-transform: uppercase;
 }
 
 .cases__head .section-head__title {
@@ -467,11 +488,11 @@ a.lang__opt:hover {
   font-size: var(--fs-h2-lg);
   line-height: var(--lh-h2-lg);
   letter-spacing: normal;
-  color: var(--color-heading-dark);
+  color: var(--c-plum);
 }
 
 .cases__accent {
-  color: var(--color-heading-accent);
+  color: var(--c-rose-600);
 }
 
 .cases__grid {
@@ -479,13 +500,13 @@ a.lang__opt:hover {
   grid-template-columns: repeat(2, var(--case-width));
   column-gap: var(--col-gap);
   row-gap: var(--cases-row-gap);
-  margin-top: var(--space-40);     /* заголовок → карточки, 2644:3039 → 2644:3032 */
+  margin-top: var(--space-32);     /* заголовок → карточки, 2644:3039 → 2644:3032 */
 }
 
 .case {
   display: flex;
   flex-direction: column;
-  gap: var(--space-30);            /* картинка → подпись, как у кейса 1 */
+  gap: var(--space-32);            /* картинка → подпись, как у кейса 1 */
 }
 
 /* Визуал кейса: одна картинка на весь мокап */
@@ -502,10 +523,10 @@ a.lang__opt:hover {
 }
 
 /* Подложки из макета: видны, пока нет картинки */
-.case--1 .case__img { background: var(--color-card-cream); }
-.case--2 .case__img { background: var(--color-card-pink); }
-.case--3 .case__img { background: var(--color-card-white); }
-.case--5 .case__img { background: var(--color-card-grey); }
+.case--1 .case__img { background: var(--c-cream); }
+.case--2 .case__img { background: var(--c-rose-50); }
+.case--3 .case__img { background: var(--c-white); }
+.case--5 .case__img { background: var(--c-gray); }
 
 /* Кейс 3 — широкий, на обе колонки (по решению Софьи) */
 .case--3 {
@@ -518,27 +539,10 @@ a.lang__opt:hover {
   aspect-ratio: auto;
 }
 
-/* Кнопка «Подробнее» (Figma btn 2631:152) */
-.btn--sm {
-  width: var(--btn-sm-width);
-  height: var(--btn-sm-height);
-  padding: 0 var(--space-40);
-  background: var(--color-light);
-  color: var(--color-text-primary);
-  font-size: var(--fs-tag);
-  line-height: var(--lh-tag);
-}
-
-.btn--sm .btn__arrow {
-  flex-shrink: 0;
-  width: var(--icon-arrow-sm-w);
-  height: var(--icon-arrow-sm-h);
-}
-
 .case__btn {                       /* отступ от угла картинки, как у кейса 2 */
   position: absolute;
-  right: var(--space-20);
-  bottom: var(--space-20);
+  right: var(--space-16);
+  bottom: var(--space-16);
 }
 
 /* Подпись кейса: теги, название, задача */
@@ -547,21 +551,21 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-20);
-  color: var(--color-text-primary);
+  gap: var(--space-16);
+  color: var(--c-wine);
 }
 
 .case__tags {
   display: flex;
-  gap: var(--space-11);
+  gap: var(--space-12);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .tag {
-  padding: var(--space-4) var(--space-10) var(--space-5);
-  border: var(--border) solid var(--color-text-primary);
+  padding: var(--space-4) var(--space-8) var(--space-4);
+  border: var(--border) solid var(--c-wine);
   border-radius: var(--radius-btn);
   font-size: var(--fs-tag);
   line-height: var(--lh-tag);
@@ -588,7 +592,7 @@ a.lang__opt:hover {
 
 /* ============ Услуги и стоимость (Figma «Услуги», по скриншоту) ============ */
 .services {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .services__inner {
@@ -603,7 +607,7 @@ a.lang__opt:hover {
 }
 
 .services__soft {
-  color: var(--color-heading-soft);
+  color: var(--c-rose-400);
 }
 
 /* Колонки таблицы совпадают с сеткой секций: x = 30 / 320 / 610 / 900 */
@@ -617,8 +621,8 @@ a.lang__opt:hover {
 
 .services__cols {
   margin-top: var(--services-head-gap);
-  margin-bottom: var(--space-20);
-  color: var(--color-label-dark);
+  margin-bottom: var(--space-16);
+  color: var(--c-plum);
   font-size: var(--fs-label);
   line-height: var(--lh-label);
   letter-spacing: var(--ls-text);
@@ -627,12 +631,12 @@ a.lang__opt:hover {
 .service {
   height: var(--service-height);
   border-radius: var(--radius-card);
-  color: var(--color-text-primary);
+  color: var(--c-wine);
 }
 
 /* Номер и название отступают от края карточки, остальные колонки — по шапке */
 .service__name {
-  padding-left: var(--space-20);
+  padding-left: var(--space-16);
 }
 
 .service + .service {
@@ -640,19 +644,15 @@ a.lang__opt:hover {
 }
 
 .service--1 {
-  background:
-    radial-gradient(60% 90% at 15% 80%, color-mix(in srgb, var(--color-light) 60%, transparent), transparent),
-    var(--color-service-mauve);
+  background: var(--g-service-1);
 }
 
 .service--2 {
-  background: var(--color-card-pink);
+  background: var(--c-rose-50);
 }
 
 .service--3 {
-  background:
-    radial-gradient(70% 120% at 10% 100%, var(--color-card-white), transparent),
-    linear-gradient(to right, var(--color-card-pink), var(--color-service-pink));
+  background: var(--g-service-3);
 }
 
 .service p,
@@ -664,7 +664,7 @@ a.lang__opt:hover {
   font-family: var(--font-display);
   font-size: var(--fs-service-num);
   line-height: var(--lh-h3);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
 }
 
 .service__title {
@@ -701,7 +701,7 @@ a.lang__opt:hover {
 /* ============ Обо мне (новый блок, в системе секций из Figma) ============ */
 /* Фото в первой колонке сетки (x = 30), пункты — в колонках 320 / 610 / 900 */
 .about {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .about__inner {
@@ -719,13 +719,13 @@ a.lang__opt:hover {
   grid-template-columns: var(--col-width) 1fr;
   column-gap: var(--col-gap);
   margin-top: var(--services-head-gap);
-  color: var(--color-text-primary);
+  color: var(--c-wine);
 }
 
 .about__ph {
   display: flex;
   flex-direction: column;
-  gap: var(--space-10);
+  gap: var(--space-8);
 }
 
 .about__photo {
@@ -734,7 +734,7 @@ a.lang__opt:hover {
   aspect-ratio: 270 / 394;
   object-fit: cover;
   border-radius: var(--radius-card);
-  background: var(--color-card-pink);
+  background: var(--c-rose-50);
 }
 
 .about__personal {
@@ -748,7 +748,7 @@ a.lang__opt:hover {
   display: grid;
   grid-template-columns: repeat(3, var(--col-width));
   column-gap: var(--col-gap);
-  row-gap: var(--space-70);
+  row-gap: var(--space-64);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -762,7 +762,7 @@ a.lang__opt:hover {
 /* ============ Вопросы (аккордеон по образцу viennesechair.ru, в токенах сайта) ============ */
 /* Слева заголовок и призыв, справа карточки вопросов — с x = 610, как сетка секций */
 .faq {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .faq__inner {
@@ -770,47 +770,27 @@ a.lang__opt:hover {
   grid-template-columns: var(--faq-side-width) 1fr;
   padding: var(--section-gap) var(--gutter) 0;
   letter-spacing: var(--ls-text);
-  color: var(--color-heading-dark);
+  color: var(--c-wine);
 }
 
 .faq__side {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--space-40);
-  padding-right: var(--space-40);
-}
-
-/* Рубрика-плашка: белая, с точками, как «Вопрос-ответ» у образца */
-.faq__label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-5) var(--space-12);
-  border-radius: var(--pill-radius);
-  background: var(--color-card-white);
-  color: var(--color-label-dark);
-  text-transform: uppercase;
-}
-
-.faq__label::before {
-  content: "";
-  width: var(--space-5);
-  height: var(--space-5);
-  border-radius: 50%;
-  background: var(--color-accent);
+  gap: var(--space-32);
+  padding-right: var(--space-32);
 }
 
 .faq__head .section-head__title {
-  margin-top: var(--space-20);
+  margin-top: var(--space-16);
   font-size: var(--fs-h2-lg);
   line-height: var(--lh-h2-lg);
   letter-spacing: normal;
-  color: var(--color-heading-dark);
+  color: var(--c-plum);
 }
 
 .faq__cta-text {
-  margin: 0 0 var(--space-20);
+  margin: 0 0 var(--space-16);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
 }
@@ -823,13 +803,14 @@ a.lang__opt:hover {
 
 .faq__item {
   border-radius: var(--radius-card);
-  background: var(--color-card-white);
+  background: var(--c-white);
 }
 
 .faq__q {
   margin: 0;
+  font-family: var(--font-display);
   font-size: var(--fs-h3);
-  line-height: var(--lh-body);
+  line-height: var(--lh-h3);
   font-weight: 400;
 }
 
@@ -837,7 +818,7 @@ a.lang__opt:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-20);
+  gap: var(--space-16);
   width: 100%;
   padding: var(--faq-item-pad);
   border: 0;
@@ -856,7 +837,7 @@ a.lang__opt:hover {
   width: var(--faq-toggle);
   height: var(--faq-toggle);
   border-radius: var(--pill-radius);
-  background: var(--color-light);
+  background: var(--c-light);
   transition: background 0.2s ease;
 }
 
@@ -878,7 +859,7 @@ a.lang__opt:hover {
 }
 
 .faq__toggle:hover .faq__icon {
-  background: var(--color-card-pink);
+  background: var(--c-rose-50);
 }
 
 .faq__item.is-open .faq__icon::before { --r: 45deg; }
@@ -904,23 +885,20 @@ a.lang__opt:hover {
   margin: 0;
   padding: 0 var(--faq-item-pad) var(--faq-item-pad);
   padding-right: calc(var(--faq-item-pad) + var(--faq-toggle));
-  font-size: var(--fs-case-text);
+  font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--color-text-dim);
 }
 
 /* ============ Финальный призыв + подвал (из прототипа, в токенах сайта) ============ */
 .contact {
   /* Отступ от последнего светлого блока: светлая полоса, свечение начинается под ней */
-  border-top: var(--section-gap) solid var(--color-light);
-  background:
-    radial-gradient(50% 300px at 50% 0, var(--contact-glow), transparent),
-    var(--color-bg-hero);
-  color: var(--color-text-soft);
+  border-top: var(--section-gap) solid var(--c-light);
+  background: var(--g-contact);
+  color: var(--c-rose-50);
 }
 
 .contact__inner {
-  padding: var(--space-100) var(--gutter) var(--space-30);
+  padding: var(--space-96) var(--gutter) var(--space-32);
 }
 
 .contact__main {
@@ -937,50 +915,45 @@ a.lang__opt:hover {
 }
 
 .contact__title {
-  margin: 0 0 var(--space-30);
+  margin: 0 0 var(--space-32);
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
-  color: var(--color-light);
+  color: var(--c-light);
 }
 
 .contact__lead {
-  margin: 0 0 var(--space-40);
+  margin: 0 0 var(--space-32);
   font-size: var(--fs-case-text);
   line-height: var(--lh-body);
   letter-spacing: var(--ls-text);
 }
 
 .contact__hint {
-  margin: 0 0 var(--space-10);
+  margin: 0 0 var(--space-8);
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
 }
 
-/* Кнопка-обводка «Написать в Telegram» */
-.btn--outline {
-  background: transparent;
-  border: var(--border) solid var(--color-accent);
-}
 
 /* Форма */
 .form {
   width: var(--form-width);
   display: flex;
   flex-direction: column;
-  gap: var(--space-20);
-  padding: var(--space-40);
+  gap: var(--space-16);
+  padding: var(--space-32);
   border-radius: var(--radius-panel);
-  background: var(--color-card-white);
-  color: var(--color-heading-dark);
+  background: var(--c-white);
+  color: var(--c-plum);
 }
 
 .form__field {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .form__label {
@@ -991,27 +964,27 @@ a.lang__opt:hover {
 
 .form__input {
   height: var(--field-height);
-  padding: 0 var(--space-15);
-  border: var(--border) solid var(--color-line);
+  padding: 0 var(--space-16);
+  border: var(--border) solid var(--c-line);
   border-radius: var(--radius-card);
   font: inherit;
   font-size: var(--fs-body);
   color: inherit;
-  background: var(--color-card-white);
+  background: var(--c-white);
 }
 
 .form__input:focus {
   outline: none;
-  border-color: var(--color-text-primary);
+  border-color: var(--c-wine);
 }
 
 .form__input[aria-invalid="true"] {
-  border-color: var(--color-error);
+  border-color: var(--c-accent);
 }
 
 .form__input--area {
   height: auto;
-  padding-block: var(--space-14);
+  padding-block: var(--space-12);
   resize: none;
 }
 
@@ -1023,13 +996,12 @@ a.lang__opt:hover {
   margin: 0;
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
-  color: var(--color-error);
+  color: var(--c-accent);
 }
 
+/* Вид — как у .btn; здесь только сброс стилей <button> */
 .form__submit {
-  width: 100%;
-  height: var(--field-height);
-  background: var(--color-text-primary);
+  align-self: flex-start;
   cursor: pointer;
   border: 0;
   font-family: inherit;
@@ -1051,9 +1023,9 @@ a.lang__opt:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--space-100);
-  padding-top: var(--space-30);
-  border-top: var(--border) solid color-mix(in srgb, var(--color-text-soft) 15%, transparent);
+  margin-top: var(--space-96);
+  padding-top: var(--space-32);
+  border-top: var(--border) solid color-mix(in srgb, var(--c-rose-50) 15%, transparent);
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
 }
@@ -1064,7 +1036,7 @@ a.lang__opt:hover {
 
 .contact__links {
   display: flex;
-  gap: var(--space-30);
+  gap: var(--space-32);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1080,7 +1052,7 @@ a.lang__opt:hover {
 }
 
 .reviews {
-  background: var(--color-light);
+  background: var(--c-light);
 }
 
 .reviews__inner {
@@ -1105,17 +1077,17 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-20);
-  padding: var(--space-30);
+  gap: var(--space-16);
+  padding: var(--space-32);
   border-radius: var(--radius-card);
-  background: var(--color-card-pink);
-  color: var(--color-text-primary);
+  background: var(--c-rose-50);
+  color: var(--c-wine);
 }
 
 .review__person {
   display: flex;
   align-items: center;
-  gap: var(--space-15);
+  gap: var(--space-16);
 }
 
 .review__photo {
@@ -1124,11 +1096,11 @@ a.lang__opt:hover {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radius-photo);
-  background: var(--color-card-white);
+  background: var(--c-white);
 }
 
 .review__name {
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-4);
   font-family: var(--font-display);
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
@@ -1152,8 +1124,8 @@ a.lang__opt:hover {
 
 /* Ссылка на сайт клиента — в стиле тега кейса */
 .review__link {
-  padding: var(--space-4) var(--space-10) var(--space-5);
-  border: var(--border) solid var(--color-text-primary);
+  padding: var(--space-4) var(--space-8) var(--space-4);
+  border: var(--border) solid var(--c-wine);
   border-radius: var(--radius-btn);
   font-size: var(--fs-tag);
   line-height: var(--lh-tag);
@@ -1208,7 +1180,7 @@ a.lang__opt:hover {
 .header.is-stuck {
   position: fixed;
   z-index: 100;
-  top: var(--space-15);
+  top: var(--space-16);
   left: 0;
   right: 0;
   width: calc(var(--container) - 2 * var(--gutter));
@@ -1267,7 +1239,7 @@ a.lang__opt:hover {
 }
 
 .header.is-stuck .header__end {
-  gap: var(--space-10);
+  gap: var(--space-8);
 }
 
 .header.is-stuck .nav__list {
