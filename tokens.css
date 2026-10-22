@@ -223,6 +223,8 @@
   --pill-radius: 10px;
   --pill-pad-x: var(--space-24);
   --pill-ease: cubic-bezier(0.4, 0, 0.2, 1);  /* как у меню Lesse */
+  --burger-dot: 3px;                          /* точка бургера на телефоне, как у Lesse */
+  --burger-dot-step: var(--dot);              /* шаг точек: 5px */
 
   /* Переключатель языка RUS | ENG (в Figma нет, собран из токенов шапки) */
   --lang-inset: var(--space-4);               /* отступ активной подложки от края переключателя */

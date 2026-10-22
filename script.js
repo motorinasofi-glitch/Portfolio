@@ -46,6 +46,39 @@
   });
 })();
 
+// Бургер-меню на телефоне: открывает меню на весь экран, закрывается крестиком,
+// пунктом меню или клавишей Esc. Как выглядит — в styles.css, раздел «Адаптив».
+(function () {
+  var header = document.querySelector('.header');
+  var burger = header && header.querySelector('.burger');
+  if (!burger) return;
+
+  var en = document.documentElement.lang === 'en';
+  var labels = en ? ['Open menu', 'Close menu'] : ['Открыть меню', 'Закрыть меню'];
+
+  function setOpen(open) {
+    header.classList.toggle('is-open', open);
+    document.documentElement.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', labels[open ? 1 : 0]);
+  }
+
+  burger.addEventListener('click', function () {
+    setOpen(!header.classList.contains('is-open'));
+  });
+
+  header.querySelectorAll('.nav a, .header__end a').forEach(function (link) {
+    link.addEventListener('click', function () { setOpen(false); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && header.classList.contains('is-open')) {
+      setOpen(false);
+      burger.focus();
+    }
+  });
+})();
+
 // Форма заявки в подвале: только проверка полей, отправка пока не подключена.
 (function () {
   var form = document.querySelector('.form');

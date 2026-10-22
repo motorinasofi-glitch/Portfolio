@@ -25,7 +25,7 @@
 
       <header class="header">
         <span class="header__handle">@monatory</span>
-        <nav class="nav" aria-label="Main menu">
+        <nav class="nav" id="site-menu" aria-label="Main menu">
           <ul class="nav__list">
             <li><a href="#approach">My approach</a></li>
             <li><a href="#cases">Work</a></li>
@@ -44,6 +44,11 @@
             <img src="../assets/img/icon-chat.svg" alt="" width="41.0421" height="39.6347">
           </a>
         </div>
+        <!-- Бургер: виден только на телефоне (≤640px), открывает меню на весь экран (script.js) -->
+        <button class="burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
       </header>
 
       <div class="hero__main">

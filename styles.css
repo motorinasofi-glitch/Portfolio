@@ -102,6 +102,11 @@ a {
   height: var(--icon-chat-h);
 }
 
+/* Бургер есть только в мобильной шапке (раздел «Адаптив») */
+.burger {
+  display: none;
+}
+
 /* Переключатель языка RUS | ENG: текущий язык подсвечен, второй — ссылка */
 .header__end {
   display: flex;
@@ -1386,5 +1391,199 @@ a.lang__opt:hover {
 
   .header.is-stuck .nav__list a {
     padding-inline: var(--space-8);
+  }
+}
+
+/* Первый экран на телефоне: высота по содержимому, текст и кнопка обычным потоком */
+@media (max-width: 768px) {
+  .hero__inner {
+    --hero-shift: 0px;              /* свечение — на своих местах из макета */
+    height: auto;
+    padding: var(--hero-main-top) var(--gutter) var(--space-96);
+  }
+
+  .hero__main {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+}
+
+/* Бургер-меню (≤640px): в шапке ник и бургер, меню, язык и Telegram — в меню на весь экран */
+@media (max-width: 640px) {
+  .header:not(.is-open) .nav,
+  .header:not(.is-open) .header__end {
+    display: none;
+  }
+
+  /* Ник и бургер всегда в полупрозрачных плашках, как в закреплённой шапке
+     (по образцу lessestudio.com) */
+  .header {
+    align-items: center;
+  }
+
+  .header .header__handle,
+  .header.is-stuck .header__handle,
+  .burger {
+    display: flex;
+    align-items: center;
+    height: var(--plate-height);
+    border-radius: var(--plate-radius);
+    background: var(--plate-pill-bg);   /* на тёмном фоне — светлая подложка, как у переключателя языка */
+    -webkit-backdrop-filter: blur(var(--plate-blur));
+    backdrop-filter: blur(var(--plate-blur));
+    pointer-events: auto;
+  }
+
+  /* Над светлыми блоками — тёмные плашки закреплённой шапки */
+  .header.is-stuck .header__handle,
+  .header.is-stuck .burger {
+    background: var(--plate-bg);
+  }
+
+  .header .header__handle {
+    padding-inline: var(--plate-pad-x);
+  }
+
+  .burger {
+    position: relative;
+    flex: none;
+    width: var(--plate-height);
+    padding: 0;
+    border: 0;
+    color: var(--c-rose-50);
+    cursor: pointer;
+  }
+
+  /* Две строки точек; в открытом меню складываются в крестик из точек */
+  .burger__line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--burger-dot-step) * 5);
+    height: var(--burger-dot-step);
+    background: radial-gradient(circle, currentColor calc(var(--burger-dot) / 2), transparent 0)
+      0 0 / var(--burger-dot-step) var(--burger-dot-step) repeat-x;
+    transform: translate(-50%, calc(-50% + var(--y))) rotate(var(--r, 0deg));
+    transition: transform 0.4s var(--pill-ease);
+  }
+
+  .burger__line:first-child { --y: calc(var(--burger-dot-step) / -2); }
+  .burger__line:last-child  { --y: calc(var(--burger-dot-step) / 2); }
+
+  .burger[aria-expanded="true"] .burger__line:first-child { --y: 0px; --r: 45deg; }
+  .burger[aria-expanded="true"] .burger__line:last-child  { --y: 0px; --r: -45deg; }
+
+  /* Открытое меню: на весь экран, фон — как у первого экрана */
+  .header.is-open {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    width: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    padding: var(--space-16) var(--gutter) var(--space-32);
+    overflow-y: auto;               /* на низких экранах меню прокручивается */
+    background: var(--c-night);
+    pointer-events: auto;
+    animation: none;
+  }
+
+  /* Плашки с ником и крестиком стоят там же, где в закрытой шапке */
+  .header.is-open .header__handle,
+  .header.is-open .burger {
+    background: var(--plate-pill-bg);
+  }
+
+  .header.is-open .header__handle {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .header.is-open .burger {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .header.is-open .nav {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    display: block;
+    height: auto;
+    margin-top: var(--space-96);
+    padding: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .header.is-open .nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    height: auto;
+    font-family: var(--font-display);
+    font-size: var(--fs-h2-lg);
+    line-height: var(--lh-h2-lg);
+    letter-spacing: normal;
+  }
+
+  .header.is-open .nav__list a {
+    display: block;
+    padding: var(--space-4) 0;     /* зона нажатия ≥ 44px */
+  }
+
+  .header.is-open .nav__pill {
+    display: none;
+  }
+
+  /* Низ меню: язык и Telegram под линией, как в подвале */
+  .header.is-open .header__end {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-24);
+    border-top: var(--border) solid color-mix(in srgb, var(--c-rose-50) 15%, transparent);
+  }
+
+  .header.is-open .lang,
+  .header.is-open .header__chat {
+    height: auto;
+    width: auto;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .header.is-open .lang {
+    display: flex;
+    align-items: center;
+    padding: var(--lang-inset);
+    background: var(--plate-pill-bg);
+  }
+
+  .header.is-open .lang__opt {
+    padding: var(--space-16);       /* зона нажатия ≥ 44px */
+  }
+
+  .header.is-open .header__chat {
+    padding: var(--space-4);        /* иконка 41×40 → зона нажатия ≥ 44px */
+    margin-right: calc(var(--space-4) * -1);
+  }
+
+  .header.is-open .header__chat img {
+    width: var(--icon-chat-w);
+    height: var(--icon-chat-h);
+  }
+
+  /* Пока меню открыто, страница под ним не прокручивается */
+  html.menu-open {
+    overflow: hidden;
   }
 }
