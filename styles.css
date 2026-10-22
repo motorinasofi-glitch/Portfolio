@@ -24,7 +24,7 @@ a {
 
 .container {
   position: relative;
-  width: var(--container);
+  width: min(var(--container), 100%);
   margin: 0 auto;
 }
 
@@ -53,14 +53,14 @@ a {
 }
 
 .hero__glow--bottom {              /* Vector 5, 2644:2985 */
-  left: -338.5px;
+  left: calc(50% - var(--container) / 2 - 338.5px);  /* на ширине 1200 это −338.5 из макета */
   top: calc(283.5px + var(--hero-shift));
   width: 1876px;
   height: 722px;
 }
 
 .hero__glow--top {                 /* Vector 4, 2644:2986 */
-  left: -333px;
+  left: calc(50% - var(--container) / 2 - 333px);
   top: calc(127px + var(--hero-shift));
   width: 1866px;
   height: 804px;
@@ -143,7 +143,7 @@ a.lang__opt:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-64);
+  gap: var(--hero-main-gap);
 }
 
 .hero__ph {
@@ -1183,7 +1183,7 @@ a.lang__opt:hover {
   top: var(--space-16);
   left: 0;
   right: 0;
-  width: calc(var(--container) - 2 * var(--gutter));
+  width: calc(min(var(--container), 100%) - 2 * var(--gutter));
   margin-inline: auto;
   align-items: center;
   pointer-events: none;            /* кликабельны только сами плашки */
@@ -1280,4 +1280,63 @@ a.lang__opt:hover {
     left 0.2s var(--pill-ease),
     width 0.2s var(--pill-ease),
     opacity 0.15s ease;
+}
+
+/* ============ Адаптив ============
+   Мобильного макета в Figma нет, значения собраны из шкалы токенов (по решению Софьи).
+   Точки: 1199px — уже контейнера, 768px — телефон (числа повторяются в tokens.css). */
+
+/* Hero и шапка */
+@media (max-width: 1199px) {
+  .hero__main {
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+  }
+
+  .hero__title br {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Шапка в две строки: ник и язык с Telegram сверху, меню под ними */
+  .header {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: var(--space-16);
+  }
+
+  .nav {
+    order: 1;
+    flex-basis: 100%;
+  }
+
+  .nav__list {
+    gap: var(--space-24);
+    white-space: nowrap;
+  }
+
+  /* Закреплённая шапка: плашка меню и Telegram, ник и язык остаются вверху страницы */
+  .header.is-stuck {
+    flex-wrap: nowrap;
+    gap: var(--space-8);
+  }
+
+  .header.is-stuck .header__handle,
+  .header.is-stuck .lang {
+    display: none;
+  }
+
+  .header.is-stuck .nav {
+    order: 0;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .header.is-stuck .nav__list a {
+    padding-inline: var(--space-8);
+  }
 }

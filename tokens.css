@@ -144,6 +144,7 @@
   --hero-photo-w: 100.62px;
   --hero-photo-h: 120.016px;
   --hero-photo-offset: 4.8px;
+  --hero-main-gap: var(--space-64);  /* фото с подписью → заголовок */
   --btn-width: 255px;
   --icon-arrow-w: 18px;
   --icon-arrow-h: 26px;
@@ -229,4 +230,15 @@
   --lang-pad-x: var(--space-8);
   --lang-gap: var(--space-16);     /* от переключателя до иконки Telegram */
   --header-stick-after: 80px;      /* через сколько px скролла шапка становится плашками */
+}
+
+/* --- Адаптив: в Figma мобильного макета нет, значения взяты из шкалы токенов
+   (по решению Софьи). Точка 768px повторяется в styles.css: в @media переменные не работают --- */
+@media (max-width: 768px) {
+  :root {
+    --gutter: var(--space-16);
+    --fs-h1: var(--fs-h2);           /* 35px, как заголовок секции */
+    --ls-h1: var(--ls-text);
+    --hero-main-gap: var(--space-48);
+  }
 }
