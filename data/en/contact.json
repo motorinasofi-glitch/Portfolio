@@ -1,0 +1,16 @@
+{
+  "title": "Shall we talk about your website?",
+  "lead": "Tell me about your task in a few words. I'll reply [within N hours] and suggest the next step.",
+  "hint": "Prefer to message me directly?",
+  "button": "Message me on Telegram",
+  "form": {
+    "name_label": "Name",
+    "name_placeholder": "What should I call you?",
+    "contact_label": "Telegram or phone",
+    "contact_placeholder": "@username or +1…",
+    "task_label": "A few words about your task",
+    "task_placeholder": "For example: I need a landing page for a dental clinic",
+    "submit": "Send request",
+    "after": "After you send it: [what happens next, e.g. “I'll message you on Telegram and send a short brief”]"
+  }
+}

@@ -1,1 +1,70 @@
-{# Финальный призыв + подвал — перенесу на шаге 2 #}
+{# Финальный призыв + подвал. Данные — data/<язык>/contact.json, контакты — site.json.
+   Форма: только разметка и проверка полей, отправка не подключена (script.js) #}
+  <footer class="contact" id="contact">
+    <div class="container contact__inner">
+      <div class="contact__main">
+        <div class="contact__txt">
+          {% if contact.title %}
+          <h2 class="contact__title">{{ contact.title|br }}</h2>
+          {% endif %}
+          {% if contact.lead %}
+          <p class="contact__lead">{{ contact.lead|br }}</p>
+          {% endif %}
+          {% if contact.hint %}
+          <p class="contact__hint">{{ contact.hint }}</p>
+          {% endif %}
+          {% if site.telegram and contact.button %}
+          <a class="btn" href="{{ site.telegram }}" target="_blank" rel="noopener">
+            {{ contact.button }}
+            <img class="btn__arrow" src="{{ root }}assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </a>
+          {% endif %}
+        </div>
+
+        <form class="form" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="f-name">{{ contact.form.name_label }}</label>
+            <input class="form__input" id="f-name" name="name" type="text" autocomplete="name" placeholder="{{ contact.form.name_placeholder }}" required>
+            <p class="form__error" id="f-name-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-contact">{{ contact.form.contact_label }}</label>
+            <input class="form__input" id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="{{ contact.form.contact_placeholder }}" required>
+            <p class="form__error" id="f-contact-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-task">{{ contact.form.task_label }}</label>
+            <textarea class="form__input form__input--area" id="f-task" name="task" rows="3" placeholder="{{ contact.form.task_placeholder }}"></textarea>
+          </div>
+          <button class="btn form__submit" type="submit">
+            {{ contact.form.submit }}
+            <img class="btn__arrow" src="{{ root }}assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </button>
+          {% if contact.form.after %}
+          <p class="form__after">{{ contact.form.after|br }}</p>
+          {% endif %}
+          <p class="form__status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="contact__bottom">
+        {% if site.handle %}
+        <span class="contact__handle">{{ site.handle }}</span>
+        {% endif %}
+        <ul class="contact__links">
+          {% if site.telegram %}
+          <li><a href="{{ site.telegram }}" target="_blank" rel="noopener">Telegram</a></li>
+          {% endif %}
+          {% if site.behance %}
+          <li><a href="{{ site.behance }}" target="_blank" rel="noopener">Behance</a></li>
+          {% endif %}
+          {% if site.email %}
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          {% endif %}
+        </ul>
+        {% if site.city %}
+        <span>{{ site.city }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
