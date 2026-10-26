@@ -1,0 +1,35 @@
+{
+  "label": "services and pricing",
+  "title": "Every project starts with a brief:",
+  "title_soft": "I look at what you already have\nand choose a strategy\nfor each client's specific goals",
+  "cols": {
+    "name": "Service",
+    "text": "What's included",
+    "time": "Timeline",
+    "price": "Price"
+  },
+  "table_label": "Services, timelines and pricing",
+  "list": [
+    {
+      "title": "Landing page\nfor a product launch",
+      "text": "A one-page website with a clear call to action. Helps you explain your idea quickly and bring in your first clients.",
+      "time": "7–21 days",
+      "price": "from €480*",
+      "note": "*depends on the features you choose"
+    },
+    {
+      "title": "Multi-page website\nfor business",
+      "text": "A website with a more complex structure split into several pages, for when you need to present your product, services and team.",
+      "time": "14–30 days",
+      "price": "from €690*",
+      "note": "*depends on the features you choose"
+    },
+    {
+      "title": "Online store\nwith a catalogue",
+      "text": "A website with a functional product catalogue, shopping cart and online checkout",
+      "time": "20–40 days",
+      "price": "from €690*",
+      "note": "*depends on the features you choose"
+    }
+  ]
+}

@@ -1,1 +1,37 @@
-{# Услуги и стоимость — перенесу на шаге 2 #}
+{# Услуги и стоимость. Данные — data/<язык>/services.json. Номера ставятся сами #}
+{% if services.list %}
+  <section class="services" id="pricing">
+    <div class="container services__inner">
+      <div class="section-head services__head">
+        {% if services.label %}
+        <p class="section-head__label">{{ services.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ services.title|br }}{% if services.title_soft %}<br><span class="services__soft">{{ services.title_soft|br }}</span>{% endif %}</h2>
+      </div>
+
+      <div class="services__table" role="table" aria-label="{{ services.table_label }}">
+        <div class="services__cols" role="row">
+          <span role="columnheader">{{ services.cols.name }}</span>
+          <span role="columnheader">{{ services.cols.text }}</span>
+          <span role="columnheader">{{ services.cols.time }}</span>
+          <span role="columnheader">{{ services.cols.price }}</span>
+        </div>
+
+        {% for item in services.list %}
+        <div class="service service--{{ loop.index }}" role="row">
+          <div class="service__name" role="cell">
+            <p class="service__num">{{ loop.index|num }}</p>
+            <h3 class="service__title">{{ item.title|br }}</h3>
+          </div>
+          <p class="service__text" role="cell">{{ item.text }}</p>
+          <p class="service__time" role="cell" data-label="{{ services.cols.time }}">{{ item.time }}</p>
+          <p class="service__price" role="cell" data-label="{{ services.cols.price }}">{{ item.price }}{% if item.note %}<span class="service__note">{{ item.note }}</span>{% endif %}</p>
+        </div>
+        {% if not loop.last %}
+
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
