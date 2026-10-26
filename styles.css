@@ -10,6 +10,7 @@ body {
   background: var(--c-night);
   font-family: var(--font-text);
   overflow-x: clip;
+  overflow-wrap: break-word;       /* длинное слово из админки переносится, а не вылезает за экран */
 }
 
 img {

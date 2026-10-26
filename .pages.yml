@@ -1,0 +1,1374 @@
+# Настройка админки Pages CMS (https://pagescms.org/docs/configuration/).
+# Админка правит только data/<язык>/*.json. Вёрстка — в templates/, сборка — build.py.
+# Разделы RU и EN одинаковые, отличаются только путями к файлам.
+
+media:
+  input: assets/img
+  output: /assets/img
+  categories:
+  - image
+content:
+- name: ru
+  label: Русская версия
+  type: group
+  items:
+  - name: ru-site
+    label: 'Общее: шапка, меню, контакты'
+    type: file
+    path: data/ru/site.json
+    format: json
+    fields:
+    - name: title
+      label: Название страницы
+      type: string
+      description: Видно во вкладке браузера и в поиске.
+      required: true
+      options:
+        maxlength: 60
+    - name: description
+      label: Описание для поисковиков
+      type: text
+      description: Пара предложений о вас для Яндекса и Google. Пусто — не выводится.
+      options:
+        maxlength: 160
+    - name: handle
+      label: Ник в шапке и подвале
+      type: string
+      description: Например «@monatory».
+      options:
+        maxlength: 20
+    - name: nav
+      label: Пункты меню
+      type: object
+      description: Подписи пунктов. Куда ведут пункты и их порядок не меняются. Пустой пункт пропадает из меню.
+      fields:
+      - name: approach
+        label: «Мой подход»
+        type: string
+        options:
+          maxlength: 15
+      - name: cases
+        label: «Кейсы»
+        type: string
+        options:
+          maxlength: 15
+      - name: pricing
+        label: «Тарифы»
+        type: string
+        options:
+          maxlength: 15
+      - name: about
+        label: «Обо мне»
+        type: string
+        options:
+          maxlength: 15
+      - name: reviews
+        label: «Отзывы»
+        type: string
+        description: Виден, только когда включён блок отзывов.
+        options:
+          maxlength: 15
+    - name: telegram
+      label: Ссылка на Telegram
+      type: string
+      description: Иконка в шапке, кнопка и ссылка в подвале. Например https://t.me/monatory
+      pattern:
+        regex: ^https?://
+        message: Ссылка должна начинаться с https://
+      options:
+        maxlength: 100
+    - name: behance
+      label: Ссылка на Behance
+      type: string
+      description: Ссылка в подвале.
+      pattern:
+        regex: ^https?://
+        message: Ссылка должна начинаться с https://
+      options:
+        maxlength: 100
+    - name: email
+      label: Почта
+      type: string
+      description: Ссылка в подвале. Пусто — почты на сайте не будет.
+      pattern:
+        regex: ^$|^[^@\s]+@[^@\s]+\.[^@\s]+$
+        message: Похоже, в адресе почты ошибка
+      options:
+        maxlength: 60
+    - name: city
+      label: Город и год в подвале
+      type: string
+      description: Например «Белград · © 2026».
+      options:
+        maxlength: 30
+  - name: ru-hero
+    label: Первый экран
+    type: file
+    path: data/ru/hero.json
+    format: json
+    fields:
+    - name: photo
+      label: Фото
+      type: image
+      description: 'Размер 202×240 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+      options:
+        extensions:
+        - webp
+        - jpg
+        - jpeg
+        - png
+    - name: photo_alt
+      label: Описание фото
+      type: string
+      description: Для незрячих и поисковиков, например «Софья».
+      options:
+        maxlength: 40
+    - name: caption
+      label: Подпись под фото
+      type: text
+      description: До 2 строк. Enter — перенос строки.
+      options:
+        maxlength: 50
+    - name: title
+      label: Заголовок первого экрана
+      type: text
+      description: Главная фраза сайта. Enter — перенос строки.
+      required: true
+      options:
+        maxlength: 130
+    - name: button
+      label: Текст кнопки
+      type: string
+      description: Кнопка ведёт к форме заявки внизу.
+      options:
+        maxlength: 25
+  - name: ru-cases
+    label: Кейсы
+    type: file
+    path: data/ru/cases.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title_accent
+      label: 'Заголовок: цветная часть'
+      type: string
+      description: Начало заголовка, выделенное цветом.
+      options:
+        maxlength: 40
+    - name: title
+      label: 'Заголовок: остальное'
+      type: text
+      description: Продолжение заголовка после цветной части. Enter — перенос строки.
+      options:
+        maxlength: 80
+    - name: button
+      label: Текст кнопки у карточки
+      type: string
+      description: Например «Подробнее». Кнопка видна при наведении на карточку.
+      options:
+        maxlength: 15
+    - name: list
+      label: Кейсы
+      type: object
+      description: Добавляйте, удаляйте и перетаскивайте кейсы. Порядок здесь = порядок на сайте.
+      list:
+        min: 1
+        max: 8
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: image
+        label: Фото кейса
+        type: image
+        description: 'Размер 1120×788, у широкого 2280×1710 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+        options:
+          extensions:
+          - webp
+          - jpg
+          - jpeg
+          - png
+      - name: alt
+        label: Описание фото
+        type: string
+        description: Для незрячих и поисковиков. Пусто — возьмётся название.
+        options:
+          maxlength: 80
+      - name: title
+        label: Название
+        type: string
+        required: true
+        options:
+          maxlength: 50
+      - name: tags
+        label: Теги
+        type: string
+        description: От 1 до 3 тегов, например «лендинг».
+        options:
+          maxlength: 15
+        list:
+          max: 3
+      - name: text
+        label: Задача
+        type: text
+        description: 'Одна строка: что сделали.'
+        options:
+          maxlength: 90
+      - name: link
+        label: Ссылка на страницу кейса
+        type: string
+        description: 'Пусто — кнопки у карточки не будет. # — кнопка есть, но никуда не ведёт.'
+        options:
+          maxlength: 200
+      - name: wide
+        label: Широкая карточка
+        type: boolean
+        description: Карточка на всю ширину. Ставьте только у одного кейса.
+  - name: ru-compare
+    label: Почему не шаблон
+    type: file
+    path: data/ru/compare.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title_accent
+      label: 'Заголовок: цветная часть'
+      type: string
+      description: Начало заголовка, выделенное цветом.
+      options:
+        maxlength: 30
+    - name: title
+      label: 'Заголовок: остальное'
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 70
+    - name: col_template
+      label: Подпись колонки «шаблон»
+      type: string
+      options:
+        maxlength: 25
+    - name: col_custom
+      label: Подпись колонки «под ключ»
+      type: string
+      options:
+        maxlength: 25
+    - name: table_label
+      label: Подпись таблицы для незрячих
+      type: string
+      description: На сайте не видна, её читают экранные дикторы.
+      options:
+        maxlength: 80
+    - name: rows
+      label: Строки сравнения
+      type: object
+      list:
+        min: 2
+        max: 7
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Название строки
+        type: string
+        required: true
+        options:
+          maxlength: 20
+      - name: template
+        label: Шаблон
+        type: string
+        options:
+          maxlength: 60
+      - name: custom
+        label: Под ключ
+        type: string
+        options:
+          maxlength: 60
+  - name: ru-principles
+    label: Мой подход
+    type: file
+    path: data/ru/principles.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 110
+    - name: list
+      label: Карточки
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 3
+        max: 7
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Заголовок карточки
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 55
+      - name: text
+        label: Текст
+        type: text
+        options:
+          maxlength: 200
+  - name: ru-services
+    label: Услуги и стоимость
+    type: file
+    path: data/ru/services.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: title_soft
+      label: Светлая часть заголовка
+      type: text
+      description: Идёт под заголовком бледным цветом. Enter — перенос строки.
+      options:
+        maxlength: 110
+    - name: cols
+      label: Подписи колонок
+      type: object
+      fields:
+      - name: name
+        label: «Услуга»
+        type: string
+        options:
+          maxlength: 15
+      - name: text
+        label: «Что входит»
+        type: string
+        options:
+          maxlength: 15
+      - name: time
+        label: «Сроки»
+        type: string
+        options:
+          maxlength: 15
+      - name: price
+        label: «Стоимость»
+        type: string
+        options:
+          maxlength: 15
+    - name: table_label
+      label: Подпись таблицы для незрячих
+      type: string
+      description: На сайте не видна, её читают экранные дикторы.
+      options:
+        maxlength: 80
+    - name: list
+      label: Услуги
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 1
+        max: 5
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Название
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 40
+      - name: text
+        label: Что входит
+        type: text
+        options:
+          maxlength: 160
+      - name: time
+        label: Сроки
+        type: string
+        description: Например «7–21 день».
+        options:
+          maxlength: 15
+      - name: price
+        label: Цена
+        type: string
+        description: Например «от 45 000 руб.*».
+        options:
+          maxlength: 20
+      - name: note
+        label: Сноска под ценой
+        type: string
+        description: Пусто — сноски не будет.
+        options:
+          maxlength: 45
+  - name: ru-about
+    label: Обо мне
+    type: file
+    path: data/ru/about.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 70
+    - name: photo
+      label: Фото
+      type: image
+      description: 'Размер 540×788 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+      options:
+        extensions:
+        - webp
+        - jpg
+        - jpeg
+        - png
+    - name: photo_alt
+      label: Описание фото
+      type: string
+      description: Для незрячих и поисковиков.
+      options:
+        maxlength: 40
+    - name: personal
+      label: Личная строка под фото
+      type: string
+      description: Пусто — строки не будет.
+      options:
+        maxlength: 60
+    - name: list
+      label: Пункты
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 2
+        max: 8
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Заголовок пункта
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 55
+      - name: text
+        label: Текст
+        type: text
+        options:
+          maxlength: 200
+  - name: ru-faq
+    label: Вопросы
+    type: file
+    path: data/ru/faq.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 30
+    - name: cta_text
+      label: Текст под заголовком
+      type: text
+      description: Например «Остались вопросы?». Enter — перенос строки.
+      options:
+        maxlength: 120
+    - name: cta_button
+      label: Текст кнопки
+      type: string
+      description: Кнопка ведёт к форме заявки. Пусто — кнопки не будет.
+      options:
+        maxlength: 25
+    - name: list
+      label: Вопросы
+      type: object
+      description: Первый вопрос на сайте открыт сразу.
+      list:
+        min: 1
+        max: 12
+        collapsible:
+          collapsed: true
+          summary: '{question}'
+      fields:
+      - name: question
+        label: Вопрос
+        type: string
+        required: true
+        options:
+          maxlength: 60
+      - name: answer
+        label: Ответ
+        type: text
+        description: Enter — перенос строки.
+        options:
+          maxlength: 400
+  - name: ru-reviews
+    label: Отзывы
+    type: file
+    path: data/ru/reviews.json
+    format: json
+    fields:
+    - name: show
+      label: Показывать блок отзывов
+      type: boolean
+      description: Блок и пункт меню появятся, только если отзывов 3 и больше.
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: list
+      label: Отзывы
+      type: object
+      description: Только настоящие отзывы с именем и фото или компанией.
+      list:
+        min: 0
+        max: 6
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: photo
+        label: Фото клиента
+        type: image
+        description: 'Размер 140×140 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+        options:
+          extensions:
+          - webp
+          - jpg
+          - jpeg
+          - png
+      - name: name
+        label: Имя
+        type: string
+        required: true
+        options:
+          maxlength: 40
+      - name: company
+        label: Компания или ниша
+        type: string
+        options:
+          maxlength: 40
+      - name: text
+        label: Текст отзыва
+        type: text
+        description: Enter — перенос строки.
+        options:
+          maxlength: 300
+      - name: link
+        label: Ссылка на сайт клиента
+        type: string
+        description: Пусто — ссылки не будет.
+        options:
+          maxlength: 200
+      - name: link_text
+        label: Подпись ссылки
+        type: string
+        description: Например адрес сайта. Пусто — покажется сама ссылка.
+        options:
+          maxlength: 40
+  - name: ru-contact
+    label: Подвал и форма заявки
+    type: file
+    path: data/ru/contact.json
+    format: json
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: lead
+      label: Текст под заголовком
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 140
+    - name: hint
+      label: Подсказка над кнопкой
+      type: string
+      options:
+        maxlength: 40
+    - name: button
+      label: Текст кнопки Telegram
+      type: string
+      description: Ссылка берётся из раздела «Общее».
+      options:
+        maxlength: 25
+    - name: form
+      label: Форма
+      type: object
+      description: Тексты ошибок формы меняются в коде (script.js).
+      fields:
+      - name: name_label
+        label: 'Поле 1: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: name_placeholder
+        label: 'Поле 1: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: contact_label
+        label: 'Поле 2: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: contact_placeholder
+        label: 'Поле 2: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: task_label
+        label: 'Поле 3: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: task_placeholder
+        label: 'Поле 3: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: submit
+        label: Текст кнопки отправки
+        type: string
+        options:
+          maxlength: 25
+      - name: after
+        label: Строка под кнопкой
+        type: text
+        description: Что будет после заявки. Enter — перенос строки.
+        options:
+          maxlength: 140
+- name: en
+  label: English (английская версия)
+  type: group
+  items:
+  - name: en-site
+    label: 'Общее: шапка, меню, контакты'
+    type: file
+    path: data/en/site.json
+    format: json
+    fields:
+    - name: title
+      label: Название страницы
+      type: string
+      description: Видно во вкладке браузера и в поиске.
+      required: true
+      options:
+        maxlength: 60
+    - name: description
+      label: Описание для поисковиков
+      type: text
+      description: Пара предложений о вас для Яндекса и Google. Пусто — не выводится.
+      options:
+        maxlength: 160
+    - name: handle
+      label: Ник в шапке и подвале
+      type: string
+      description: Например «@monatory».
+      options:
+        maxlength: 20
+    - name: nav
+      label: Пункты меню
+      type: object
+      description: Подписи пунктов. Куда ведут пункты и их порядок не меняются. Пустой пункт пропадает из меню.
+      fields:
+      - name: approach
+        label: «Мой подход»
+        type: string
+        options:
+          maxlength: 15
+      - name: cases
+        label: «Кейсы»
+        type: string
+        options:
+          maxlength: 15
+      - name: pricing
+        label: «Тарифы»
+        type: string
+        options:
+          maxlength: 15
+      - name: about
+        label: «Обо мне»
+        type: string
+        options:
+          maxlength: 15
+      - name: reviews
+        label: «Отзывы»
+        type: string
+        description: Виден, только когда включён блок отзывов.
+        options:
+          maxlength: 15
+    - name: telegram
+      label: Ссылка на Telegram
+      type: string
+      description: Иконка в шапке, кнопка и ссылка в подвале. Например https://t.me/monatory
+      pattern:
+        regex: ^https?://
+        message: Ссылка должна начинаться с https://
+      options:
+        maxlength: 100
+    - name: behance
+      label: Ссылка на Behance
+      type: string
+      description: Ссылка в подвале.
+      pattern:
+        regex: ^https?://
+        message: Ссылка должна начинаться с https://
+      options:
+        maxlength: 100
+    - name: email
+      label: Почта
+      type: string
+      description: Ссылка в подвале. Пусто — почты на сайте не будет.
+      pattern:
+        regex: ^$|^[^@\s]+@[^@\s]+\.[^@\s]+$
+        message: Похоже, в адресе почты ошибка
+      options:
+        maxlength: 60
+    - name: city
+      label: Город и год в подвале
+      type: string
+      description: Например «Белград · © 2026».
+      options:
+        maxlength: 30
+  - name: en-hero
+    label: Первый экран
+    type: file
+    path: data/en/hero.json
+    format: json
+    fields:
+    - name: photo
+      label: Фото
+      type: image
+      description: 'Размер 202×240 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+      options:
+        extensions:
+        - webp
+        - jpg
+        - jpeg
+        - png
+    - name: photo_alt
+      label: Описание фото
+      type: string
+      description: Для незрячих и поисковиков, например «Софья».
+      options:
+        maxlength: 40
+    - name: caption
+      label: Подпись под фото
+      type: text
+      description: До 2 строк. Enter — перенос строки.
+      options:
+        maxlength: 50
+    - name: title
+      label: Заголовок первого экрана
+      type: text
+      description: Главная фраза сайта. Enter — перенос строки.
+      required: true
+      options:
+        maxlength: 130
+    - name: button
+      label: Текст кнопки
+      type: string
+      description: Кнопка ведёт к форме заявки внизу.
+      options:
+        maxlength: 25
+  - name: en-cases
+    label: Кейсы
+    type: file
+    path: data/en/cases.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title_accent
+      label: 'Заголовок: цветная часть'
+      type: string
+      description: Начало заголовка, выделенное цветом.
+      options:
+        maxlength: 40
+    - name: title
+      label: 'Заголовок: остальное'
+      type: text
+      description: Продолжение заголовка после цветной части. Enter — перенос строки.
+      options:
+        maxlength: 80
+    - name: button
+      label: Текст кнопки у карточки
+      type: string
+      description: Например «Подробнее». Кнопка видна при наведении на карточку.
+      options:
+        maxlength: 15
+    - name: list
+      label: Кейсы
+      type: object
+      description: Добавляйте, удаляйте и перетаскивайте кейсы. Порядок здесь = порядок на сайте.
+      list:
+        min: 1
+        max: 8
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: image
+        label: Фото кейса
+        type: image
+        description: 'Размер 1120×788, у широкого 2280×1710 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+        options:
+          extensions:
+          - webp
+          - jpg
+          - jpeg
+          - png
+      - name: alt
+        label: Описание фото
+        type: string
+        description: Для незрячих и поисковиков. Пусто — возьмётся название.
+        options:
+          maxlength: 80
+      - name: title
+        label: Название
+        type: string
+        required: true
+        options:
+          maxlength: 50
+      - name: tags
+        label: Теги
+        type: string
+        description: От 1 до 3 тегов, например «лендинг».
+        options:
+          maxlength: 15
+        list:
+          max: 3
+      - name: text
+        label: Задача
+        type: text
+        description: 'Одна строка: что сделали.'
+        options:
+          maxlength: 90
+      - name: link
+        label: Ссылка на страницу кейса
+        type: string
+        description: 'Пусто — кнопки у карточки не будет. # — кнопка есть, но никуда не ведёт.'
+        options:
+          maxlength: 200
+      - name: wide
+        label: Широкая карточка
+        type: boolean
+        description: Карточка на всю ширину. Ставьте только у одного кейса.
+  - name: en-compare
+    label: Почему не шаблон
+    type: file
+    path: data/en/compare.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title_accent
+      label: 'Заголовок: цветная часть'
+      type: string
+      description: Начало заголовка, выделенное цветом.
+      options:
+        maxlength: 30
+    - name: title
+      label: 'Заголовок: остальное'
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 70
+    - name: col_template
+      label: Подпись колонки «шаблон»
+      type: string
+      options:
+        maxlength: 25
+    - name: col_custom
+      label: Подпись колонки «под ключ»
+      type: string
+      options:
+        maxlength: 25
+    - name: table_label
+      label: Подпись таблицы для незрячих
+      type: string
+      description: На сайте не видна, её читают экранные дикторы.
+      options:
+        maxlength: 80
+    - name: rows
+      label: Строки сравнения
+      type: object
+      list:
+        min: 2
+        max: 7
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Название строки
+        type: string
+        required: true
+        options:
+          maxlength: 20
+      - name: template
+        label: Шаблон
+        type: string
+        options:
+          maxlength: 60
+      - name: custom
+        label: Под ключ
+        type: string
+        options:
+          maxlength: 60
+  - name: en-principles
+    label: Мой подход
+    type: file
+    path: data/en/principles.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 110
+    - name: list
+      label: Карточки
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 3
+        max: 7
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Заголовок карточки
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 55
+      - name: text
+        label: Текст
+        type: text
+        options:
+          maxlength: 200
+  - name: en-services
+    label: Услуги и стоимость
+    type: file
+    path: data/en/services.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: title_soft
+      label: Светлая часть заголовка
+      type: text
+      description: Идёт под заголовком бледным цветом. Enter — перенос строки.
+      options:
+        maxlength: 110
+    - name: cols
+      label: Подписи колонок
+      type: object
+      fields:
+      - name: name
+        label: «Услуга»
+        type: string
+        options:
+          maxlength: 15
+      - name: text
+        label: «Что входит»
+        type: string
+        options:
+          maxlength: 15
+      - name: time
+        label: «Сроки»
+        type: string
+        options:
+          maxlength: 15
+      - name: price
+        label: «Стоимость»
+        type: string
+        options:
+          maxlength: 15
+    - name: table_label
+      label: Подпись таблицы для незрячих
+      type: string
+      description: На сайте не видна, её читают экранные дикторы.
+      options:
+        maxlength: 80
+    - name: list
+      label: Услуги
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 1
+        max: 5
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Название
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 40
+      - name: text
+        label: Что входит
+        type: text
+        options:
+          maxlength: 160
+      - name: time
+        label: Сроки
+        type: string
+        description: Например «7–21 день».
+        options:
+          maxlength: 15
+      - name: price
+        label: Цена
+        type: string
+        description: Например «от 45 000 руб.*».
+        options:
+          maxlength: 20
+      - name: note
+        label: Сноска под ценой
+        type: string
+        description: Пусто — сноски не будет.
+        options:
+          maxlength: 45
+  - name: en-about
+    label: Обо мне
+    type: file
+    path: data/en/about.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 70
+    - name: photo
+      label: Фото
+      type: image
+      description: 'Размер 540×788 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+      options:
+        extensions:
+        - webp
+        - jpg
+        - jpeg
+        - png
+    - name: photo_alt
+      label: Описание фото
+      type: string
+      description: Для незрячих и поисковиков.
+      options:
+        maxlength: 40
+    - name: personal
+      label: Личная строка под фото
+      type: string
+      description: Пусто — строки не будет.
+      options:
+        maxlength: 60
+    - name: list
+      label: Пункты
+      type: object
+      description: Номера (01), (02)… ставятся сами.
+      list:
+        min: 2
+        max: 8
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Заголовок пункта
+        type: text
+        description: Enter — перенос строки.
+        required: true
+        options:
+          maxlength: 55
+      - name: text
+        label: Текст
+        type: text
+        options:
+          maxlength: 200
+  - name: en-faq
+    label: Вопросы
+    type: file
+    path: data/en/faq.json
+    format: json
+    fields:
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 30
+    - name: cta_text
+      label: Текст под заголовком
+      type: text
+      description: Например «Остались вопросы?». Enter — перенос строки.
+      options:
+        maxlength: 120
+    - name: cta_button
+      label: Текст кнопки
+      type: string
+      description: Кнопка ведёт к форме заявки. Пусто — кнопки не будет.
+      options:
+        maxlength: 25
+    - name: list
+      label: Вопросы
+      type: object
+      description: Первый вопрос на сайте открыт сразу.
+      list:
+        min: 1
+        max: 12
+        collapsible:
+          collapsed: true
+          summary: '{question}'
+      fields:
+      - name: question
+        label: Вопрос
+        type: string
+        required: true
+        options:
+          maxlength: 60
+      - name: answer
+        label: Ответ
+        type: text
+        description: Enter — перенос строки.
+        options:
+          maxlength: 400
+  - name: en-reviews
+    label: Отзывы
+    type: file
+    path: data/en/reviews.json
+    format: json
+    fields:
+    - name: show
+      label: Показывать блок отзывов
+      type: boolean
+      description: Блок и пункт меню появятся, только если отзывов 3 и больше.
+    - name: label
+      label: Рубрика слева
+      type: string
+      description: Маленькая подпись над заголовком, например «портфолио».
+      options:
+        maxlength: 25
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: list
+      label: Отзывы
+      type: object
+      description: Только настоящие отзывы с именем и фото или компанией.
+      list:
+        min: 0
+        max: 6
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: photo
+        label: Фото клиента
+        type: image
+        description: 'Размер 140×140 px. Форматы: webp, jpg, png. Лучше webp — он легче.'
+        options:
+          extensions:
+          - webp
+          - jpg
+          - jpeg
+          - png
+      - name: name
+        label: Имя
+        type: string
+        required: true
+        options:
+          maxlength: 40
+      - name: company
+        label: Компания или ниша
+        type: string
+        options:
+          maxlength: 40
+      - name: text
+        label: Текст отзыва
+        type: text
+        description: Enter — перенос строки.
+        options:
+          maxlength: 300
+      - name: link
+        label: Ссылка на сайт клиента
+        type: string
+        description: Пусто — ссылки не будет.
+        options:
+          maxlength: 200
+      - name: link_text
+        label: Подпись ссылки
+        type: string
+        description: Например адрес сайта. Пусто — покажется сама ссылка.
+        options:
+          maxlength: 40
+  - name: en-contact
+    label: Подвал и форма заявки
+    type: file
+    path: data/en/contact.json
+    format: json
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+      options:
+        maxlength: 40
+    - name: lead
+      label: Текст под заголовком
+      type: text
+      description: Enter — перенос строки.
+      options:
+        maxlength: 140
+    - name: hint
+      label: Подсказка над кнопкой
+      type: string
+      options:
+        maxlength: 40
+    - name: button
+      label: Текст кнопки Telegram
+      type: string
+      description: Ссылка берётся из раздела «Общее».
+      options:
+        maxlength: 25
+    - name: form
+      label: Форма
+      type: object
+      description: Тексты ошибок формы меняются в коде (script.js).
+      fields:
+      - name: name_label
+        label: 'Поле 1: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: name_placeholder
+        label: 'Поле 1: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: contact_label
+        label: 'Поле 2: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: contact_placeholder
+        label: 'Поле 2: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: task_label
+        label: 'Поле 3: подпись'
+        type: string
+        options:
+          maxlength: 30
+      - name: task_placeholder
+        label: 'Поле 3: подсказка внутри'
+        type: string
+        options:
+          maxlength: 60
+      - name: submit
+        label: Текст кнопки отправки
+        type: string
+        options:
+          maxlength: 25
+      - name: after
+        label: Строка под кнопкой
+        type: text
+        description: Что будет после заявки. Enter — перенос строки.
+        options:
+          maxlength: 140
