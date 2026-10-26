@@ -556,12 +556,12 @@ a.lang__opt:hover {
 .case--3 .case__img { background: var(--c-white); }
 .case--5 .case__img { background: var(--c-gray); }
 
-/* Кейс 3 — широкий, на обе колонки (по решению Софьи) */
-.case--3 {
+/* Широкий кейс — на обе колонки (по решению Софьи). Включается флажком в админке */
+.case--wide {
   grid-column: 1 / -1;
 }
 
-.case--3 .case__img {
+.case--wide .case__img {
   width: var(--case-wide-width);
   height: var(--case-wide-height);
   aspect-ratio: auto;
@@ -1644,8 +1644,8 @@ a.lang__opt:hover {
     height: auto;
   }
 
-  /* Кейс 3 — на всю ширину, в пропорциях 4:3, но не выше экрана (как на десктопе) */
-  .case--3 .case__img {
+  /* Широкий кейс — на всю ширину, в пропорциях 4:3, но не выше экрана (как на десктопе) */
+  .case--wide .case__img {
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;

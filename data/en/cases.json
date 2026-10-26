@@ -1,0 +1,68 @@
+{
+  "label": "portfolio",
+  "title_accent": "My favourite projects",
+  "title": "that work\nfor my clients",
+  "button": "Learn more",
+  "list": [
+    {
+      "image": "assets/img/сase-card4pay.png",
+      "alt": "Card4pay company website",
+      "title": "“Card4pay” company website",
+      "tags": [
+        "landing page",
+        "AI"
+      ],
+      "text": "A landing page with a booking form to collect leads",
+      "link": "#",
+      "wide": false
+    },
+    {
+      "image": "assets/img/case-magic.png",
+      "alt": "[Magic case title]",
+      "title": "[Magic case title]",
+      "tags": [
+        "[tag]",
+        "[tag]"
+      ],
+      "text": "[Magic case task in one line]",
+      "link": "#",
+      "wide": false
+    },
+    {
+      "image": "assets/img/case-spasskoe.png",
+      "alt": "Architecture studio website",
+      "title": "Multi-page website for an architecture studio",
+      "tags": [
+        "landing page",
+        "AI"
+      ],
+      "text": "An interactive landing page with 31 pop-ups working as separate pages",
+      "link": "#",
+      "wide": true
+    },
+    {
+      "image": "assets/img/case-Voyage.png",
+      "alt": "RUs.voyages travel agency website",
+      "title": "“RUs.voyages” travel agency website",
+      "tags": [
+        "landing page",
+        "AI"
+      ],
+      "text": "A landing page with a booking form to collect leads",
+      "link": "#",
+      "wide": false
+    },
+    {
+      "image": "assets/img/case-showroom.webp",
+      "alt": "RUs.voyages showroom concept",
+      "title": "“RUs.voyages” showroom concept",
+      "tags": [
+        "landing page",
+        "AI"
+      ],
+      "text": "A landing page made with AI image generation",
+      "link": "#",
+      "wide": false
+    }
+  ]
+}

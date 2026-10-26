@@ -1,1 +1,47 @@
-{# Кейсы — перенесу на шаге 2 #}
+{# Кейсы. Данные — data/<язык>/cases.json.
+   Цвет подложки — по месту карточки (case--1…), широкая карточка — флажок wide #}
+{% if cases.list %}
+  <section class="cases" id="cases">
+    <div class="container cases__inner">
+      <div class="section-head cases__head">
+        {% if cases.label %}
+        <p class="section-head__label">{{ cases.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ accent_title(cases.title_accent, cases.title, 'cases__accent') }}</h2>
+      </div>
+
+      <div class="cases__grid">
+        {% for case in cases.list %}
+        <article class="case case--{{ loop.index }}{% if case.wide %} case--wide{% endif %}">
+          <div class="case__media">
+            {% if case.image %}
+            <img class="case__img" src="{{ case.image|url }}" alt="{{ case.alt or case.title }}" {% if case.wide %}width="1140" height="855"{% else %}width="560" height="394"{% endif %}>
+            {% endif %}
+            {% if case.link and cases.button %}
+            <a class="btn case__btn" href="{{ case.link|url }}">
+              {{ cases.button }}
+              <img class="btn__arrow" src="{{ root }}assets/img/icon-arrow.svg" alt="" width="18" height="26">
+            </a>
+            {% endif %}
+          </div>
+          <div class="case__txt">
+            {% if case.tags %}
+            <ul class="case__tags">
+              {% for tag in case.tags if tag %}
+              <li class="tag">{{ tag }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if case.title %}
+            <h3 class="case__title">{{ case.title }}</h3>
+            {% endif %}
+            {% if case.text %}
+            <p class="case__text">{{ case.text }}</p>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
