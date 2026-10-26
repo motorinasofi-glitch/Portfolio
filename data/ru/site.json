@@ -1,4 +1,16 @@
 {
   "title": "Софья — веб и граф дизайнер",
-  "description": ""
+  "description": "",
+  "handle": "@monatory",
+  "nav": {
+    "approach": "Мой подход",
+    "cases": "Кейсы",
+    "pricing": "Тарифы",
+    "about": "Обо мне",
+    "reviews": "Отзывы"
+  },
+  "telegram": "https://t.me/monatory",
+  "behance": "https://www.behance.net/sofi_motorina",
+  "email": "",
+  "city": "Белград · © 2026"
 }

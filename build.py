@@ -123,7 +123,7 @@ def build():
             version=version,
             ui=UI[lang],
             # Отзывы видны, только если стоит флажок и отзывов 3+
-            reviews_on=bool(reviews.get('show')) and len(reviews.get('items', [])) >= 3,
+            reviews_on=bool(reviews.get('show')) and len(reviews.get('list', [])) >= 3,
             **data,
         )
         out = DIST / conf['out']

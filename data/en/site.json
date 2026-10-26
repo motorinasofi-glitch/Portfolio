@@ -1,4 +1,16 @@
 {
   "title": "Sofia — web and graphic designer",
-  "description": ""
+  "description": "",
+  "handle": "@monatory",
+  "nav": {
+    "approach": "My approach",
+    "cases": "Work",
+    "pricing": "Pricing",
+    "about": "About",
+    "reviews": "Reviews"
+  },
+  "telegram": "https://t.me/monatory",
+  "behance": "https://www.behance.net/sofi_motorina",
+  "email": "",
+  "city": "Belgrade · © 2026"
 }

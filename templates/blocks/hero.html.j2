@@ -1,1 +1,37 @@
-{# Шапка + первый экран (подключает partials/header.html.j2) — перенесу на шаге 2 #}
+{# Шапка + первый экран. Данные — data/<язык>/hero.json #}
+  <section class="hero" id="top">
+    <!-- Живой градиент (script.js). Без WebGL или при «уменьшить движение» остаётся свечение из макета -->
+    <canvas class="hero__gradient" aria-hidden="true"></canvas>
+    <div class="container hero__inner">
+      <img class="hero__glow hero__glow--bottom" src="{{ root }}assets/img/hero-glow-bottom.svg" alt="" aria-hidden="true">
+      <img class="hero__glow hero__glow--top" src="{{ root }}assets/img/hero-glow-top.svg" alt="" aria-hidden="true">
+
+{% include 'partials/header.html.j2' %}
+
+      <div class="hero__main">
+        <div class="hero__ph">
+          {% if hero.photo %}
+          <div class="hero__photo-group">
+            <div class="hero__photo-back"></div>
+            <img class="hero__photo" src="{{ hero.photo|url }}" alt="{{ hero.photo_alt }}" width="101" height="120">
+          </div>
+          {% endif %}
+          {% if hero.caption %}
+          <p class="hero__caption">{{ hero.caption|br }}</p>
+          {% endif %}
+        </div>
+
+        <div class="hero__txt">
+          {% if hero.title %}
+          <h1 class="hero__title">{{ hero.title|br }}</h1>
+          {% endif %}
+          {% if hero.button %}
+          <a class="btn" href="#contact">
+            {{ hero.button }}
+            <img class="btn__arrow" src="{{ root }}assets/img/icon-arrow.svg" alt="" width="18" height="26">
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>

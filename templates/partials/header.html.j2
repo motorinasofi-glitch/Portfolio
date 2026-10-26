@@ -1,1 +1,39 @@
-{# Шапка: одна на обе версии — перенесу на шаге 2 #}
+      {# Шапка: одна на обе версии. Подписи меню и ссылки — data/<язык>/site.json #}
+      <header class="header">
+        {% if site.handle %}
+        <span class="header__handle">{{ site.handle }}</span>
+        {% endif %}
+        <nav class="nav" id="site-menu" aria-label="{{ ui.menu }}">
+          <ul class="nav__list">
+            {% for anchor in ['approach', 'cases', 'pricing', 'about'] %}
+            {% if site.nav[anchor] %}
+            <li><a href="#{{ anchor }}">{{ site.nav[anchor] }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if reviews_on and site.nav.reviews %}
+            <li><a href="#reviews">{{ site.nav.reviews }}</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        <div class="header__end">
+          <div class="lang" role="group" aria-label="{{ ui.lang_group }}">
+            {% if lang == 'ru' %}
+            <span class="lang__opt is-active" aria-current="page">RUS</span>
+            <a class="lang__opt" href="en/index.html" hreflang="en" lang="en" aria-label="English version">ENG</a>
+            {% else %}
+            <a class="lang__opt" href="../index.html" hreflang="ru" lang="ru" aria-label="Русская версия">RUS</a>
+            <span class="lang__opt is-active" aria-current="page">ENG</span>
+            {% endif %}
+          </div>
+          {% if site.telegram %}
+          <a class="header__chat" href="{{ site.telegram }}" target="_blank" rel="noopener" aria-label="{{ ui.telegram }}">
+            <img src="{{ root }}assets/img/icon-chat.svg" alt="" width="41.0421" height="39.6347">
+          </a>
+          {% endif %}
+        </div>
+        <!-- Бургер: виден только на телефоне (≤640px), открывает меню на весь экран (script.js) -->
+        <button class="burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="{{ ui.open_menu }}">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </header>
