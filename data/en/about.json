@@ -1,0 +1,33 @@
+{
+  "label": "about me",
+  "title": "In web design since 2023:\na studio, freelance and 30+ projects",
+  "photo": "assets/img/about-photo.webp",
+  "photo_alt": "Sofia",
+  "personal": "[Personal line — Sofia will add]",
+  "list": [
+    {
+      "title": "I run projects without chaos",
+      "text": "2019–2022 — project manager at Yandex: up to 10 projects a month, contracts, deadlines, calls. This experience helps me keep your project in clear stages and on schedule."
+    },
+    {
+      "title": "I match the style to the niche",
+      "text": "Minimalism for businesses, doctors and lawyers. Brighter for psychologists, travel and creative projects."
+    },
+    {
+      "title": "How I like to communicate",
+      "text": "My main channel is Telegram. To explain page logic, I record Loom screen walkthroughs. Calls on Zoom or Google Meet when we need to discuss strategy and plans for the site."
+    },
+    {
+      "title": "What clients value in me",
+      "text": "I'm calm, with no drama and no deadline panic. I keep things structured and explain step by step what we're doing and why."
+    },
+    {
+      "title": "I live in Belgrade with my husband and our dog Kika",
+      "text": "I love watching how old buildings, graffiti and new spaces mix here — it often inspires my design decisions."
+    },
+    {
+      "title": "I draw by hand, embroider and knit",
+      "text": "I love drawing by hand, knitting and looking for creative solutions in everything: from a layout to how I present an idea to a client."
+    }
+  ]
+}

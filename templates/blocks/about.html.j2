@@ -1,1 +1,34 @@
-{# Обо мне — перенесу на шаге 2 #}
+{# Обо мне. Данные — data/<язык>/about.json. Номера ставятся сами #}
+  <section class="about" id="about">
+    <div class="container about__inner">
+      <div class="section-head about__head">
+        {% if about.label %}
+        <p class="section-head__label">{{ about.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ about.title|br }}</h2>
+      </div>
+
+      <div class="about__body">
+        <div class="about__ph">
+          {% if about.photo %}
+          <img class="about__photo" src="{{ about.photo|url }}" alt="{{ about.photo_alt }}" width="270" height="394">
+          {% endif %}
+          {% if about.personal %}
+          <p class="about__personal">{{ about.personal }}</p>
+          {% endif %}
+        </div>
+
+        {% if about.list %}
+        <ol class="about__list">
+          {% for item in about.list %}
+          <li class="about__item">
+            <p class="principle__num">{{ loop.index|num }}</p>
+            <h3 class="principle__title">{{ item.title|br }}</h3>
+            <p class="principle__text">{{ item.text }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+        {% endif %}
+      </div>
+    </div>
+  </section>
