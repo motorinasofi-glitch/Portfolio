@@ -1,0 +1,28 @@
+{# Почему не шаблон: сравнение с шаблоном. Данные — data/<язык>/compare.json #}
+{% if compare.rows %}
+  <section class="compare" id="why">
+    <div class="container compare__inner">
+      <div class="section-head compare__head">
+        {% if compare.label %}
+        <p class="section-head__label">{{ compare.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ accent_title(compare.title_accent, compare.title, 'compare__accent') }}</h2>
+      </div>
+
+      <div class="compare__table" role="table" aria-label="{{ compare.table_label }}">
+        <div class="compare__row compare__row--head" role="row">
+          <span role="columnheader"></span>
+          <span class="compare__tpl" role="columnheader">{{ compare.col_template }}</span>
+          <span class="compare__key" role="columnheader">{{ compare.col_custom }}</span>
+        </div>
+        {% for row in compare.rows %}
+        <div class="compare__row{% if loop.last %} compare__row--last{% endif %}" role="row">
+          <span class="compare__name" role="rowheader">{{ row.name }}</span>
+          <span class="compare__tpl" role="cell" data-label="{{ compare.col_template }}">{{ row.template }}</span>
+          <span class="compare__key" role="cell" data-label="{{ compare.col_custom }}">{{ row.custom }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

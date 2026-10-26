@@ -1,0 +1,35 @@
+{
+  "label": "why not a template",
+  "title_accent": "A €160 template",
+  "title": "or a website built\naround your clients",
+  "col_template": "Wix template",
+  "col_custom": "Turnkey website",
+  "table_label": "Wix template vs. turnkey website",
+  "rows": [
+    {
+      "name": "Structure",
+      "template": "Someone else's, made for an “average” company",
+      "custom": "Based on research into your audience and competitors"
+    },
+    {
+      "name": "Copy",
+      "template": "You write it yourself over the placeholders",
+      "custom": "I write sales copy for your niche"
+    },
+    {
+      "name": "Search",
+      "template": "No SEO setup",
+      "custom": "Basic SEO already set up"
+    },
+    {
+      "name": "Leads",
+      "template": "You connect forms and CRM yourself",
+      "custom": "Forms and CRM work on launch day"
+    },
+    {
+      "name": "After launch",
+      "template": "You figure it out on your own",
+      "custom": "A video guide on how to manage your site"
+    }
+  ]
+}
