@@ -1,1 +1,42 @@
-{# Вопросы — перенесу на шаге 2 #}
+{# Вопросы: аккордеон, первый вопрос открыт. Данные — data/<язык>/faq.json #}
+{% if faq.list %}
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="faq__side">
+        <div class="faq__head">
+          {% if faq.label %}
+          <p class="section-head__label faq__label">{{ faq.label }}</p>
+          {% endif %}
+          <h2 class="section-head__title">{{ faq.title|br }}</h2>
+        </div>
+        {% if faq.cta_text or faq.cta_button %}
+        <div class="faq__cta">
+          {% if faq.cta_text %}
+          <p class="faq__cta-text">{{ faq.cta_text|br }}</p>
+          {% endif %}
+          {% if faq.cta_button %}
+          <a class="btn btn--outline" href="#contact">{{ faq.cta_button }}</a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="faq__list">
+        {% for item in faq.list %}
+        {% set open = loop.first %}
+        <div class="faq__item{% if open %} is-open{% endif %}">
+          <h3 class="faq__q">
+            <button class="faq__toggle" type="button" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="faq-a{{ loop.index }}">
+              <span>{{ item.question }}</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a{{ loop.index }}"><div class="faq__a-in">
+            <p>{{ item.answer|br }}</p>
+          </div></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

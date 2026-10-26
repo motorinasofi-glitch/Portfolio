@@ -1,0 +1,28 @@
+{
+  "label": "faq",
+  "title": "Answers up front",
+  "cta_text": "",
+  "cta_button": "",
+  "list": [
+    {
+      "question": "How many revisions are included?",
+      "answer": "Six rounds: two each after the prototype, the design and the build."
+    },
+    {
+      "question": "What if I don't like the result?",
+      "answer": "We agree on the structure and copy at the prototype stage, before any design, so there are no surprises at the end."
+    },
+    {
+      "question": "Can I edit the site myself?",
+      "answer": "Yes. After handover I record a video guide on how to manage your site on Tilda."
+    },
+    {
+      "question": "What do you need from me?",
+      "answer": "[For example: fill in a brief, send your logo and photos, answer questions along the way]"
+    },
+    {
+      "question": "How long does it take?",
+      "answer": "[Typical timelines by site type]. If anything shifts, I let you know in advance."
+    }
+  ]
+}
