@@ -31,8 +31,31 @@ a {
 /* ============ Hero (Figma 2644:2984) ============ */
 .hero {
   position: relative;
+  isolation: isolate;               /* градиент под контентом, но над фоном секции */
   background: var(--c-night);
   overflow: clip;
+}
+
+/* Живой градиент на весь первый экран (по образцу wearebarbarian.com, не из Figma).
+   Рисует script.js; пока он не запущен, видно свечение из макета */
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--reveal-duration) var(--reveal-ease);
+  pointer-events: none;
+}
+
+.hero.has-gradient .hero__gradient {
+  opacity: 1;
+}
+
+.hero.has-gradient .hero__glow {
+  opacity: 0;
+  transition: opacity var(--reveal-duration) var(--reveal-ease);
 }
 
 /* Первый экран на всю высоту окна (по решению Софьи), но не ниже 700px из макета.
@@ -548,6 +571,22 @@ a.lang__opt:hover {
   position: absolute;
   right: var(--space-16);
   bottom: var(--space-16);
+}
+
+/* С мышью кнопка появляется при наведении на карточку (и при фокусе с клавиатуры).
+   На телефоне и планшете наведения нет — там кнопка видна всегда */
+@media (hover: hover) {
+  .case__btn {
+    opacity: 0;
+    transform: translateY(var(--space-8));
+    transition: opacity 0.4s var(--pill-ease), transform 0.4s var(--pill-ease);
+  }
+
+  .case:hover .case__btn,
+  .case:focus-within .case__btn {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Подпись кейса: теги, название, задача */
@@ -1247,8 +1286,12 @@ a.lang__opt:hover {
   gap: var(--space-8);
 }
 
+/* Пункты одной ширины — по самому длинному, текст по центру */
 .header.is-stuck .nav__list {
   position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   gap: 0;
   height: 100%;
   align-items: center;
@@ -1258,6 +1301,7 @@ a.lang__opt:hover {
   position: relative;
   z-index: 1;
   display: block;
+  text-align: center;
   padding: calc((var(--plate-height) - 2 * var(--plate-inset) - var(--lh-nav)) / 2) var(--pill-pad-x);
 }
 
@@ -1522,6 +1566,7 @@ a.lang__opt:hover {
   }
 
   .header.is-open .nav__list {
+    display: flex;                 /* в закреплённой шапке список — сетка, в меню — столбик */
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
@@ -1585,5 +1630,281 @@ a.lang__opt:hover {
   /* Пока меню открыто, страница под ним не прокручивается */
   html.menu-open {
     overflow: hidden;
+  }
+}
+
+/* Кейсы */
+@media (max-width: 1199px) {
+  .cases__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case__img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Кейс 3 — на всю ширину, в пропорциях 4:3, но не выше экрана (как на десктопе) */
+  .case--3 .case__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: calc(100vh - var(--space-96));
+  }
+
+  .case__txt {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .case__title {
+    width: auto;
+  }
+
+  .case__tags {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .cases__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Почему не шаблон */
+@media (max-width: 1199px) {
+  .compare__table {
+    margin-left: 0;
+  }
+
+  .compare__row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* На телефоне каждая строка — белая карточка: название, «шаблон» и «под ключ» с подписями */
+@media (max-width: 768px) {
+  .compare__row--head {
+    display: none;                  /* подписи колонок теперь внутри карточек */
+  }
+
+  .compare__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-12);
+    padding: var(--space-16);
+    border-radius: var(--radius-card);
+    background: var(--c-white);
+  }
+
+  .compare__row + .compare__row {
+    margin-top: var(--space-8);
+  }
+
+  .compare__row > *,
+  .compare__row--last > * {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .compare__key {
+    color: var(--c-wine);
+  }
+
+  /* Подписи — как шапка таблицы на десктопе */
+  .compare__row [data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    color: var(--c-plum);
+  }
+
+  .compare__row .compare__key::before {
+    color: var(--c-accent);
+  }
+}
+
+/* Мой подход */
+@media (max-width: 1199px) {
+  .principles__rail {
+    margin-right: calc(var(--gutter) * -1);   /* лента до правого края экрана */
+  }
+}
+
+/* На телефоне лента без закрепления (script.js): листается пальцем, карточки примагничиваются */
+@media (max-width: 768px) {
+  .principles__rail {
+    margin-left: 0;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0 var(--gutter);
+  }
+
+  .principle {
+    width: min(var(--principle-card-w), 85vw);
+    height: auto;
+    min-height: var(--principle-card-h);
+    scroll-snap-align: start;
+  }
+}
+
+/* Услуги и стоимость */
+@media (max-width: 1199px) {
+  .services__cols,
+  .service {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-right: var(--space-16);
+  }
+
+  .service {
+    height: auto;
+    min-height: var(--service-height);
+  }
+}
+
+/* На телефоне — карточки: номер и название, описание, затем сроки и стоимость с подписями */
+@media (max-width: 768px) {
+  .services__cols {
+    display: none;                  /* подписи колонок теперь внутри карточек */
+  }
+
+  .services__cols + .service {
+    margin-top: var(--services-head-gap);
+  }
+
+  .service {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "name name"
+      "text text"
+      "time price";
+    align-items: start;
+    gap: var(--space-16);
+    min-height: 0;
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .service__name  { grid-area: name; padding-left: 0; }
+  .service__text  { grid-area: text; }
+  .service__time  { grid-area: time; }
+  .service__price { grid-area: price; }
+
+  .service [data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: var(--space-4);
+    font-family: var(--font-text);
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    letter-spacing: var(--ls-text);
+    text-transform: none;
+    color: var(--c-plum);
+  }
+}
+
+/* Обо мне */
+@media (max-width: 1199px) {
+  .about__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .about__body {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-48);
+  }
+
+  .about__photo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .about__list {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-32);
+  }
+}
+
+/* Вопросы */
+@media (max-width: 1199px) {
+  .faq__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* На телефоне «Отвечаю заранее» и кнопка — над вопросами */
+@media (max-width: 768px) {
+  .faq__inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-32);
+  }
+
+  .faq__side {
+    padding-right: 0;
+  }
+}
+
+/* Отзывы (блок скрыт атрибутом hidden) */
+@media (max-width: 768px) {
+  .reviews__list {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--service-gap);
+  }
+}
+
+/* Финальный призыв и подвал */
+@media (max-width: 1199px) {
+  .contact__main {
+    flex-wrap: wrap;
+    gap: var(--space-48);
+  }
+
+  .contact__txt {
+    width: auto;
+    max-width: var(--contact-title-width);
+  }
+
+  .form {
+    width: 100%;
+    max-width: var(--form-width);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact__main {
+    flex-direction: column;
+  }
+
+  .contact__txt {
+    max-width: 100%;
+  }
+
+  .form {
+    padding: var(--space-24) var(--space-16);
+  }
+
+  /* Не меньше 16px, иначе iPhone приближает страницу при нажатии на поле */
+  .form__input {
+    font-size: var(--fs-case-text);
+  }
+
+  .contact__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .contact__links {
+    flex-wrap: wrap;
+    gap: 0 var(--space-24);
+  }
+
+  .contact__links a {
+    display: inline-block;
+    padding-block: var(--space-16); /* зона нажатия ≥ 44px */
   }
 }

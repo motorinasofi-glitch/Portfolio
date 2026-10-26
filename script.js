@@ -217,8 +217,115 @@
   });
 })();
 
+// Первый экран: живой градиент на WebGL, как на wearebarbarian.com.
+// Две волны на местах свечения из макета (фиолетовая и светлая под кнопкой) медленно текут.
+// Без WebGL или при «уменьшить движение» остаётся статичное свечение из макета.
+(function () {
+  var hero = document.querySelector('.hero');
+  var canvas = hero && hero.querySelector('.hero__gradient');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+  if (!gl) return;
+
+  // Цвета из tokens.css
+  var css = getComputedStyle(document.documentElement);
+  function color(name) {
+    var hex = css.getPropertyValue(name).trim().slice(1);
+    return [0, 2, 4].map(function (i) { return parseInt(hex.substr(i, 2), 16) / 255; });
+  }
+
+  var vert = 'attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }';
+  var frag = [
+    'precision mediump float;',
+    'uniform vec2 u_res; uniform float u_t;',
+    'uniform vec3 u_night, u_glow, u_accent, u_light;',
+    'float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
+    'float noise(vec2 p) {',
+    '  vec2 i = floor(p), f = fract(p), u = f * f * (3.0 - 2.0 * f);',
+    '  return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);',
+    '}',
+    'void main() {',
+    '  vec2 uv = vec2(gl_FragCoord.x / u_res.x, 1.0 - gl_FragCoord.y / u_res.y);',
+    '  float t = u_t;',
+    // Фиолетовая волна — середина экрана
+    '  float y1 = 0.60 + 0.10 * sin(uv.x * 2.4 + t * 0.20) + 0.16 * (noise(vec2(uv.x * 1.5 + t * 0.06, t * 0.04)) - 0.5);',
+    '  float glow = exp(-pow((uv.y - y1) / 0.22, 2.0));',
+    // Светлая волна — ниже, под кнопкой
+    '  float y2 = 0.80 + 0.07 * sin(uv.x * 3.1 - t * 0.27 + 1.0) + 0.12 * (noise(vec2(uv.x * 2.5 - t * 0.05, 3.0 + t * 0.05)) - 0.5);',
+    '  float light = exp(-pow((uv.y - y2) / 0.09, 2.0)) * mix(0.55, 1.0, smoothstep(0.0, 0.5, uv.x));',
+    // Розовое пятно бродит внутри фиолетовой волны
+    '  vec2 c = vec2(0.3 + 0.25 * sin(t * 0.11), 0.62 + 0.08 * cos(t * 0.15));',
+    '  vec2 d = (uv - c) * vec2(u_res.x / u_res.y, 1.0);',
+    '  float pink = exp(-dot(d, d) / 0.15) * glow;',
+    '  vec3 col = mix(u_night, u_glow, glow * 0.85);',
+    '  col = mix(col, u_accent, pink * 0.45);',
+    '  col += u_light * light * 0.75;',
+    '  col += (hash(gl_FragCoord.xy) - 0.5) / 255.0;',   // шум против полос на переходах
+    '  gl_FragColor = vec4(min(col, 1.0), 1.0);',
+    '}'
+  ].join('\n');
+
+  function shader(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  var prog = gl.createProgram();
+  gl.attachShader(prog, shader(gl.VERTEX_SHADER, vert));
+  gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, frag));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+
+  // Один прямоугольник на весь canvas
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  function uniform(name) { return gl.getUniformLocation(prog, name); }
+  gl.uniform3fv(uniform('u_night'), color('--c-night'));
+  gl.uniform3fv(uniform('u_glow'), color('--c-glow'));
+  gl.uniform3fv(uniform('u_accent'), color('--c-accent'));
+  gl.uniform3fv(uniform('u_light'), color('--c-rose-50'));
+  var uRes = uniform('u_res');
+  var uT = uniform('u_t');
+
+  // Градиент размытый, поэтому рисуем в половинном разрешении — так легче для телефона
+  function resize() {
+    canvas.width = Math.max(1, Math.round(canvas.clientWidth / 2));
+    canvas.height = Math.max(1, Math.round(canvas.clientHeight / 2));
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+  }
+
+  var start = performance.now();
+  var frame = 0;
+  function draw(now) {
+    gl.uniform1f(uT, (now - start) / 1000);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    frame = requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Рисуем, только пока первый экран виден
+  new IntersectionObserver(function (entries) {
+    cancelAnimationFrame(frame);
+    if (entries[0].isIntersecting) frame = requestAnimationFrame(draw);
+  }).observe(hero);
+
+  hero.classList.add('has-gradient');
+})();
+
 // «Мой подход»: секция закрепляется, и вертикальный скролл двигает ленту карточек влево,
-// как на irinakhachatryan.ru. При «уменьшить движение» лента просто листается вбок.
+// как на irinakhachatryan.ru. При «уменьшить движение» и на телефоне (≤768px)
+// лента просто листается вбок пальцем.
 (function () {
   var section = document.querySelector('.principles');
   var rail = section && section.querySelector('.principles__rail');
@@ -226,17 +333,25 @@
   if (!list) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  section.classList.add('is-pinned');
+  var phone = window.matchMedia('(max-width: 768px)'); // как точка в styles.css
   var distance = 0;
 
   // Сколько ленте ехать влево = на столько секция выше экрана
   function measure() {
+    var pinned = !phone.matches;
+    section.classList.toggle('is-pinned', pinned);
+    if (!pinned) {
+      section.style.height = '';
+      list.style.transform = '';
+      return;
+    }
     distance = Math.max(0, list.scrollWidth - rail.clientWidth);
     section.style.height = window.innerHeight + distance + 'px';
     update();
   }
 
   function update() {
+    if (phone.matches) return;
     var passed = -section.getBoundingClientRect().top;
     var shift = Math.min(Math.max(passed, 0), distance);
     list.style.transform = 'translate3d(' + -shift + 'px, 0, 0)';

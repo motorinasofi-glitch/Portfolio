@@ -19,6 +19,8 @@
 
   <!-- 1. Шапка + первый экран (Figma 2644:2984) -->
   <section class="hero" id="top">
+    <!-- Живой градиент (script.js). Без WebGL или при «уменьшить движение» остаётся свечение из макета -->
+    <canvas class="hero__gradient" aria-hidden="true"></canvas>
     <div class="container hero__inner">
       <img class="hero__glow hero__glow--bottom" src="../assets/img/hero-glow-bottom.svg" alt="" aria-hidden="true">
       <img class="hero__glow hero__glow--top" src="../assets/img/hero-glow-top.svg" alt="" aria-hidden="true">
@@ -82,21 +84,7 @@
       <div class="cases__grid">
         <article class="case case--1">
           <div class="case__media">
-            <img class="case__img" src="../assets/img/case-rusvoyage.webp" alt="RUs.voyages travel agency website" width="560" height="394">
-          </div>
-          <div class="case__txt">
-            <ul class="case__tags">
-              <li class="tag">landing page</li>
-              <li class="tag">AI</li>
-            </ul>
-            <h3 class="case__title">“RUs.voyages” travel agency website</h3>
-            <p class="case__text">A landing page with a booking form to collect leads</p>
-          </div>
-        </article>
-
-        <article class="case case--2">
-          <div class="case__media">
-            <img class="case__img" src="../assets/img/case-card4pay.webp" alt="Card4pay company website" width="560" height="394">
+            <img class="case__img" src="../assets/img/сase-card4pay.png" alt="Card4pay company website" width="560" height="394">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
             <a class="btn case__btn" href="#">
               Learn more
@@ -113,10 +101,30 @@
           </div>
         </article>
 
-        <!-- Кейс 3: тексты — плейсхолдеры, впишет Софья -->
+        <!-- Кейс Magic: тексты — плейсхолдеры, впишет Софья -->
+        <article class="case case--2">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-magic.png" alt="[Magic case title]" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow.svg" alt="" width="18" height="26">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">[tag]</li>
+              <li class="tag">[tag]</li>
+            </ul>
+            <h3 class="case__title">[Magic case title]</h3>
+            <p class="case__text">[Magic case task in one line]</p>
+          </div>
+        </article>
+
+        <!-- Кейс 3: широкий, на обе колонки -->
         <article class="case case--3">
           <div class="case__media">
-            <img class="case__img" src="../assets/img/case-3.webp" alt="[Case 3 title]" width="1140" height="394">
+            <img class="case__img" src="../assets/img/case-spasskoe.png" alt="Architecture studio website" width="1140" height="855">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
             <a class="btn case__btn" href="#">
               Learn more
@@ -128,12 +136,32 @@
               <li class="tag">landing page</li>
               <li class="tag">AI</li>
             </ul>
-            <h3 class="case__title">[Case 3 title]</h3>
-            <p class="case__text">[Case 3 task in one line]</p>
+            <h3 class="case__title">Multi-page website for an architecture studio</h3>
+            <p class="case__text">An interactive landing page with 31 pop-ups working as separate pages</p>
           </div>
         </article>
 
         <article class="case case--4">
+          <div class="case__media">
+            <img class="case__img" src="../assets/img/case-Voyage.png" alt="RUs.voyages travel agency website" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn case__btn" href="#">
+              Learn more
+              <img class="btn__arrow" src="../assets/img/icon-arrow.svg" alt="" width="18" height="26">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">landing page</li>
+              <li class="tag">AI</li>
+            </ul>
+            <h3 class="case__title">“RUs.voyages” travel agency website</h3>
+            <p class="case__text">A landing page with a booking form to collect leads</p>
+          </div>
+        </article>
+
+        <!-- Картинка — серая заглушка, заменит Софья -->
+        <article class="case case--5">
           <div class="case__media">
             <img class="case__img" src="../assets/img/case-showroom.webp" alt="RUs.voyages showroom concept" width="560" height="394">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
@@ -149,25 +177,6 @@
             </ul>
             <h3 class="case__title">“RUs.voyages” showroom concept</h3>
             <p class="case__text">A landing page made with AI image generation</p>
-          </div>
-        </article>
-
-        <article class="case case--5">
-          <div class="case__media">
-            <img class="case__img" src="../assets/img/case-spassarch.webp" alt="Architecture studio website" width="560" height="394">
-            <!-- [ссылка на страницу кейса — впишет Софья] -->
-            <a class="btn case__btn" href="#">
-              Learn more
-              <img class="btn__arrow" src="../assets/img/icon-arrow.svg" alt="" width="18" height="26">
-            </a>
-          </div>
-          <div class="case__txt">
-            <ul class="case__tags">
-              <li class="tag">landing page</li>
-              <li class="tag">AI</li>
-            </ul>
-            <h3 class="case__title">Multi-page website for an architecture studio</h3>
-            <p class="case__text">An interactive landing page with 31 pop-ups working as separate pages</p>
           </div>
         </article>
       </div>
@@ -191,28 +200,28 @@
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Structure</span>
-          <span class="compare__tpl" role="cell">Someone else's, made for an “average” company</span>
-          <span class="compare__key" role="cell">Based on research into your audience and competitors</span>
+          <span class="compare__tpl" role="cell" data-label="Wix template">Someone else's, made for an “average” company</span>
+          <span class="compare__key" role="cell" data-label="Turnkey website">Based on research into your audience and competitors</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Copy</span>
-          <span class="compare__tpl" role="cell">You write it yourself over the placeholders</span>
-          <span class="compare__key" role="cell">I write sales copy for your niche</span>
+          <span class="compare__tpl" role="cell" data-label="Wix template">You write it yourself over the placeholders</span>
+          <span class="compare__key" role="cell" data-label="Turnkey website">I write sales copy for your niche</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Search</span>
-          <span class="compare__tpl" role="cell">No SEO setup</span>
-          <span class="compare__key" role="cell">Basic SEO already set up</span>
+          <span class="compare__tpl" role="cell" data-label="Wix template">No SEO setup</span>
+          <span class="compare__key" role="cell" data-label="Turnkey website">Basic SEO already set up</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Leads</span>
-          <span class="compare__tpl" role="cell">You connect forms and CRM yourself</span>
-          <span class="compare__key" role="cell">Forms and CRM work on launch day</span>
+          <span class="compare__tpl" role="cell" data-label="Wix template">You connect forms and CRM yourself</span>
+          <span class="compare__key" role="cell" data-label="Turnkey website">Forms and CRM work on launch day</span>
         </div>
         <div class="compare__row compare__row--last" role="row">
           <span class="compare__name" role="rowheader">After launch</span>
-          <span class="compare__tpl" role="cell">You figure it out on your own</span>
-          <span class="compare__key" role="cell">A video guide on how to manage your site</span>
+          <span class="compare__tpl" role="cell" data-label="Wix template">You figure it out on your own</span>
+          <span class="compare__key" role="cell" data-label="Turnkey website">A video guide on how to manage your site</span>
         </div>
       </div>
     </div>
@@ -280,8 +289,8 @@
             <h3 class="service__title">Landing page<br>for a product launch</h3>
           </div>
           <p class="service__text" role="cell">A one-page website with a clear call to action. Helps you explain your idea quickly and bring in your first clients.</p>
-          <p class="service__time" role="cell">7–21 days</p>
-          <p class="service__price" role="cell">from €480*<span class="service__note">*depends on the features you choose</span></p>
+          <p class="service__time" role="cell" data-label="Timeline">7–21 days</p>
+          <p class="service__price" role="cell" data-label="Price">from €480*<span class="service__note">*depends on the features you choose</span></p>
         </div>
 
         <div class="service service--2" role="row">
@@ -290,8 +299,8 @@
             <h3 class="service__title">Multi-page website<br>for business</h3>
           </div>
           <p class="service__text" role="cell">A website with a more complex structure split into several pages, for when you need to present your product, services and team.</p>
-          <p class="service__time" role="cell">14–30 days</p>
-          <p class="service__price" role="cell">from €690*<span class="service__note">*depends on the features you choose</span></p>
+          <p class="service__time" role="cell" data-label="Timeline">14–30 days</p>
+          <p class="service__price" role="cell" data-label="Price">from €690*<span class="service__note">*depends on the features you choose</span></p>
         </div>
 
         <div class="service service--3" role="row">
@@ -300,9 +309,9 @@
             <h3 class="service__title">Online store<br>with a catalogue</h3>
           </div>
           <p class="service__text" role="cell">A website with a functional product catalogue, shopping cart and online checkout</p>
-          <p class="service__time" role="cell">20–40 days</p>
+          <p class="service__time" role="cell" data-label="Timeline">20–40 days</p>
           <!-- В макете тоже 65 000, как у (02). Уточнить у Софьи -->
-          <p class="service__price" role="cell">from €690*<span class="service__note">*depends on the features you choose</span></p>
+          <p class="service__price" role="cell" data-label="Price">from €690*<span class="service__note">*depends on the features you choose</span></p>
         </div>
       </div>
     </div>

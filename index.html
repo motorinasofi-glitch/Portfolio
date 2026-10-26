@@ -19,6 +19,8 @@
 
   <!-- 1. Шапка + первый экран (Figma 2644:2984) -->
   <section class="hero" id="top">
+    <!-- Живой градиент (script.js). Без WebGL или при «уменьшить движение» остаётся свечение из макета -->
+    <canvas class="hero__gradient" aria-hidden="true"></canvas>
     <div class="container hero__inner">
       <img class="hero__glow hero__glow--bottom" src="assets/img/hero-glow-bottom.svg" alt="" aria-hidden="true">
       <img class="hero__glow hero__glow--top" src="assets/img/hero-glow-top.svg" alt="" aria-hidden="true">
@@ -83,21 +85,7 @@
       <div class="cases__grid">
         <article class="case case--1">
           <div class="case__media">
-            <img class="case__img" src="assets/img/case-rusvoyage.webp" alt="Сайт турагентства RUs.voyages" width="560" height="394">
-          </div>
-          <div class="case__txt">
-            <ul class="case__tags">
-              <li class="tag">лендинг</li>
-              <li class="tag">нейросети</li>
-            </ul>
-            <h3 class="case__title">Cайт турагенства “RUs.voyages”</h3>
-            <p class="case__text">Создания лендинга с формой бронирования для сбора заявок</p>
-          </div>
-        </article>
-
-        <article class="case case--2">
-          <div class="case__media">
-            <img class="case__img" src="assets/img/case-card4pay.webp" alt="Сайт компании Card4pay" width="560" height="394">
+            <img class="case__img" src="assets/img/сase-card4pay.png" alt="Сайт компании Card4pay" width="560" height="394">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
             <a class="btn case__btn" href="#">
               Подробнее
@@ -114,10 +102,30 @@
           </div>
         </article>
 
-        <!-- Кейс 3: широкий, на обе колонки. В макете без подписи, подпись как у кейса 4. Тексты — плейсхолдеры, впишет Софья -->
+        <!-- Кейс Magic: тексты — плейсхолдеры, впишет Софья -->
+        <article class="case case--2">
+          <div class="case__media">
+            <img class="case__img" src="assets/img/case-magic.png" alt="[Название кейса Magic]" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn case__btn" href="#">
+              Подробнее
+              <img class="btn__arrow" src="assets/img/icon-arrow.svg" alt="" width="18" height="26">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">[тег]</li>
+              <li class="tag">[тег]</li>
+            </ul>
+            <h3 class="case__title">[Название кейса Magic]</h3>
+            <p class="case__text">[Задача кейса Magic в одну строку]</p>
+          </div>
+        </article>
+
+        <!-- Кейс 3: широкий, на обе колонки -->
         <article class="case case--3">
           <div class="case__media">
-            <img class="case__img" src="assets/img/case-3.webp" alt="[Название кейса 3]" width="1140" height="855">
+            <img class="case__img" src="assets/img/case-spasskoe.png" alt="Сайт архитектурного бюро" width="1140" height="855">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
             <a class="btn case__btn" href="#">
               Подробнее
@@ -129,12 +137,32 @@
               <li class="tag">лендинг</li>
               <li class="tag">нейросети</li>
             </ul>
-            <h3 class="case__title">[Название кейса 3]</h3>
-            <p class="case__text">[Задача кейса 3 в одну строку]</p>
+            <h3 class="case__title">Многостраничный сайт для архитектурного бюро</h3>
+            <p class="case__text">Создания интерактивного лендинга с 31 поп-апом в виде отдельных страниц</p>
           </div>
         </article>
 
         <article class="case case--4">
+          <div class="case__media">
+            <img class="case__img" src="assets/img/case-Voyage.png" alt="Сайт турагентства RUs.voyages" width="560" height="394">
+            <!-- [ссылка на страницу кейса — впишет Софья] -->
+            <a class="btn case__btn" href="#">
+              Подробнее
+              <img class="btn__arrow" src="assets/img/icon-arrow.svg" alt="" width="18" height="26">
+            </a>
+          </div>
+          <div class="case__txt">
+            <ul class="case__tags">
+              <li class="tag">лендинг</li>
+              <li class="tag">нейросети</li>
+            </ul>
+            <h3 class="case__title">Cайт турагенства “RUs.voyages”</h3>
+            <p class="case__text">Создания лендинга с формой бронирования для сбора заявок</p>
+          </div>
+        </article>
+
+        <!-- Картинка — серая заглушка, заменит Софья -->
+        <article class="case case--5">
           <div class="case__media">
             <img class="case__img" src="assets/img/case-showroom.webp" alt="Концепт шоу-рума RUs.voyages" width="560" height="394">
             <!-- [ссылка на страницу кейса — впишет Софья] -->
@@ -150,25 +178,6 @@
             </ul>
             <h3 class="case__title">Концепт шоу-рума “RUs.voyages”</h3>
             <p class="case__text">Создания лендинга с использованием генерации в ИИ</p>
-          </div>
-        </article>
-
-        <article class="case case--5">
-          <div class="case__media">
-            <img class="case__img" src="assets/img/case-spassarch.webp" alt="Сайт архитектурного бюро" width="560" height="394">
-            <!-- [ссылка на страницу кейса — впишет Софья] -->
-            <a class="btn case__btn" href="#">
-              Подробнее
-              <img class="btn__arrow" src="assets/img/icon-arrow.svg" alt="" width="18" height="26">
-            </a>
-          </div>
-          <div class="case__txt">
-            <ul class="case__tags">
-              <li class="tag">лендинг</li>
-              <li class="tag">нейросети</li>
-            </ul>
-            <h3 class="case__title">Многостраничный сайт для архитектурного бюро</h3>
-            <p class="case__text">Создания интерактивного лендинга с 31 поп-апом в виде отдельных страниц</p>
           </div>
         </article>
       </div>
@@ -191,28 +200,28 @@
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Структура</span>
-          <span class="compare__tpl" role="cell">Чужая, под «среднюю» компанию</span>
-          <span class="compare__key" role="cell">По анализу вашей аудитории и конкурентов</span>
+          <span class="compare__tpl" role="cell" data-label="Шаблон на Тильде">Чужая, под «среднюю» компанию</span>
+          <span class="compare__key" role="cell" data-label="Сайт под ключ">По анализу вашей аудитории и конкурентов</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Тексты</span>
-          <span class="compare__tpl" role="cell">Пишете сами поверх заглушек</span>
-          <span class="compare__key" role="cell">Пишу продающие тексты под вашу нишу</span>
+          <span class="compare__tpl" role="cell" data-label="Шаблон на Тильде">Пишете сами поверх заглушек</span>
+          <span class="compare__key" role="cell" data-label="Сайт под ключ">Пишу продающие тексты под вашу нишу</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Поиск</span>
-          <span class="compare__tpl" role="cell">SEO не настроено</span>
-          <span class="compare__key" role="cell">Базовое SEO уже настроено</span>
+          <span class="compare__tpl" role="cell" data-label="Шаблон на Тильде">SEO не настроено</span>
+          <span class="compare__key" role="cell" data-label="Сайт под ключ">Базовое SEO уже настроено</span>
         </div>
         <div class="compare__row" role="row">
           <span class="compare__name" role="rowheader">Заявки</span>
-          <span class="compare__tpl" role="cell">Форму и CRM подключаете сами</span>
-          <span class="compare__key" role="cell">Формы и CRM работают в день сдачи</span>
+          <span class="compare__tpl" role="cell" data-label="Шаблон на Тильде">Форму и CRM подключаете сами</span>
+          <span class="compare__key" role="cell" data-label="Сайт под ключ">Формы и CRM работают в день сдачи</span>
         </div>
         <div class="compare__row compare__row--last" role="row">
           <span class="compare__name" role="rowheader">После запуска</span>
-          <span class="compare__tpl" role="cell">Разбираетесь сами</span>
-          <span class="compare__key" role="cell">Видео-инструкция, как управлять сайтом</span>
+          <span class="compare__tpl" role="cell" data-label="Шаблон на Тильде">Разбираетесь сами</span>
+          <span class="compare__key" role="cell" data-label="Сайт под ключ">Видео-инструкция, как управлять сайтом</span>
         </div>
       </div>
     </div>
@@ -280,8 +289,8 @@
             <h3 class="service__title">Лендинг под запуск<br>продукта</h3>
           </div>
           <p class="service__text" role="cell">Разработка одностраничного сайта, призывающего к действию. Помогает быстро объяснить идею и привести первых клиентов.</p>
-          <p class="service__time" role="cell">7–21 день</p>
-          <p class="service__price" role="cell">от 45 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+          <p class="service__time" role="cell" data-label="Сроки">7–21 день</p>
+          <p class="service__price" role="cell" data-label="Стоимость">от 45 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
         </div>
 
         <div class="service service--2" role="row">
@@ -290,8 +299,8 @@
             <h3 class="service__title">Многостраничный сайт<br>для бизнеса</h3>
           </div>
           <p class="service__text" role="cell">Разработка сайта с более сложной структурой, разбитой на несколько страниц, где нужно рассказать о продукте, услугах и команде.</p>
-          <p class="service__time" role="cell">14–30 дней</p>
-          <p class="service__price" role="cell">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+          <p class="service__time" role="cell" data-label="Сроки">14–30 дней</p>
+          <p class="service__price" role="cell" data-label="Стоимость">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
         </div>
 
         <div class="service service--3" role="row">
@@ -300,9 +309,9 @@
             <h3 class="service__title">Интернет-магазин<br>с каталогом</h3>
           </div>
           <p class="service__text" role="cell">Разработка сайта с функциональным каталогом товаров, корзиной и онлайн-кассой</p>
-          <p class="service__time" role="cell">20–40 дней</p>
+          <p class="service__time" role="cell" data-label="Сроки">20–40 дней</p>
           <!-- В макете тоже 65 000, как у (02). Уточнить у Софьи -->
-          <p class="service__price" role="cell">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
+          <p class="service__price" role="cell" data-label="Стоимость">от 65 000 руб.*<span class="service__note">*зависит от выбора функционала сайта</span></p>
         </div>
       </div>
     </div>

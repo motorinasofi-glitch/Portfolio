@@ -258,7 +258,10 @@
 @media (max-width: 768px) {
   :root {
     --gutter: var(--space-16);
+    --section-gap: 100px;            /* между блоками на телефоне, по решению Софьи */
     --ls-h1: var(--ls-text);
     --hero-main-gap: var(--space-48);
+    --cases-row-gap: var(--space-48);
+    --faq-item-pad: var(--space-16);
   }
 }
