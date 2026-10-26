@@ -1,0 +1,31 @@
+{
+  "show": false,
+  "label": "reviews",
+  "title": "What clients say",
+  "list": [
+    {
+      "photo": "assets/img/review-1.webp",
+      "name": "[Client name 1]",
+      "company": "[Company or niche]",
+      "text": "[Review 1: a real client review, meaning unchanged]",
+      "link": "#",
+      "link_text": "[client website]"
+    },
+    {
+      "photo": "assets/img/review-2.webp",
+      "name": "[Client name 2]",
+      "company": "[Company or niche]",
+      "text": "[Review 2: a real client review, meaning unchanged]",
+      "link": "#",
+      "link_text": "[client website]"
+    },
+    {
+      "photo": "assets/img/review-3.webp",
+      "name": "[Client name 3]",
+      "company": "[Company or niche]",
+      "text": "[Review 3: a real client review, meaning unchanged]",
+      "link": "#",
+      "link_text": "[client website]"
+    }
+  ]
+}

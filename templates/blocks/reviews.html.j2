@@ -1,1 +1,36 @@
-{# Отзывы: выводится, только если reviews_on — перенесу на шаге 2 #}
+{# Отзывы. Выводятся, только если в админке стоит «Показывать блок» и отзывов 3+ (build.py).
+   Стоят прямо перед подвалом, рядом с формой заявки. Данные — data/<язык>/reviews.json #}
+{% if reviews_on %}
+  <section class="reviews" id="reviews">
+    <div class="container reviews__inner">
+      <div class="section-head reviews__head">
+        {% if reviews.label %}
+        <p class="section-head__label">{{ reviews.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ reviews.title|br }}</h2>
+      </div>
+
+      <div class="reviews__list">
+          {% for item in reviews.list %}
+          <article class="review">
+            <div class="review__person">
+              {% if item.photo %}
+              <img class="review__photo" src="{{ item.photo|url }}" alt="{{ item.name }}" width="70" height="70">
+              {% endif %}
+              <div>
+                <p class="review__name">{{ item.name }}</p>
+                {% if item.company %}
+                <p class="review__company">{{ item.company }}</p>
+                {% endif %}
+              </div>
+            </div>
+            <p class="review__text">{{ item.text|br }}</p>
+            {% if item.link %}
+            <a class="review__link" href="{{ item.link|url }}" target="_blank" rel="noopener">{{ item.link_text or item.link }}</a>
+            {% endif %}
+          </article>
+          {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
