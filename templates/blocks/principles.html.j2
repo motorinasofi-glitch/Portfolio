@@ -1,1 +1,25 @@
-{# Мой подход — перенесу на шаге 2 #}
+{# Мой подход: лента карточек. Данные — data/<язык>/principles.json. Номера ставятся сами #}
+{% if principles.list %}
+  <section class="principles" id="approach">
+    <div class="container principles__inner">
+      <div class="section-head">
+        {% if principles.label %}
+        <p class="section-head__label">{{ principles.label }}</p>
+        {% endif %}
+        <h2 class="section-head__title">{{ principles.title|br }}</h2>
+      </div>
+
+      <div class="principles__rail">
+        <ol class="principles__list">
+          {% for item in principles.list %}
+          <li class="principle">
+            <p class="principle__num">{{ loop.index|num }}</p>
+            <h3 class="principle__title">{{ item.title|br }}</h3>
+            <p class="principle__text">{{ item.text }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </section>
+{% endif %}
