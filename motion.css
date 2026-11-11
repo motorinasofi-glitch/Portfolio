@@ -1,0 +1,410 @@
+/* =====================================================================
+   motion.css — слой «вау»-анимаций поверх готового сайта.
+   Дизайн, тексты и токены не меняются: только движение и интерактив.
+   Работает вместе с motion.js. При «уменьшить движение» всё отключается.
+   ===================================================================== */
+
+:root {
+  --m-ease: cubic-bezier(0.76, 0, 0.24, 1);      /* резкий старт и мягкая остановка — для шторок */
+  --m-ease-out: cubic-bezier(0.16, 1, 0.3, 1);   /* мягкий выход — для появления */
+}
+
+/* ---------- 1. Прелоадер: счётчик 0→100 и шторка ---------- */
+.preloader { display: none; }
+
+.m-preload .preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  pointer-events: auto;
+}
+
+.m-preload body { overflow: hidden; }
+
+.preloader__panel {
+  grid-area: 1 / 1;
+  background: var(--c-night);
+  transition: transform 1.1s var(--m-ease);
+}
+
+/* Нижняя «вторая» шторка в акцентном цвете уезжает чуть позже — даёт слоистость */
+.preloader__panel--accent {
+  background: var(--g-principle-card);
+  transition-delay: 0.08s;
+}
+
+.preloader__inner {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-32) var(--gutter);
+  color: var(--c-rose-50);
+  transition: opacity 0.4s ease, transform 1s var(--m-ease);
+}
+
+.preloader__top,
+.preloader__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--ls-text);
+}
+
+.preloader__count {
+  font-family: var(--font-display);
+  font-size: clamp(120px, 22vw, 320px);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  color: var(--c-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader__count small {
+  font-size: 0.3em;
+  color: var(--c-accent);
+  margin-left: 0.08em;
+}
+
+.preloader__bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-glow), var(--c-rose-200));
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+}
+
+/* Уход: панели уезжают вверх, текст гаснет */
+.m-preload.is-leaving .preloader__inner { opacity: 0; transform: translateY(-40px); }
+.m-preload.is-leaving .preloader__panel { transform: translateY(-100%); }
+.m-preload.is-leaving .preloader { pointer-events: none; }
+
+/* Пока идёт прелоадер, заголовок первого экрана ждёт и выезжает сразу после шторки */
+.m-preload:not(.is-leaving) .hero [data-split] .word__in { transform: translateY(110%) !important; }
+.m-preload:not(.is-leaving) .hero [data-reveal] { opacity: 0 !important; transform: translateY(var(--reveal-shift)) !important; }
+.m-preload.is-leaving .hero [data-split] .word__in { transition-delay: calc(0.35s + var(--i, 0) * 30ms) !important; }
+
+/* ---------- 2. Полоса прогресса прокрутки ---------- */
+.m-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-glow), var(--c-rose-200));
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* ---------- 3. Курсор: точка + кольцо, над кейсами — «Смотреть» ---------- */
+.m-cursor,
+.m-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 950;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.has-cursor .m-cursor,
+.has-cursor .m-cursor-dot { opacity: 1; }
+
+.m-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--c-accent);
+}
+
+.m-cursor {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--c-accent) 70%, transparent);
+  color: var(--c-light);
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  transition:
+    width 0.45s var(--m-ease-out), height 0.45s var(--m-ease-out), margin 0.45s var(--m-ease-out),
+    background 0.35s ease, border-color 0.35s ease, opacity 0.3s ease;
+}
+
+.m-cursor span {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.3s ease, transform 0.45s var(--m-ease-out);
+}
+
+/* Над ссылкой и кнопкой кольцо раздувается */
+.m-cursor.is-link {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: color-mix(in srgb, var(--c-accent) 18%, transparent);
+}
+
+/* Над картинкой кейса — плотный круг с подписью */
+.m-cursor.is-view {
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.m-cursor.is-view span { opacity: 1; transform: none; }
+.m-cursor.is-view ~ .m-cursor-dot,
+.m-cursor.is-link ~ .m-cursor-dot { opacity: 0; }
+
+.has-cursor .case__media { cursor: none; }
+
+/* ---------- 4. Первый экран ---------- */
+.hero__sparks {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Свечение, которое тянется за курсором */
+.hero__spot {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 46vmax;
+  height: 46vmax;
+  margin: -23vmax 0 0 -23vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c-accent) 45%, transparent), transparent 65%);
+  mix-blend-mode: plus-lighter;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.hero:hover .hero__spot { opacity: 0.55; }
+
+/* Блок с заголовком уходит назад при прокрутке */
+.hero__main { will-change: transform, opacity; }
+
+/* ---------- 5. Кейсы: шторка на картинке, параллакс, наклон ---------- */
+.case__media {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--m-ease-out);
+}
+
+.case__img {
+  scale: 1.12;
+  transition: scale 1.2s var(--m-ease-out), filter 0.6s ease;
+  will-change: transform;
+}
+
+.case:hover .case__img { scale: 1.17; }
+
+/* Картинка открывается снизу вверх, когда кейс заходит в экран */
+.m-on .case__media {
+  clip-path: inset(100% 0 0 0 round var(--radius-card));
+  transition: clip-path 1.3s var(--m-ease), transform 0.6s var(--m-ease-out);
+}
+
+.m-on .case.m-in .case__media {
+  clip-path: inset(0 0 0 0 round var(--radius-card));
+}
+
+/* Блик, который пробегает по картинке при наведении */
+.case__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.case:hover .case__media::after {
+  transform: translateX(120%);
+  transition: transform 1.1s var(--m-ease);
+}
+
+.case__btn { z-index: 2; }
+
+/* ---------- 6. Заголовки с акцентом: перелив по цвету ---------- */
+.cases__accent,
+.compare__accent {
+  background: linear-gradient(90deg, var(--c-accent), var(--c-glow), var(--c-rose-600), var(--c-accent));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: m-shimmer 8s linear infinite;
+}
+
+@keyframes m-shimmer { to { background-position: 300% 0; } }
+
+/* Рубрика слева: точка мягко пульсирует */
+.m-on .section-head__label::before {
+  animation: m-pulse 2.4s ease-out infinite;
+}
+
+@keyframes m-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-accent) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 7px color-mix(in srgb, var(--c-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ---------- 7. Карточки принципов: свет за курсором ---------- */
+.principle {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.6s var(--m-ease-out);
+}
+
+.principle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 120%),
+    color-mix(in srgb, var(--c-rose-200) 35%, transparent), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.principle:hover::before { opacity: 1; }
+
+.principle > * { position: relative; }
+
+/* Номер карточки слегка «пульсирует» при наведении */
+.principle:hover .principle__num { color: var(--c-light); transition: color 0.3s ease; }
+
+/* ---------- 8. Таблица сравнения: строки по очереди ---------- */
+.m-on .compare__row:not(.compare__row--head) {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.8s var(--m-ease-out), transform 0.8s var(--m-ease-out);
+  transition-delay: calc(var(--n, 0) * 90ms + 0.2s);
+}
+
+.m-on .compare__table.m-in .compare__row { opacity: 1; transform: none; }
+
+.compare__row:not(.compare__row--head) .compare__key {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.compare__row:not(.compare__row--head):hover .compare__key {
+  background: var(--c-rose-50);
+}
+
+/* ---------- 9. Услуги: подъём строки и цена со счётчиком ---------- */
+.service {
+  transition: transform 0.5s var(--m-ease-out), box-shadow 0.5s var(--m-ease-out);
+}
+
+@media (hover: hover) {
+  .service:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -28px color-mix(in srgb, var(--c-glow) 60%, transparent);
+  }
+}
+
+.service__price { font-variant-numeric: tabular-nums; }
+
+/* ---------- 10. Фото «Обо мне»: шторка ---------- */
+.about__photo {
+  transition: clip-path 1.3s var(--m-ease), scale 1.6s var(--m-ease-out);
+}
+
+.m-on .about__ph:not(.m-in) .about__photo {
+  clip-path: inset(0 0 100% 0);
+  scale: 1.15;
+}
+
+.m-on .about__ph.m-in .about__photo { clip-path: inset(0 0 0 0); scale: 1; }
+
+/* ---------- 11. Кнопки: заливка снизу при наведении ---------- */
+.btn:not(.case__btn) { position: relative; }
+
+.btn {
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.4s ease;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 100%;
+  width: 140%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c-glow);
+  transform: translate(-50%, 0) scale(0.2);
+  transition: transform 0.6s var(--m-ease);
+}
+
+.btn:hover::before { transform: translate(-50%, -55%) scale(1); }
+.btn--outline:hover { color: var(--c-light); }
+
+.btn__arrow { transition: translate 0.4s var(--m-ease-out); }
+.btn:hover .btn__arrow { translate: 4px 0; }
+
+/* ---------- 12. Финальный призыв: заголовок буквами ---------- */
+.contact__title .m-ch {
+  display: inline-block;
+  transform: translateY(0.6em) rotate(8deg);
+  opacity: 0;
+  transition: transform 0.9s var(--m-ease-out), opacity 0.6s ease;
+  transition-delay: calc(var(--c, 0) * 28ms);
+}
+
+.contact__title.m-in .m-ch { transform: none; opacity: 1; }
+
+/* ---------- 13. Лёгкое зерно поверх всей страницы ---------- */
+.m-grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 800;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: m-grain 1s steps(4) infinite;
+}
+
+@keyframes m-grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+}
+
+/* ---------- Без движения ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .preloader, .m-progress, .m-cursor, .m-cursor-dot, .m-grain, .hero__sparks, .hero__spot { display: none !important; }
+  .cases__accent, .compare__accent { animation: none; }
+  .case__img { scale: 1; }
+}

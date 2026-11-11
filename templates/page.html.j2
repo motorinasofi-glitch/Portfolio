@@ -18,8 +18,25 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.css">
   <link rel="stylesheet" href="{{ root }}styles.css?v={{ version }}">
   {% if layout_css %}<link rel="stylesheet" href="{{ root }}layout.css?v={{ version }}">{% endif %}
+  <!-- Слой «вау»-анимаций (motion.js). Прелоадер показывается один раз за визит -->
+  <link rel="stylesheet" href="{{ root }}motion.css?v={{ version }}">
+  <script>try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("m-seen")) document.documentElement.classList.add("m-preload"); } catch (e) {}</script>
 </head>
 <body>
+
+{# Прелоадер: счётчик 0→100, затем шторки уезжают вверх. Тексты — из site.json (админка) #}
+<div class="preloader" aria-hidden="true" data-lenis-prevent>
+  <div class="preloader__panel preloader__panel--accent"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__inner">
+    <div class="preloader__top"><span>{{ site.handle }}</span><span>{{ site.title }}</span></div>
+    <div class="preloader__bottom">
+      <span>{{ site.city }}</span>
+      <span class="preloader__count"><span class="preloader__num">00</span><small>%</small></span>
+    </div>
+    <span class="preloader__bar"></span>
+  </div>
+</div>
 
 {# Блоки по порядку страницы. Порядок меняется только здесь, не в админке #}
 {% include 'blocks/hero.html.j2' %}
@@ -34,5 +51,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script src="{{ root }}script.js?v={{ version }}"></script>
+  <script src="{{ root }}motion.js?v={{ version }}"></script>
 </body>
 </html>

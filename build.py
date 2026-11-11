@@ -16,7 +16,7 @@ DATA = ROOT / 'data'
 DIST = ROOT / 'dist'
 
 # Что копируется в dist/ как есть
-STATIC = ['assets', 'styles.css', 'tokens.css', 'script.js']
+STATIC = ['assets', 'styles.css', 'tokens.css', 'script.js', 'motion.css', 'motion.js']
 
 # Языковые версии: куда кладём страницу и как из неё дойти до корня сайта
 LANGS = {
