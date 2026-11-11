@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройка админки</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">S</div>
+    <h1>Первый вход</h1>
+    <p class="auth-subtitle">Создайте аккаунт администратора</p>
+
+    <div class="auth-error" id="error" style="display:none">Заполните все поля. Пароль — минимум 6 символов.</div>
+
+    <form method="POST" action="/admin/setup">
+      <label>
+        <span>Электронная почта</span>
+        <input type="email" name="email" required autofocus>
+      </label>
+      <label>
+        <span>Пароль</span>
+        <input type="password" name="password" required minlength="6">
+      </label>
+      <button type="submit">Создать аккаунт</button>
+    </form>
+  </div>
+
+  <script>
+    if (location.search.includes('error=1')) {
+      document.getElementById('error').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

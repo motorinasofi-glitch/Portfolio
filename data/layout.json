@@ -1,0 +1,14 @@
+{
+  "section_gap": 150,
+  "sections": {
+    "hero": { "padding_top": 0, "padding_bottom": 0 },
+    "principles": { "padding_top": 0, "padding_bottom": 0 },
+    "cases": { "padding_top": 0, "padding_bottom": 0 },
+    "compare": { "padding_top": 0, "padding_bottom": 0 },
+    "services": { "padding_top": 0, "padding_bottom": 0 },
+    "about": { "padding_top": 0, "padding_bottom": 0 },
+    "reviews": { "padding_top": 0, "padding_bottom": 0 },
+    "faq": { "padding_top": 0, "padding_bottom": 0 },
+    "contact": { "padding_top": 0, "padding_bottom": 0 }
+  }
+}

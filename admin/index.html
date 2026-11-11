@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка — Софья</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div class="mobile-header">
+    <button class="burger" onclick="toggleSidebar()">&#9776;</button>
+    <span>Админка</span>
+  </div>
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="admin-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Админка</h2>
+        <p>Софья — портфолио</p>
+      </div>
+
+      <div class="sidebar-lang">
+        <button class="active" data-lang="ru" onclick="switchLang('ru')">RU</button>
+        <button data-lang="en" onclick="switchLang('en')">EN</button>
+      </div>
+
+      <nav id="nav">
+        <a href="#" data-section="site" class="active">Общее</a>
+        <a href="#" data-section="hero">Первый экран</a>
+        <a href="#" data-section="principles">Мой подход</a>
+        <a href="#" data-section="cases">Кейсы</a>
+        <a href="#" data-section="compare">Почему не шаблон</a>
+        <a href="#" data-section="services">Услуги</a>
+        <a href="#" data-section="about">Обо мне</a>
+        <a href="#" data-section="reviews">Отзывы</a>
+        <a href="#" data-section="faq">Вопросы</a>
+        <a href="#" data-section="contact">Призыв и подвал</a>
+        <a href="#" data-section="layout">Оформление</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank">Открыть сайт &rarr;</a>
+        <a href="/admin/logout">Выйти</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <h1 id="page-title">Общее</h1>
+      <p class="section-desc" id="page-desc">Шапка, меню и контакты</p>
+
+      <div id="form-container"></div>
+
+      <div class="actions-bar">
+        <button class="btn-save" id="btn-save" onclick="save()">Сохранить</button>
+        <span class="save-status" id="save-status"></span>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

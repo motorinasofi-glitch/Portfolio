@@ -553,7 +553,7 @@ a.lang__opt:hover {
 
 /* Подложки из макета: видны, пока нет картинки */
 .case--1 .case__img { background: var(--c-cream); }
-.case--2 .case__img { background: var(--c-rose-50); }
+.case--2 .case__img { background: #3d2066; object-fit: contain; }
 .case--3 .case__img { background: var(--c-white); }
 .case--5 .case__img { background: var(--c-gray); }
 
@@ -1224,7 +1224,7 @@ a.lang__opt:hover {
 
 .header.is-stuck {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   top: var(--space-16);
   left: 0;
   right: 0;
@@ -1523,7 +1523,7 @@ a.lang__opt:hover {
   /* Открытое меню: на весь экран, фон — как у первого экрана */
   .header.is-open {
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
     inset: 0;
     width: auto;
     display: grid;

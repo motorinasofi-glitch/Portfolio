@@ -99,6 +99,46 @@ def make_env(root):
     return env
 
 
+SECTION_IDS = {
+    'hero': '.hero',
+    'principles': '.principles',
+    'cases': '.cases',
+    'compare': '.compare',
+    'services': '.services',
+    'about': '.about',
+    'reviews': '.reviews',
+    'faq': '.faq',
+    'contact': '.contact',
+}
+
+
+def load_layout():
+    """Читает data/layout.json и возвращает CSS-переопределения отступов."""
+    layout_file = DATA / 'layout.json'
+    if not layout_file.exists():
+        return ''
+    layout = json.loads(layout_file.read_text(encoding='utf-8'))
+    lines = []
+
+    gap = layout.get('section_gap')
+    if gap and gap != 150:
+        lines.append(f':root {{ --section-gap: {int(gap)}px; }}')
+
+    for key, sel in SECTION_IDS.items():
+        sec = layout.get('sections', {}).get(key, {})
+        pt = sec.get('padding_top', 0)
+        pb = sec.get('padding_bottom', 0)
+        if pt or pb:
+            props = []
+            if pt:
+                props.append(f'padding-top: {int(pt)}px')
+            if pb:
+                props.append(f'padding-bottom: {int(pb)}px')
+            lines.append(f'{sel} {{ {"; ".join(props)}; }}')
+
+    return '\n'.join(lines)
+
+
 def build():
     version = datetime.now().strftime('%Y%m%d%H%M')
 
@@ -113,6 +153,11 @@ def build():
         else:
             shutil.copy2(src, DIST / name)
 
+    layout_css = load_layout()
+    if layout_css:
+        (DIST / 'layout.css').write_text(layout_css, encoding='utf-8')
+        print('Отступы:', layout_css.count('{'), 'правил')
+
     for lang, conf in LANGS.items():
         data = load_data(lang)
         reviews = data.get('reviews', {})
@@ -122,7 +167,7 @@ def build():
             root=conf['root'],
             version=version,
             ui=UI[lang],
-            # Отзывы видны, только если стоит флажок и отзывов 3+
+            layout_css=bool(layout_css),
             reviews_on=bool(reviews.get('show')) and len(reviews.get('list', [])) >= 3,
             **data,
         )

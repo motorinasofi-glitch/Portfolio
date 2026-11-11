@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход в админку</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">S</div>
+    <h1>Управление сайтом</h1>
+    <p class="auth-subtitle">Софья — веб и граф дизайнер</p>
+
+    <div class="auth-error" id="error" style="display:none">Неверная почта или пароль</div>
+
+    <form method="POST" action="/admin/login">
+      <label>
+        <span>Электронная почта</span>
+        <input type="email" name="email" required autofocus>
+      </label>
+      <label>
+        <span>Пароль</span>
+        <input type="password" name="password" required>
+      </label>
+      <button type="submit">Войти</button>
+    </form>
+  </div>
+
+  <script>
+    if (location.search.includes('error=1')) {
+      document.getElementById('error').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
