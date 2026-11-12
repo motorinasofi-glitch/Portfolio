@@ -32,6 +32,10 @@
         {% endif %}
         {% endfor %}
       </div>
+
+      {% if services.demo %}
+      <p class="services__demo">{{ services.demo }}</p>
+      {% endif %}
     </div>
   </section>
 {% endif %}

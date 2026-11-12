@@ -389,6 +389,12 @@ content:
       description: На сайте не видна, её читают экранные дикторы.
       options:
         maxlength: 80
+    - name: demo
+      label: Плашка под таблицей
+      type: string
+      description: Короткая строка под услугами, например «Первое демо сайта — в течение 24 часов». Пусто — плашки нет.
+      options:
+        maxlength: 70
     - name: list
       label: Услуги
       type: object
@@ -415,9 +421,9 @@ content:
       - name: time
         label: Сроки
         type: string
-        description: Например «7–21 день».
+        description: Например «3–5 дней» или «Зависит от количества товаров».
         options:
-          maxlength: 15
+          maxlength: 40
       - name: price
         label: Цена
         type: string
@@ -1071,6 +1077,12 @@ content:
       description: На сайте не видна, её читают экранные дикторы.
       options:
         maxlength: 80
+    - name: demo
+      label: Плашка под таблицей
+      type: string
+      description: Короткая строка под услугами, например «Первое демо сайта — в течение 24 часов». Пусто — плашки нет.
+      options:
+        maxlength: 70
     - name: list
       label: Услуги
       type: object
@@ -1097,9 +1109,9 @@ content:
       - name: time
         label: Сроки
         type: string
-        description: Например «7–21 день».
+        description: Например «3–5 дней» или «Зависит от количества товаров».
         options:
-          maxlength: 15
+          maxlength: 40
       - name: price
         label: Цена
         type: string

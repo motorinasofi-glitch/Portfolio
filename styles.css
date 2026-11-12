@@ -743,6 +743,31 @@ a.lang__opt:hover {
   font-size: var(--fs-service-price-note);
 }
 
+/* Плашка под таблицей услуг («Первое демо сайта — в течение 24 часов»).
+   Как рубрика секции: пилюля с точкой-акцентом, только крупнее */
+.services__demo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: var(--space-24) 0 0;
+  padding: var(--space-12) var(--space-24);
+  border-radius: var(--pill-radius);
+  background: var(--c-accent);
+  color: var(--c-light);
+  font-size: var(--fs-btn);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-text);
+}
+
+.services__demo::before {
+  content: "";
+  flex: none;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--c-light);
+}
+
 /* ============ Обо мне (новый блок, в системе секций из Figma) ============ */
 /* Фото в первой колонке сетки (x = 30), пункты — в колонках 320 / 610 / 900 */
 .about {

@@ -92,6 +92,7 @@ const SECTIONS = {
       { key: 'title', label: 'Заголовок', type: 'textarea' },
       { key: 'title_soft', label: 'Подзаголовок', type: 'textarea' },
       { key: 'table_label', label: 'Заголовок таблицы (для SEO)', type: 'text' },
+      { key: 'demo', label: 'Плашка под таблицей (пусто — нет плашки)', type: 'text' },
       { key: 'cols', label: 'Названия колонок', type: 'object', fields: [
         { key: 'name', label: 'Услуга', type: 'text' },
         { key: 'text', label: 'Что входит', type: 'text' },

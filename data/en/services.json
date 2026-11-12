@@ -9,25 +9,26 @@
     "price": "Price"
   },
   "table_label": "Services, timelines and pricing",
+  "demo": "First website demo within 24 hours",
   "list": [
     {
       "title": "Landing page\nfor a product launch",
       "text": "A one-page website with a clear call to action. Helps you explain your idea quickly and bring in your first clients.",
-      "time": "7–21 days",
+      "time": "3–5 days",
       "price": "from €370*",
       "note": "*depends on the features you choose"
     },
     {
       "title": "Multi-page website\nfor business",
       "text": "A website with a more complex structure split into several pages, for when you need to present your product, services and team.",
-      "time": "14–30 days",
+      "time": "5–7 days",
       "price": "from €530*",
       "note": "*depends on the features you choose"
     },
     {
       "title": "Online store\nwith a catalogue",
       "text": "A website with a functional product catalogue, shopping cart and online checkout",
-      "time": "20–40 days",
+      "time": "Depends on the number of products",
       "price": "from €640*",
       "note": "*depends on the features you choose"
     }

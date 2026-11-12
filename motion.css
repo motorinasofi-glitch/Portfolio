@@ -264,7 +264,8 @@
 @keyframes m-shimmer { to { background-position: 300% 0; } }
 
 /* Рубрика слева: точка мягко пульсирует */
-.m-on .section-head__label::before {
+.m-on .section-head__label::before,
+.m-on .services__demo::before {
   animation: m-pulse 2.4s ease-out infinite;
 }
 
