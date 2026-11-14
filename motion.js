@@ -140,7 +140,87 @@
       heroMouse.py = e.clientY - r.top;
       heroMouse.x = (e.clientX / innerWidth - 0.5) * 2;
       heroMouse.y = (e.clientY / innerHeight - 0.5) * 2;
+      // След из звёзд и лун: новая фигура каждые ~34px пути курсора
+      if (finePointer && heroMouse.lx != null) {
+        heroMouse.trail += Math.hypot(heroMouse.px - heroMouse.lx, heroMouse.py - heroMouse.ly);
+        if (heroMouse.trail > 34) { heroMouse.trail = 0; addCharm(heroMouse.px, heroMouse.py, 1); }
+      }
+      heroMouse.lx = heroMouse.px; heroMouse.ly = heroMouse.py;
     });
+    hero.addEventListener('pointerleave', function () { heroMouse.lx = null; });
+    heroMouse.trail = 0;
+
+    // Клик по пустому месту первого экрана — маленький «салют» из звёзд и лун
+    if (finePointer) {
+      hero.addEventListener('click', function (e) {
+        if (e.target.closest('a, button')) return;
+        var r = hero.getBoundingClientRect();
+        for (var k = 0; k < 9; k++) addCharm(e.clientX - r.left, e.clientY - r.top, 2.6);
+      });
+    }
+
+    // Звёзды-искорки и полумесяцы, которые появляются под курсором
+    var charms = [];
+    function addCharm(x, y, kick) {
+      if (charms.length > 40) charms.shift();
+      var moon = Math.random() < 0.28;
+      var color = palette[(Math.random() * palette.length) | 0];
+      var ang = Math.random() * 6.283, sp = (Math.random() * 0.6 + 0.2) * kick;
+      charms.push({
+        x: x + (Math.random() - 0.5) * 14, y: y + (Math.random() - 0.5) * 14,
+        vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.25,
+        moon: moon,
+        r: moon ? Math.random() * 4 + 7 : Math.random() * 7 + 5,
+        rot: moon ? Math.random() * 0.8 - 1.2 : Math.random() * 0.6,
+        vr: (Math.random() - 0.5) * 0.03,
+        life: 0, dur: Math.random() * 40 + 70,
+        img: sprite(moon, color)
+      });
+    }
+    function easeBack(k) { var s = 2.2; k -= 1; return k * k * ((s + 1) * k + s) + 1; }
+
+    // Фигуры со свечением рисуются ОДИН раз в маленькие картинки-спрайты,
+    // а в каждом кадре только копируются — свечение (shadowBlur) в кадре очень дорогое
+    var SPR = 64, SPR_R = 16; // размер спрайта и радиус фигуры в нём
+    var sprites = {};
+    function sprite(moon, color) {
+      var key = (moon ? 'm' : 's') + color;
+      if (sprites[key]) return sprites[key];
+      var s = document.createElement('canvas');
+      s.width = s.height = SPR * 2; // двойная плотность — чётко на ретине
+      var g = s.getContext('2d');
+      g.scale(2, 2);
+      g.translate(SPR / 2, SPR / 2);
+      g.fillStyle = color;
+      g.shadowColor = glowColor;
+      g.shadowBlur = SPR_R * 1.4;
+      g.beginPath();
+      if (moon) {
+        // полумесяц: левая половина круга минус половинка эллипса
+        g.arc(0, 0, SPR_R, Math.PI / 2, Math.PI * 1.5, false);
+        g.ellipse(0, 0, SPR_R * 0.45, SPR_R, 0, Math.PI * 1.5, Math.PI / 2, true);
+      } else {
+        // четырёхлучевая звезда-искорка
+        g.moveTo(0, -SPR_R);
+        g.quadraticCurveTo(0, 0, SPR_R, 0);
+        g.quadraticCurveTo(0, 0, 0, SPR_R);
+        g.quadraticCurveTo(0, 0, -SPR_R, 0);
+        g.quadraticCurveTo(0, 0, 0, -SPR_R);
+      }
+      g.fill();
+      return (sprites[key] = s);
+    }
+
+    function drawCharm(c) {
+      var k = c.life / c.dur;
+      var r = c.r * Math.max(0, easeBack(Math.min(1, k / 0.22))) * (1 - k * 0.35);
+      if (r <= 0.2) return;
+      var size = SPR * r / SPR_R;
+      ctx.globalAlpha = Math.min(1, k / 0.1) * Math.pow(1 - k, 1.4);
+      var cos = Math.cos(c.rot), sin = Math.sin(c.rot);
+      ctx.setTransform(DPR * cos, DPR * sin, -DPR * sin, DPR * cos, DPR * c.x, DPR * c.y);
+      ctx.drawImage(c.img, -size / 2, -size / 2, size, size);
+    }
 
     // Искры: розовые частицы медленно всплывают и разлетаются от курсора
     var gradient = hero.querySelector('.hero__gradient');
@@ -154,6 +234,7 @@
     var palette = ['--c-rose-50', '--c-rose-200', '--c-accent', '--c-light'].map(function (n) {
       return css.getPropertyValue(n).trim();
     });
+    var glowColor = css.getPropertyValue('--c-accent').trim();
     var W, H, DPR, parts = [];
 
     function sizeSparks() {
@@ -206,6 +287,15 @@
         ctx.arc(p.x, p.y, p.r, 0, 6.283);
         ctx.fill();
       }
+      for (var j = charms.length - 1; j >= 0; j--) {
+        var c = charms[j];
+        c.life++;
+        if (c.life >= c.dur) { charms.splice(j, 1); continue; }
+        c.vx *= 0.96; c.vy = c.vy * 0.96 - 0.012;
+        c.x += c.vx; c.y += c.vy; c.rot += c.vr;
+        drawCharm(c);
+      }
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
     })();
