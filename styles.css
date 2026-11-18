@@ -98,7 +98,7 @@ a {
   right: var(--gutter);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;             /* ник, меню, язык и Telegram — на одной средней линии */
   font-size: var(--fs-nav);
   line-height: var(--lh-nav);
   letter-spacing: var(--ls-text);
@@ -108,9 +108,13 @@ a {
   color: var(--c-rose-200);
 }
 
+/* Пункты меню одной ширины (по самому длинному), подпись — по центру своей ячейки */
 .nav__list {
-  display: flex;
-  gap: var(--space-96);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-48);
+  text-align: center;
   margin: 0;
   padding: 0;
   list-style: none;

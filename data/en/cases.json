@@ -12,19 +12,21 @@
         "landing page",
         "AI"
       ],
-      "text": "A landing page with a booking form to collect leads",
+      "text": "A landing page for a foreign bank card service: explains the offer clearly, shows the benefits and collects consultation requests",
       "link": "#",
       "wide": false
     },
     {
       "image": "assets/img/case-magic.png",
-      "alt": "[Magic case title]",
-      "title": "[Magic case title]",
+      "alt": "Catalog website of the Magic advertising agency: portfolio with industry filters",
+      "title": "Catalog website for the Magic advertising agency",
       "tags": [
-        "[tag]",
-        "[tag]"
+        "online store",
+        "AI refinement",
+        "Claude",
+        "Catalog"
       ],
-      "text": "[Magic case task in one line]",
+      "text": "A multi-page portfolio site with a case catalog, industry filters and a convenient mobile version",
       "link": "#",
       "wide": false
     },
@@ -36,7 +38,7 @@
         "landing page",
         "AI"
       ],
-      "text": "An interactive landing page with 31 pop-ups working as separate pages",
+      "text": "A multi-page website for an architecture studio: a detailed project portfolio, every area of work and 31 interactive pop-ups",
       "link": "#",
       "wide": true
     },
@@ -48,7 +50,7 @@
         "landing page",
         "AI"
       ],
-      "text": "A landing page with a booking form to collect leads",
+      "text": "A travel agency landing page with tour matching and call-back requests: a hot-deals ticker, turnkey tours, visas and reviews",
       "link": "#",
       "wide": false
     },
